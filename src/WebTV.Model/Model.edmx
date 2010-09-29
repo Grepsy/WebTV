@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebTVModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WebTVModelStoreContainer">
+          <EntitySet Name="Animation" EntityType="WebTVModel.Store.Animation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AnimationPropertyDescriptor" EntityType="WebTVModel.Store.AnimationPropertyDescriptor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="WebTVModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Log" EntityType="WebTVModel.Store.Log" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media" EntityType="WebTVModel.Store.Media" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Property" EntityType="WebTVModel.Store.Property" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PropertyDescriptor" EntityType="WebTVModel.Store.PropertyDescriptor" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Animation__Anima__0DAF0CB0" Association="WebTVModel.Store.FK__Animation__Anima__0DAF0CB0">
+            <End Role="Animation" EntitySet="Animation" />
+            <End Role="AnimationPropertyDescriptor" EntitySet="AnimationPropertyDescriptor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animation__HasMe__0519C6AF" Association="WebTVModel.Store.FK__Animation__HasMe__0519C6AF">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Animation" EntitySet="Animation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Animation__Prope__0EA330E9" Association="WebTVModel.Store.FK__Animation__Prope__0EA330E9">
+            <End Role="PropertyDescriptor" EntitySet="PropertyDescriptor" />
+            <End Role="AnimationPropertyDescriptor" EntitySet="AnimationPropertyDescriptor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Log__AnimationId__1DE57479" Association="WebTVModel.Store.FK__Log__AnimationId__1DE57479">
+            <End Role="Animation" EntitySet="Animation" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Media__Animation__1367E606" Association="WebTVModel.Store.FK__Media__Animation__1367E606">
+            <End Role="Animation" EntitySet="Animation" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__MediaI__1920BF5C" Association="WebTVModel.Store.FK__Property__MediaI__1920BF5C">
+            <End Role="Media" EntitySet="Media" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__Proper__182C9B23" Association="WebTVModel.Store.FK__Property__Proper__182C9B23">
+            <End Role="PropertyDescriptor" EntitySet="PropertyDescriptor" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Animation">
+          <Key>
+            <PropertyRef Name="AnimationId" />
+          </Key>
+          <Property Name="AnimationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Message" Type="nvarchar" MaxLength="255" />
+          <Property Name="HasMedia" Type="bit" />
+        </EntityType>
+        <EntityType Name="AnimationPropertyDescriptor">
+          <Key>
+            <PropertyRef Name="AnimationId" />
+            <PropertyRef Name="PropertyDescriptorId" />
+          </Key>
+          <Property Name="AnimationId" Type="int" Nullable="false" />
+          <Property Name="PropertyDescriptorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="PlayLogId" />
+          </Key>
+          <Property Name="PlayLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AnimationId" Type="int" Nullable="false" />
+          <Property Name="PlayedAt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="MediaId" />
+          </Key>
+          <Property Name="MediaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AnimationId" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="255" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyDescriptorId" Type="int" Nullable="false" />
+          <Property Name="MediaId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PropertyDescriptor">
+          <Key>
+            <PropertyRef Name="PropertyDescriptorId" />
+          </Key>
+          <Property Name="PropertyDescriptorId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="DefaultValue" Type="nvarchar" MaxLength="255" />
+          <Property Name="Required" Type="bit" />
+          <Property Name="ValidationRegEx" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__Animation__Anima__0DAF0CB0">
+          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1" />
+          <End Role="AnimationPropertyDescriptor" Type="WebTVModel.Store.AnimationPropertyDescriptor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animation">
+              <PropertyRef Name="AnimationId" />
+            </Principal>
+            <Dependent Role="AnimationPropertyDescriptor">
+              <PropertyRef Name="AnimationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animation__HasMe__0519C6AF">
+          <End Role="Customer" Type="WebTVModel.Store.Customer" Multiplicity="1" />
+          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Animation">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Animation__Prope__0EA330E9">
+          <End Role="PropertyDescriptor" Type="WebTVModel.Store.PropertyDescriptor" Multiplicity="1" />
+          <End Role="AnimationPropertyDescriptor" Type="WebTVModel.Store.AnimationPropertyDescriptor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyDescriptor">
+              <PropertyRef Name="PropertyDescriptorId" />
+            </Principal>
+            <Dependent Role="AnimationPropertyDescriptor">
+              <PropertyRef Name="PropertyDescriptorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Log__AnimationId__1DE57479">
+          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1" />
+          <End Role="Log" Type="WebTVModel.Store.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animation">
+              <PropertyRef Name="AnimationId" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="AnimationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Media__Animation__1367E606">
+          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1" />
+          <End Role="Media" Type="WebTVModel.Store.Media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animation">
+              <PropertyRef Name="AnimationId" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="AnimationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__MediaI__1920BF5C">
+          <End Role="Media" Type="WebTVModel.Store.Media" Multiplicity="1" />
+          <End Role="Property" Type="WebTVModel.Store.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Media">
+              <PropertyRef Name="MediaId" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="MediaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__Proper__182C9B23">
+          <End Role="PropertyDescriptor" Type="WebTVModel.Store.PropertyDescriptor" Multiplicity="1" />
+          <End Role="Property" Type="WebTVModel.Store.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyDescriptor">
+              <PropertyRef Name="PropertyDescriptorId" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="PropertyDescriptorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebTV.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WebTVContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animations" EntityType="WebTV.Model.Animation" />
+          <EntitySet Name="Customers" EntityType="WebTV.Model.Customer" />
+          <EntitySet Name="Logs" EntityType="WebTV.Model.Log" />
+          <EntitySet Name="Media1" EntityType="WebTV.Model.Media" />
+          <EntitySet Name="Properties" EntityType="WebTV.Model.Property" />
+          <EntitySet Name="PropertyDescriptors" EntityType="WebTV.Model.PropertyDescriptor" />
+          <AssociationSet Name="FK__Animation__HasMe__0519C6AF" Association="WebTV.Model.FK__Animation__HasMe__0519C6AF">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Animation" EntitySet="Animations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Log__AnimationId__1DE57479" Association="WebTV.Model.FK__Log__AnimationId__1DE57479">
+            <End Role="Animation" EntitySet="Animations" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Media__Animation__1367E606" Association="WebTV.Model.FK__Media__Animation__1367E606">
+            <End Role="Animation" EntitySet="Animations" />
+            <End Role="Medium" EntitySet="Media1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__MediaI__1920BF5C" Association="WebTV.Model.FK__Property__MediaI__1920BF5C">
+            <End Role="Medium" EntitySet="Media1" />
+            <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__Proper__182C9B23" Association="WebTV.Model.FK__Property__Proper__182C9B23">
+            <End Role="PropertyDescriptor" EntitySet="PropertyDescriptors" />
+            <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+          <AssociationSet Name="AnimationPropertyDescriptor" Association="WebTV.Model.AnimationPropertyDescriptor">
+            <End Role="Animation" EntitySet="Animations" />
+            <End Role="PropertyDescriptor" EntitySet="PropertyDescriptors" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Animation">
+          <Key>
+            <PropertyRef Name="AnimationId" />
+          </Key>
+          <Property Type="Int32" Name="AnimationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CustomerId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Message" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="HasMedia" />
+          <NavigationProperty Name="Customer" Relationship="WebTV.Model.FK__Animation__HasMe__0519C6AF" FromRole="Animation" ToRole="Customer" />
+          <NavigationProperty Name="Logs" Relationship="WebTV.Model.FK__Log__AnimationId__1DE57479" FromRole="Animation" ToRole="Log" />
+          <NavigationProperty Name="Media" Relationship="WebTV.Model.FK__Media__Animation__1367E606" FromRole="Animation" ToRole="Medium" />
+          <NavigationProperty Name="PropertyDescriptors" Relationship="WebTV.Model.AnimationPropertyDescriptor" FromRole="Animation" ToRole="PropertyDescriptor" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Type="Int32" Name="CustomerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animations" Relationship="WebTV.Model.FK__Animation__HasMe__0519C6AF" FromRole="Customer" ToRole="Animation" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="PlayLogId" />
+          </Key>
+          <Property Type="Int32" Name="PlayLogId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AnimationId" Nullable="false" />
+          <Property Type="DateTime" Name="PlayedAt" Nullable="false" />
+          <NavigationProperty Name="Animation" Relationship="WebTV.Model.FK__Log__AnimationId__1DE57479" FromRole="Log" ToRole="Animation" />
+        </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="MediaId" />
+          </Key>
+          <Property Type="Int32" Name="MediaId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AnimationId" Nullable="false" />
+          <Property Type="String" Name="Url" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Active" />
+          <NavigationProperty Name="Animation" Relationship="WebTV.Model.FK__Media__Animation__1367E606" FromRole="Medium" ToRole="Animation" />
+          <NavigationProperty Name="Properties" Relationship="WebTV.Model.FK__Property__MediaI__1920BF5C" FromRole="Medium" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+          </Key>
+          <Property Type="Int32" Name="PropertyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PropertyDescriptorId" Nullable="false" />
+          <Property Type="Int32" Name="MediaId" Nullable="false" />
+          <Property Type="String" Name="Value" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Medium" Relationship="WebTV.Model.FK__Property__MediaI__1920BF5C" FromRole="Property" ToRole="Medium" />
+          <NavigationProperty Name="PropertyDescriptor" Relationship="WebTV.Model.FK__Property__Proper__182C9B23" FromRole="Property" ToRole="PropertyDescriptor" />
+        </EntityType>
+        <EntityType Name="PropertyDescriptor">
+          <Key>
+            <PropertyRef Name="PropertyDescriptorId" />
+          </Key>
+          <Property Type="Int32" Name="PropertyDescriptorId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DefaultValue" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Required" />
+          <Property Type="String" Name="ValidationRegEx" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Properties" Relationship="WebTV.Model.FK__Property__Proper__182C9B23" FromRole="PropertyDescriptor" ToRole="Property" />
+          <NavigationProperty Name="Animations" Relationship="WebTV.Model.AnimationPropertyDescriptor" FromRole="PropertyDescriptor" ToRole="Animation" />
+        </EntityType>
+        <Association Name="FK__Animation__HasMe__0519C6AF">
+          <End Type="WebTV.Model.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Animation">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Log__AnimationId__1DE57479">
+          <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="1" />
+          <End Type="WebTV.Model.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animation">
+              <PropertyRef Name="AnimationId" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="AnimationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Media__Animation__1367E606">
+          <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="1" />
+          <End Type="WebTV.Model.Media" Role="Medium" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animation">
+              <PropertyRef Name="AnimationId" />
+            </Principal>
+            <Dependent Role="Medium">
+              <PropertyRef Name="AnimationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__MediaI__1920BF5C">
+          <End Type="WebTV.Model.Media" Role="Medium" Multiplicity="1" />
+          <End Type="WebTV.Model.Property" Role="Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medium">
+              <PropertyRef Name="MediaId" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="MediaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__Proper__182C9B23">
+          <End Type="WebTV.Model.PropertyDescriptor" Role="PropertyDescriptor" Multiplicity="1" />
+          <End Type="WebTV.Model.Property" Role="Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyDescriptor">
+              <PropertyRef Name="PropertyDescriptorId" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="PropertyDescriptorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AnimationPropertyDescriptor">
+          <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="*" />
+          <End Type="WebTV.Model.PropertyDescriptor" Role="PropertyDescriptor" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebTVModelStoreContainer" CdmEntityContainer="WebTVContext">
+          <EntitySetMapping Name="Animations">
+            <EntityTypeMapping TypeName="WebTV.Model.Animation">
+              <MappingFragment StoreEntitySet="Animation">
+                <ScalarProperty Name="HasMedia" ColumnName="HasMedia" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="WebTV.Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="WebTV.Model.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="PlayedAt" ColumnName="PlayedAt" />
+                <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
+                <ScalarProperty Name="PlayLogId" ColumnName="PlayLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media1">
+            <EntityTypeMapping TypeName="WebTV.Model.Media">
+              <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="WebTV.Model.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="PropertyDescriptorId" ColumnName="PropertyDescriptorId" />
+                <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyDescriptors">
+            <EntityTypeMapping TypeName="WebTV.Model.PropertyDescriptor">
+              <MappingFragment StoreEntitySet="PropertyDescriptor">
+                <ScalarProperty Name="ValidationRegEx" ColumnName="ValidationRegEx" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PropertyDescriptorId" ColumnName="PropertyDescriptorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AnimationPropertyDescriptor" TypeName="WebTV.Model.AnimationPropertyDescriptor" StoreEntitySet="AnimationPropertyDescriptor">
+            <EndProperty Name="PropertyDescriptor">
+              <ScalarProperty Name="PropertyDescriptorId" ColumnName="PropertyDescriptorId" />
+            </EndProperty>
+            <EndProperty Name="Animation">
+              <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="WebTV.Model.Animation" Width="1.5" PointX="3" PointY="3.75" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="WebTV.Model.Customer" Width="1.5" PointX="0.75" PointY="4.25" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="WebTV.Model.Log" Width="1.5" PointX="5.25" PointY="1.25" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="WebTV.Model.Media" Width="1.5" PointX="5.25" PointY="3.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="WebTV.Model.Property" Width="1.5" PointX="7.5" PointY="5.25" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="WebTV.Model.PropertyDescriptor" Width="1.5" PointX="5.25" PointY="6.625" Height="2.3648893229166683" />
+        <AssociationConnector Association="WebTV.Model.FK__Animation__HasMe__0519C6AF" >
+          <ConnectorPoint PointX="2.25" PointY="5.1439925130208337" />
+          <ConnectorPoint PointX="3" PointY="5.1439925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebTV.Model.FK__Log__AnimationId__1DE57479" >
+          <ConnectorPoint PointX="3.75" PointY="3.75" />
+          <ConnectorPoint PointX="3.75" PointY="2.1439925130208337" />
+          <ConnectorPoint PointX="5.25" PointY="2.1439925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebTV.Model.FK__Media__Animation__1367E606" >
+          <ConnectorPoint PointX="4.5" PointY="4.8362939453125" />
+          <ConnectorPoint PointX="5.25" PointY="4.8362939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebTV.Model.FK__Property__MediaI__1920BF5C" >
+          <ConnectorPoint PointX="6.75" PointY="5.5862939453125" />
+          <ConnectorPoint PointX="7.5" PointY="5.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebTV.Model.FK__Property__Proper__182C9B23" >
+          <ConnectorPoint PointX="6.75" PointY="7.0237939453125016" />
+          <ConnectorPoint PointX="7.5" PointY="7.0237939453125016" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebTV.Model.AnimationPropertyDescriptor" >
+          <ConnectorPoint PointX="3.75" PointY="6.4994921875" />
+          <ConnectorPoint PointX="3.75" PointY="7.8074446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="7.8074446614583337" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,6 @@
+D:\Workspace\WebTV\WebTV.Model\bin\Debug\WebTV.Model.dll.config
+D:\Workspace\WebTV\WebTV.Model\bin\Debug\WebTV.Model.dll
+D:\Workspace\WebTV\WebTV.Model\bin\Debug\WebTV.Model.pdb
+D:\Workspace\WebTV\WebTV.Model\obj\Debug\ResolveAssemblyReference.cache
+D:\Workspace\WebTV\WebTV.Model\obj\Debug\WebTV.Model.dll
+D:\Workspace\WebTV\WebTV.Model\obj\Debug\WebTV.Model.pdb
