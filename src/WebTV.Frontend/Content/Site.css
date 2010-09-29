@@ -89,7 +89,7 @@ page width. Or, you can specify an exact pixel width. */
     margin-right: auto;
 }
 
-#header
+header
 {
     position: relative;
     margin-bottom: 0px;
@@ -97,7 +97,7 @@ page width. Or, you can specify an exact pixel width. */
     padding: 0;
 }
 
-#header h1
+header h1
 {
     font-weight: bold;
     padding: 5px 0;
@@ -117,7 +117,7 @@ page width. Or, you can specify an exact pixel width. */
     _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
 }
 
-#footer
+footer
 {
     color: #999;
     padding: 10px 0;

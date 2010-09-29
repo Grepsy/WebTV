@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="DatabaseMembershipProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -79,6 +80,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Animation\Edit.aspx" />
     <Content Include="Views\Animation\Index.aspx" />
+    <Content Include="Views\Media\Upload.aspx" />
     <Content Include="Views\Shared\Media.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

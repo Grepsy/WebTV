@@ -5,10 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebTV.Model;
 
-namespace WebTV.Frontend.Controllers
-{
-    public class AnimationController : Controller
-    {
+namespace WebTV.Frontend.Controllers {
+    public class AnimationController : Controller {
         private WebTVContext context;
 
         public AnimationController() {
@@ -20,12 +18,8 @@ namespace WebTV.Frontend.Controllers
             context.Dispose();
         }
 
-        public ActionResult Index()
-        {
-            IEnumerable<Animation> animations;
-            
-            animations = context.Animations.ToList();
-            
+        public ActionResult Index() {
+            var animations = context.Animations.ToList();
             return View(animations);
         }
 
@@ -39,17 +33,17 @@ namespace WebTV.Frontend.Controllers
         public JsonResult IndexJson() {
             IEnumerable<object> animations;
             animations = (from animation in context.Animations
-                            select new {
-                                Name = animation.Name,
-                                Media = animation.Media.Select(m => new {
-                                    Url = m.Url,
-                                    Properties = m.Properties.Select(p => new { 
-                                        Name = p.PropertyDescriptor.Name,
-                                        Value = p.Value
-                                    }),
-                                }),
-                                Message = animation.Message
-                            }).ToList();
+                          select new {
+                              Name = animation.Name,
+                              Media = animation.Media.Select(m => new {
+                                  Url = m.Url,
+                                  Properties = m.Properties.Select(p => new {
+                                      Name = p.PropertyDescriptor.Name,
+                                      Value = p.Value
+                                  }),
+                              }),
+                              Message = animation.Message
+                          }).ToList();
             return Json(animations, JsonRequestBehavior.AllowGet);
         }
     }
