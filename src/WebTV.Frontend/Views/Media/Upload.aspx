@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<string>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<ViewDataFileUpload>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Upload
@@ -6,8 +6,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Upload</h2>
     <ul>
-        <% foreach (string file in this.Model) { %>
-            <li><%: file %></li>
+        <% foreach (var fileinfo in this.Model) { %>
+            <li>
+                <%: String.Format("Bestand: {0} ({1} bytes)", fileinfo.Filename, fileinfo.Filesize) %>
+                <%: fileinfo.CheckResult.IsToSmall ? "Bestand te klein" : "" %>
+                <%: fileinfo.CheckResult.IsToLarge ? "Bestand te groot" : "" %>
+                <%: fileinfo.CheckResult.InvalidRatio ? "Onjuiste ratio" : "" %>
+                <%: fileinfo.CheckResult.UnsupportedFormat ? "Onbekend formaat" : "" %>
+            </li>
         <% } %>
     </ul>
 

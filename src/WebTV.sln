@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTV.Frontend", "WebTV.Fro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTV.Model", "WebTV.Model\WebTV.Model.csproj", "{968C4374-82A0-4472-AD34-4D78589A747B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTV.Imaging", "WebTV.ImageChecker\WebTV.Imaging.csproj", "{2A2BDE8C-C843-465F-AA92-00F75B07D0C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{968C4374-82A0-4472-AD34-4D78589A747B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{968C4374-82A0-4472-AD34-4D78589A747B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968C4374-82A0-4472-AD34-4D78589A747B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2BDE8C-C843-465F-AA92-00F75B07D0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2BDE8C-C843-465F-AA92-00F75B07D0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2BDE8C-C843-465F-AA92-00F75B07D0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2BDE8C-C843-465F-AA92-00F75B07D0C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

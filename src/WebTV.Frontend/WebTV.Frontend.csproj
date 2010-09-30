@@ -113,6 +113,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebTV.ImageChecker\WebTV.Imaging.csproj">
+      <Project>{2A2BDE8C-C843-465F-AA92-00F75B07D0C1}</Project>
+      <Name>WebTV.Imaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebTV.Model\WebTV.Model.csproj">
       <Project>{968C4374-82A0-4472-AD34-4D78589A747B}</Project>
       <Name>WebTV.Model</Name>
