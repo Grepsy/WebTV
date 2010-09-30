@@ -41,7 +41,8 @@ CREATE TABLE AnimationPropertyDescriptor (
 CREATE TABLE Media (
   MediaId INT PRIMARY KEY IDENTITY(1,1),
   AnimationId INT NOT NULL,
-  Url NVARCHAR(255),
+  Filename NVARCHAR(255),
+  MimeType NVARCHAR(255),
   Active BIT NOT NULL DEFAULT 1,
   FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId)
 )
