@@ -1,4 +1,10 @@
 USE master
+
+ALTER DATABASE WebTV SET READ_ONLY WITH ROLLBACK IMMEDIATE --this disconnects all users
+GO
+ALTER DATABASE WebTV SET READ_WRITE WITH ROLLBACK IMMEDIATE
+GO
+
 DROP DATABASE WebTV
 GO
 
@@ -38,13 +44,22 @@ CREATE TABLE AnimationPropertyDescriptor (
   FOREIGN KEY (PropertyDescriptorId) REFERENCES PropertyDescriptor(PropertyDescriptorId)
 )
 
+CREATE TABLE MediaSet {
+  MediaSetId INT PRIMARY KEY IDENTITY(1,1),
+  AnimationId INT NOT NULL,
+  Name NVARCHAR(255) NOT NULL DEFAULT '',
+  StartDate DATE,
+  EndDate DATE,
+  FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId)
+}
+
 CREATE TABLE Media (
   MediaId INT PRIMARY KEY IDENTITY(1,1),
-  AnimationId INT NOT NULL,
+  MediaSetId INT NOT NULL,
   Filename NVARCHAR(255),
   MimeType NVARCHAR(255),
   Active BIT NOT NULL DEFAULT 1,
-  FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId)
+  FOREIGN KEY (MediaSetId) REFERENCES MediaSet(MediaSetId)
 )
 
 CREATE TABLE Property (

@@ -6,41 +6,35 @@ using System.Web.Mvc;
 using WebTV.Model;
 
 namespace WebTV.Frontend.Controllers {
-    public class AnimationController : Controller {
-        private WebTVContext context;
-
-        public AnimationController() {
-            context = new WebTVContext();
-        }
-
-        protected override void Dispose(bool disposing) {
-            base.Dispose(disposing);
-            context.Dispose();
-        }
-
+    public class AnimationController : ControllerBase {
         public ActionResult Index() {
-            var animations = context.Animations.ToList();
+            var animations = Context.Animations.ToList();
             return View(animations);
         }
 
         public ActionResult Edit(int id) {
             Animation animation;
-            animation = context.Animations.Single(a => a.AnimationId == id);
+            animation = Context.Animations.Single(a => a.AnimationId == id);
             return View("Edit", animation);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
         public JsonResult IndexJson() {
             IEnumerable<object> animations;
-            animations = (from animation in context.Animations
+            animations = (from animation in Context.Animations
                           select new {
                               Name = animation.Name,
-                              Media = animation.Media.Select(m => new {
-                                  Url = m.Url,
+                              MediaSets = animation.MediaSets.Select(s => new { 
+                                Name = s.Name,
+                                StartDate = s.StartDate,
+                                EndDate = s.EndDate,
+                                Media = s.Media.Select(m => new {
+                                  Url = m.Filename, // TODO: Generate url
                                   Properties = m.Properties.Select(p => new {
                                       Name = p.PropertyDescriptor.Name,
                                       Value = p.Value
                                   }),
+                                }),
                               }),
                               Message = animation.Message
                           }).ToList();

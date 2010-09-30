@@ -60,11 +60,11 @@ namespace WebTV.Model
         }
         private ObjectSet<Log> _logs;
     
-        public ObjectSet<Media> Media1
+        public ObjectSet<Media> Media
         {
-            get { return _media1  ?? (_media1 = CreateObjectSet<Media>("Media1")); }
+            get { return _media  ?? (_media = CreateObjectSet<Media>("Media")); }
         }
-        private ObjectSet<Media> _media1;
+        private ObjectSet<Media> _media;
     
         public ObjectSet<Property> Properties
         {
@@ -77,6 +77,12 @@ namespace WebTV.Model
             get { return _propertyDescriptors  ?? (_propertyDescriptors = CreateObjectSet<PropertyDescriptor>("PropertyDescriptors")); }
         }
         private ObjectSet<PropertyDescriptor> _propertyDescriptors;
+    
+        public ObjectSet<MediaSet> MediaSets
+        {
+            get { return _mediaSets  ?? (_mediaSets = CreateObjectSet<MediaSet>("MediaSets")); }
+        }
+        private ObjectSet<MediaSet> _mediaSets;
 
         #endregion
     }

@@ -110,38 +110,6 @@ namespace WebTV.Model
         }
         private ICollection<Log> _logs;
     
-        public virtual ICollection<Media> Media
-        {
-            get
-            {
-                if (_media == null)
-                {
-                    var newCollection = new FixupCollection<Media>();
-                    newCollection.CollectionChanged += FixupMedia;
-                    _media = newCollection;
-                }
-                return _media;
-            }
-            set
-            {
-                if (!ReferenceEquals(_media, value))
-                {
-                    var previousValue = _media as FixupCollection<Media>;
-                    if (previousValue != null)
-                    {
-                        previousValue.CollectionChanged -= FixupMedia;
-                    }
-                    _media = value;
-                    var newValue = value as FixupCollection<Media>;
-                    if (newValue != null)
-                    {
-                        newValue.CollectionChanged += FixupMedia;
-                    }
-                }
-            }
-        }
-        private ICollection<Media> _media;
-    
         public virtual ICollection<PropertyDescriptor> PropertyDescriptors
         {
             get
@@ -173,6 +141,38 @@ namespace WebTV.Model
             }
         }
         private ICollection<PropertyDescriptor> _propertyDescriptors;
+    
+        public virtual ICollection<MediaSet> MediaSets
+        {
+            get
+            {
+                if (_mediaSets == null)
+                {
+                    var newCollection = new FixupCollection<MediaSet>();
+                    newCollection.CollectionChanged += FixupMediaSets;
+                    _mediaSets = newCollection;
+                }
+                return _mediaSets;
+            }
+            set
+            {
+                if (!ReferenceEquals(_mediaSets, value))
+                {
+                    var previousValue = _mediaSets as FixupCollection<MediaSet>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupMediaSets;
+                    }
+                    _mediaSets = value;
+                    var newValue = value as FixupCollection<MediaSet>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupMediaSets;
+                    }
+                }
+            }
+        }
+        private ICollection<MediaSet> _mediaSets;
 
         #endregion
         #region Association Fixup
@@ -219,28 +219,6 @@ namespace WebTV.Model
             }
         }
     
-        private void FixupMedia(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (Media item in e.NewItems)
-                {
-                    item.Animation = this;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Media item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Animation, this))
-                    {
-                        item.Animation = null;
-                    }
-                }
-            }
-        }
-    
         private void FixupPropertyDescriptors(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.NewItems != null)
@@ -261,6 +239,28 @@ namespace WebTV.Model
                     if (item.Animations.Contains(this))
                     {
                         item.Animations.Remove(this);
+                    }
+                }
+            }
+        }
+    
+        private void FixupMediaSets(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (MediaSet item in e.NewItems)
+                {
+                    item.Animation = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (MediaSet item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Animation, this))
+                    {
+                        item.Animation = null;
                     }
                 }
             }

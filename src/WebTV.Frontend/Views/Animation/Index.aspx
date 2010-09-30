@@ -11,7 +11,7 @@
     <% foreach (var animation in this.Model) { %>
         <li>
             <%: Html.ActionLink(animation.Name, "Edit", new { id = animation.AnimationId }) %>
-            (<%: animation.Media.Count(m => m.Active ?? true) %> actieve afbeeldingen)
+            (<%: animation.MediaSets.Count() %> actieve sets)
         </li>
     <% } %>
     </ul>

@@ -44,20 +44,9 @@ namespace WebTV.Model
     
         public virtual int MediaId
         {
-            get { return _mediaId; }
-            set
-            {
-                if (_mediaId != value)
-                {
-                    if (Medium != null && Medium.MediaId != value)
-                    {
-                        Medium = null;
-                    }
-                    _mediaId = value;
-                }
-            }
+            get;
+            set;
         }
-        private int _mediaId;
     
         public virtual string Value
         {
@@ -67,21 +56,6 @@ namespace WebTV.Model
 
         #endregion
         #region Navigation Properties
-    
-        public virtual Media Medium
-        {
-            get { return _medium; }
-            set
-            {
-                if (!ReferenceEquals(_medium, value))
-                {
-                    var previousValue = _medium;
-                    _medium = value;
-                    FixupMedium(previousValue);
-                }
-            }
-        }
-        private Media _medium;
     
         public virtual PropertyDescriptor PropertyDescriptor
         {
@@ -100,26 +74,6 @@ namespace WebTV.Model
 
         #endregion
         #region Association Fixup
-    
-        private void FixupMedium(Media previousValue)
-        {
-            if (previousValue != null && previousValue.Properties.Contains(this))
-            {
-                previousValue.Properties.Remove(this);
-            }
-    
-            if (Medium != null)
-            {
-                if (!Medium.Properties.Contains(this))
-                {
-                    Medium.Properties.Add(this);
-                }
-                if (MediaId != Medium.MediaId)
-                {
-                    MediaId = Medium.MediaId;
-                }
-            }
-        }
     
         private void FixupPropertyDescriptor(PropertyDescriptor previousValue)
         {

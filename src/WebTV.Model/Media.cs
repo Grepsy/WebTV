@@ -25,52 +25,43 @@ namespace WebTV.Model
             set;
         }
     
-        public virtual int AnimationId
+        public virtual bool Active
         {
-            get { return _animationId; }
+            get;
+            set;
+        }
+    
+        public virtual string Filename
+        {
+            get;
+            set;
+        }
+    
+        public virtual string MimeType
+        {
+            get;
+            set;
+        }
+    
+        public virtual int MediaSetId
+        {
+            get { return _mediaSetId; }
             set
             {
-                if (_animationId != value)
+                if (_mediaSetId != value)
                 {
-                    if (Animation != null && Animation.AnimationId != value)
+                    if (MediaSet != null && MediaSet.MediaSetId != value)
                     {
-                        Animation = null;
+                        MediaSet = null;
                     }
-                    _animationId = value;
+                    _mediaSetId = value;
                 }
             }
         }
-        private int _animationId;
-    
-        public virtual string Url
-        {
-            get;
-            set;
-        }
-    
-        public virtual Nullable<bool> Active
-        {
-            get;
-            set;
-        }
+        private int _mediaSetId;
 
         #endregion
         #region Navigation Properties
-    
-        public virtual Animation Animation
-        {
-            get { return _animation; }
-            set
-            {
-                if (!ReferenceEquals(_animation, value))
-                {
-                    var previousValue = _animation;
-                    _animation = value;
-                    FixupAnimation(previousValue);
-                }
-            }
-        }
-        private Animation _animation;
     
         public virtual ICollection<Property> Properties
         {
@@ -103,26 +94,41 @@ namespace WebTV.Model
             }
         }
         private ICollection<Property> _properties;
+    
+        public virtual MediaSet MediaSet
+        {
+            get { return _mediaSet; }
+            set
+            {
+                if (!ReferenceEquals(_mediaSet, value))
+                {
+                    var previousValue = _mediaSet;
+                    _mediaSet = value;
+                    FixupMediaSet(previousValue);
+                }
+            }
+        }
+        private MediaSet _mediaSet;
 
         #endregion
         #region Association Fixup
     
-        private void FixupAnimation(Animation previousValue)
+        private void FixupMediaSet(MediaSet previousValue)
         {
             if (previousValue != null && previousValue.Media.Contains(this))
             {
                 previousValue.Media.Remove(this);
             }
     
-            if (Animation != null)
+            if (MediaSet != null)
             {
-                if (!Animation.Media.Contains(this))
+                if (!MediaSet.Media.Contains(this))
                 {
-                    Animation.Media.Add(this);
+                    MediaSet.Media.Add(this);
                 }
-                if (AnimationId != Animation.AnimationId)
+                if (MediaSetId != MediaSet.MediaSetId)
                 {
-                    AnimationId = Animation.AnimationId;
+                    MediaSetId = MediaSet.MediaSetId;
                 }
             }
         }
@@ -133,7 +139,7 @@ namespace WebTV.Model
             {
                 foreach (Property item in e.NewItems)
                 {
-                    item.Medium = this;
+                    item.MediaId = MediaId;
                 }
             }
     
@@ -141,10 +147,6 @@ namespace WebTV.Model
             {
                 foreach (Property item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Medium, this))
-                    {
-                        item.Medium = null;
-                    }
                 }
             }
         }

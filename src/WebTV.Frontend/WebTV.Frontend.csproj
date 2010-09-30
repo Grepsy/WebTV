@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AnimationController.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="DatabaseMembershipProvider.cs" />

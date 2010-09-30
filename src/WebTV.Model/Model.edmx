@@ -11,6 +11,7 @@
           <EntitySet Name="Customer" EntityType="WebTVModel.Store.Customer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Log" EntityType="WebTVModel.Store.Log" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Media" EntityType="WebTVModel.Store.Media" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MediaSet" EntityType="WebTVModel.Store.MediaSet" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Property" EntityType="WebTVModel.Store.Property" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PropertyDescriptor" EntityType="WebTVModel.Store.PropertyDescriptor" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK__Animation__Anima__0DAF0CB0" Association="WebTVModel.Store.FK__Animation__Anima__0DAF0CB0">
@@ -25,19 +26,23 @@
             <End Role="PropertyDescriptor" EntitySet="PropertyDescriptor" />
             <End Role="AnimationPropertyDescriptor" EntitySet="AnimationPropertyDescriptor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Log__AnimationId__1DE57479" Association="WebTVModel.Store.FK__Log__AnimationId__1DE57479">
+          <AssociationSet Name="FK__Log__AnimationId__24927208" Association="WebTVModel.Store.FK__Log__AnimationId__24927208">
             <End Role="Animation" EntitySet="Animation" />
             <End Role="Log" EntitySet="Log" />
           </AssociationSet>
-          <AssociationSet Name="FK__Media__Animation__1367E606" Association="WebTVModel.Store.FK__Media__Animation__1367E606">
-            <End Role="Animation" EntitySet="Animation" />
+          <AssociationSet Name="FK__Media__MediaSetI__1A14E395" Association="WebTVModel.Store.FK__Media__MediaSetI__1A14E395">
+            <End Role="MediaSet" EntitySet="MediaSet" />
             <End Role="Media" EntitySet="Media" />
           </AssociationSet>
-          <AssociationSet Name="FK__Property__MediaI__1920BF5C" Association="WebTVModel.Store.FK__Property__MediaI__1920BF5C">
+          <AssociationSet Name="FK__MediaSet__Animat__145C0A3F" Association="WebTVModel.Store.FK__MediaSet__Animat__145C0A3F">
+            <End Role="Animation" EntitySet="Animation" />
+            <End Role="MediaSet" EntitySet="MediaSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__MediaI__1FCDBCEB" Association="WebTVModel.Store.FK__Property__MediaI__1FCDBCEB">
             <End Role="Media" EntitySet="Media" />
             <End Role="Property" EntitySet="Property" />
           </AssociationSet>
-          <AssociationSet Name="FK__Property__Proper__182C9B23" Association="WebTVModel.Store.FK__Property__Proper__182C9B23">
+          <AssociationSet Name="FK__Property__Proper__1ED998B2" Association="WebTVModel.Store.FK__Property__Proper__1ED998B2">
             <End Role="PropertyDescriptor" EntitySet="PropertyDescriptor" />
             <End Role="Property" EntitySet="Property" />
           </AssociationSet>
@@ -81,9 +86,20 @@
             <PropertyRef Name="MediaId" />
           </Key>
           <Property Name="MediaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MediaSetId" Type="int" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="255" />
+          <Property Name="MimeType" Type="nvarchar" MaxLength="255" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MediaSet">
+          <Key>
+            <PropertyRef Name="MediaSetId" />
+          </Key>
+          <Property Name="MediaSetId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AnimationId" Type="int" Nullable="false" />
-          <Property Name="Url" Type="nvarchar" MaxLength="255" />
-          <Property Name="Active" Type="bit" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
@@ -140,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Log__AnimationId__1DE57479">
+        <Association Name="FK__Log__AnimationId__24927208">
           <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1" />
           <End Role="Log" Type="WebTVModel.Store.Log" Multiplicity="*" />
           <ReferentialConstraint>
@@ -152,19 +168,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Media__Animation__1367E606">
-          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1" />
+        <Association Name="FK__Media__MediaSetI__1A14E395">
+          <End Role="MediaSet" Type="WebTVModel.Store.MediaSet" Multiplicity="1" />
           <End Role="Media" Type="WebTVModel.Store.Media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MediaSet">
+              <PropertyRef Name="MediaSetId" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="MediaSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MediaSet__Animat__145C0A3F">
+          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1" />
+          <End Role="MediaSet" Type="WebTVModel.Store.MediaSet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Animation">
               <PropertyRef Name="AnimationId" />
             </Principal>
-            <Dependent Role="Media">
+            <Dependent Role="MediaSet">
               <PropertyRef Name="AnimationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Property__MediaI__1920BF5C">
+        <Association Name="FK__Property__MediaI__1FCDBCEB">
           <End Role="Media" Type="WebTVModel.Store.Media" Multiplicity="1" />
           <End Role="Property" Type="WebTVModel.Store.Property" Multiplicity="*" />
           <ReferentialConstraint>
@@ -176,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Property__Proper__182C9B23">
+        <Association Name="FK__Property__Proper__1ED998B2">
           <End Role="PropertyDescriptor" Type="WebTVModel.Store.PropertyDescriptor" Multiplicity="1" />
           <End Role="Property" Type="WebTVModel.Store.Property" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +224,7 @@
           <EntitySet Name="Animations" EntityType="WebTV.Model.Animation" />
           <EntitySet Name="Customers" EntityType="WebTV.Model.Customer" />
           <EntitySet Name="Logs" EntityType="WebTV.Model.Log" />
-          <EntitySet Name="Media1" EntityType="WebTV.Model.Media" />
+          <EntitySet Name="Media" EntityType="WebTV.Model.Media" />
           <EntitySet Name="Properties" EntityType="WebTV.Model.Property" />
           <EntitySet Name="PropertyDescriptors" EntityType="WebTV.Model.PropertyDescriptor" />
           <AssociationSet Name="FK__Animation__HasMe__0519C6AF" Association="WebTV.Model.FK__Animation__HasMe__0519C6AF">
@@ -207,12 +235,8 @@
             <End Role="Animation" EntitySet="Animations" />
             <End Role="Log" EntitySet="Logs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Media__Animation__1367E606" Association="WebTV.Model.FK__Media__Animation__1367E606">
-            <End Role="Animation" EntitySet="Animations" />
-            <End Role="Medium" EntitySet="Media1" />
-          </AssociationSet>
           <AssociationSet Name="FK__Property__MediaI__1920BF5C" Association="WebTV.Model.FK__Property__MediaI__1920BF5C">
-            <End Role="Medium" EntitySet="Media1" />
+            <End Role="Medium" EntitySet="Media" />
             <End Role="Property" EntitySet="Properties" />
           </AssociationSet>
           <AssociationSet Name="FK__Property__Proper__182C9B23" Association="WebTV.Model.FK__Property__Proper__182C9B23">
@@ -222,6 +246,15 @@
           <AssociationSet Name="AnimationPropertyDescriptor" Association="WebTV.Model.AnimationPropertyDescriptor">
             <End Role="Animation" EntitySet="Animations" />
             <End Role="PropertyDescriptor" EntitySet="PropertyDescriptors" />
+          </AssociationSet>
+          <EntitySet Name="MediaSets" EntityType="WebTV.Model.MediaSet" />
+          <AssociationSet Name="FK__MediaSet__Animat__145C0A3F" Association="WebTV.Model.FK__MediaSet__Animat__145C0A3F">
+            <End Role="Animation" EntitySet="Animations" />
+            <End Role="MediaSet" EntitySet="MediaSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Media__MediaSetI__1A14E395" Association="WebTV.Model.FK__Media__MediaSetI__1A14E395">
+            <End Role="MediaSet" EntitySet="MediaSets" />
+            <End Role="Media" EntitySet="Media" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Animation">
@@ -235,8 +268,8 @@
           <Property Type="Boolean" Name="HasMedia" />
           <NavigationProperty Name="Customer" Relationship="WebTV.Model.FK__Animation__HasMe__0519C6AF" FromRole="Animation" ToRole="Customer" />
           <NavigationProperty Name="Logs" Relationship="WebTV.Model.FK__Log__AnimationId__1DE57479" FromRole="Animation" ToRole="Log" />
-          <NavigationProperty Name="Media" Relationship="WebTV.Model.FK__Media__Animation__1367E606" FromRole="Animation" ToRole="Medium" />
           <NavigationProperty Name="PropertyDescriptors" Relationship="WebTV.Model.AnimationPropertyDescriptor" FromRole="Animation" ToRole="PropertyDescriptor" />
+          <NavigationProperty Name="MediaSets" Relationship="WebTV.Model.FK__MediaSet__Animat__145C0A3F" FromRole="Animation" ToRole="MediaSet" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -261,11 +294,12 @@
             <PropertyRef Name="MediaId" />
           </Key>
           <Property Type="Int32" Name="MediaId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="AnimationId" Nullable="false" />
-          <Property Type="String" Name="Url" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Active" />
-          <NavigationProperty Name="Animation" Relationship="WebTV.Model.FK__Media__Animation__1367E606" FromRole="Medium" ToRole="Animation" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
           <NavigationProperty Name="Properties" Relationship="WebTV.Model.FK__Property__MediaI__1920BF5C" FromRole="Medium" ToRole="Property" />
+          <Property Type="String" Name="Filename" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MimeType" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="MediaSetId" Nullable="false" />
+          <NavigationProperty Name="MediaSet" Relationship="WebTV.Model.FK__Media__MediaSetI__1A14E395" FromRole="Media" ToRole="MediaSet" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
@@ -275,7 +309,6 @@
           <Property Type="Int32" Name="PropertyDescriptorId" Nullable="false" />
           <Property Type="Int32" Name="MediaId" Nullable="false" />
           <Property Type="String" Name="Value" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Medium" Relationship="WebTV.Model.FK__Property__MediaI__1920BF5C" FromRole="Property" ToRole="Medium" />
           <NavigationProperty Name="PropertyDescriptor" Relationship="WebTV.Model.FK__Property__Proper__182C9B23" FromRole="Property" ToRole="PropertyDescriptor" />
         </EntityType>
         <EntityType Name="PropertyDescriptor">
@@ -314,18 +347,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Media__Animation__1367E606">
-          <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="1" />
-          <End Type="WebTV.Model.Media" Role="Medium" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Animation">
-              <PropertyRef Name="AnimationId" />
-            </Principal>
-            <Dependent Role="Medium">
-              <PropertyRef Name="AnimationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Property__MediaI__1920BF5C">
           <End Type="WebTV.Model.Media" Role="Medium" Multiplicity="1" />
           <End Type="WebTV.Model.Property" Role="Property" Multiplicity="*" />
@@ -353,6 +374,42 @@
         <Association Name="AnimationPropertyDescriptor">
           <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="*" />
           <End Type="WebTV.Model.PropertyDescriptor" Role="PropertyDescriptor" Multiplicity="*" />
+        </Association>
+        <EntityType Name="MediaSet">
+          <Key>
+            <PropertyRef Name="MediaSetId" />
+          </Key>
+          <Property Type="Int32" Name="MediaSetId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AnimationId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="StartDate" />
+          <Property Type="DateTime" Name="EndDate" />
+          <NavigationProperty Name="Animation" Relationship="WebTV.Model.FK__MediaSet__Animat__145C0A3F" FromRole="MediaSet" ToRole="Animation" />
+          <NavigationProperty Name="Media" Relationship="WebTV.Model.FK__Media__MediaSetI__1A14E395" FromRole="MediaSet" ToRole="Media" />
+        </EntityType>
+        <Association Name="FK__MediaSet__Animat__145C0A3F">
+          <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="1" />
+          <End Type="WebTV.Model.MediaSet" Role="MediaSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animation">
+              <PropertyRef Name="AnimationId" />
+            </Principal>
+            <Dependent Role="MediaSet">
+              <PropertyRef Name="AnimationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Media__MediaSetI__1A14E395">
+          <End Type="WebTV.Model.MediaSet" Role="MediaSet" Multiplicity="1" />
+          <End Type="WebTV.Model.Media" Role="Media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MediaSet">
+              <PropertyRef Name="MediaSetId" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="MediaSetId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -389,12 +446,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Media1">
+          <EntitySetMapping Name="Media">
             <EntityTypeMapping TypeName="WebTV.Model.Media">
               <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="MediaSetId" ColumnName="MediaSetId" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
                 <ScalarProperty Name="MediaId" ColumnName="MediaId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -428,6 +486,17 @@
               <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="MediaSets">
+            <EntityTypeMapping TypeName="WebTV.Model.MediaSet">
+              <MappingFragment StoreEntitySet="MediaSet">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
+                <ScalarProperty Name="MediaSetId" ColumnName="MediaSetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -450,37 +519,40 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model">
-        <EntityTypeShape EntityType="WebTV.Model.Animation" Width="1.5" PointX="3" PointY="3.75" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="WebTV.Model.Animation" Width="1.625" PointX="2.625" PointY="3.75" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="WebTV.Model.Customer" Width="1.5" PointX="0.75" PointY="4.25" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="WebTV.Model.Log" Width="1.5" PointX="5.25" PointY="1.25" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="WebTV.Model.Media" Width="1.5" PointX="5.25" PointY="3.75" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="WebTV.Model.Property" Width="1.5" PointX="7.5" PointY="5.25" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="WebTV.Model.PropertyDescriptor" Width="1.5" PointX="5.25" PointY="6.625" Height="2.3648893229166683" />
+        <EntityTypeShape EntityType="WebTV.Model.Log" Width="1.5" PointX="2.625" PointY="1.375" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="WebTV.Model.Media" Width="1.5" PointX="4.5" PointY="7" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="WebTV.Model.Property" Width="1.75" PointX="6.375" PointY="7" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="WebTV.Model.PropertyDescriptor" Width="1.75" PointX="6.375" PointY="4.125" Height="2.3648893229166683" />
         <AssociationConnector Association="WebTV.Model.FK__Animation__HasMe__0519C6AF" >
           <ConnectorPoint PointX="2.25" PointY="5.1439925130208337" />
-          <ConnectorPoint PointX="3" PointY="5.1439925130208337" />
+          <ConnectorPoint PointX="2.625" PointY="5.1439925130208337" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.FK__Log__AnimationId__1DE57479" >
-          <ConnectorPoint PointX="3.75" PointY="3.75" />
-          <ConnectorPoint PointX="3.75" PointY="2.1439925130208337" />
-          <ConnectorPoint PointX="5.25" PointY="2.1439925130208337" />
-        </AssociationConnector>
-        <AssociationConnector Association="WebTV.Model.FK__Media__Animation__1367E606" >
-          <ConnectorPoint PointX="4.5" PointY="4.8362939453125" />
-          <ConnectorPoint PointX="5.25" PointY="4.8362939453125" />
+          <ConnectorPoint PointX="3.375" PointY="3.75" />
+          <ConnectorPoint PointX="3.375" PointY="3.1629850260416674" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.FK__Property__MediaI__1920BF5C" >
-          <ConnectorPoint PointX="6.75" PointY="5.5862939453125" />
-          <ConnectorPoint PointX="7.5" PointY="5.5862939453125" />
+          <ConnectorPoint PointX="6" PointY="7.9901432291666659" />
+          <ConnectorPoint PointX="6.375" PointY="7.9901432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.FK__Property__Proper__182C9B23" >
-          <ConnectorPoint PointX="6.75" PointY="7.0237939453125016" />
-          <ConnectorPoint PointX="7.5" PointY="7.0237939453125016" />
+          <ConnectorPoint PointX="7.25" PointY="6.4898893229166683" />
+          <ConnectorPoint PointX="7.25" PointY="7" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.AnimationPropertyDescriptor" >
-          <ConnectorPoint PointX="3.75" PointY="6.4994921875" />
-          <ConnectorPoint PointX="3.75" PointY="7.8074446614583337" />
-          <ConnectorPoint PointX="5.25" PointY="7.8074446614583337" />
+          <ConnectorPoint PointX="4.25" PointY="5.3074446614583337" />
+          <ConnectorPoint PointX="6.375" PointY="5.3074446614583337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WebTV.Model.MediaSet" Width="1.5" PointX="2.625" PointY="7" Height="2.3648893229166674" />
+        <AssociationConnector Association="WebTV.Model.FK__MediaSet__Animat__145C0A3F" >
+          <ConnectorPoint PointX="3.375" PointY="6.4994921875" />
+          <ConnectorPoint PointX="3.375" PointY="7" />
+        </AssociationConnector>
+        <AssociationConnector Association="WebTV.Model.FK__Media__MediaSetI__1A14E395" >
+          <ConnectorPoint PointX="4.125" PointY="8.1824446614583337" />
+          <ConnectorPoint PointX="4.5" PointY="8.1824446614583337" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

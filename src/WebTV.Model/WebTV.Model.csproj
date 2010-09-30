@@ -55,6 +55,9 @@
     <Compile Include="Media.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="MediaSet.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

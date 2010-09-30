@@ -4,9 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebTV.Imaging;
+using System.IO;
+using System.Configuration;
+using WebTV.Model;
 
 namespace WebTV.Frontend.Controllers {
-    public class MediaController : Controller {
+    public class MediaController : ControllerBase {
         public ActionResult Index() {
             return View();
         }
@@ -18,7 +21,16 @@ namespace WebTV.Frontend.Controllers {
                 var checkResult = new ImageChecker().Check(file.InputStream);
 
                 if (checkResult.IsOK) {
-                    // file.SaveAs()
+                    string fileguid = Guid.NewGuid().ToString();
+                    file.SaveAs(Path.Combine(ConfigurationManager.AppSettings["MediaPath"], fileguid));
+
+                    Media image = new Media() {
+                        //AnimationId = 1, // TODO: Fix this
+                        Filename = fileguid,
+                        MimeType = file.ContentType
+                    };
+                    Context.Media.AddObject(image);
+                    Context.SaveChanges();
                 }
 
                 uploadedFiles.Add(new ViewDataFileUpload {
