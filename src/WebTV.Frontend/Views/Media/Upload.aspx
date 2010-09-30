@@ -19,6 +19,7 @@
 
     <form method="post" action="/Media/Upload" enctype="multipart/form-data">
         <input type="file" name="test" />
+        <input type="hidden" name="mediaSetId" value="1" />
         <input type="submit" value="Versturen" />
     </form>
 </asp:Content>

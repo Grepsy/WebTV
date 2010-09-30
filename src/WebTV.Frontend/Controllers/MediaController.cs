@@ -14,7 +14,17 @@ namespace WebTV.Frontend.Controllers {
             return View();
         }
 
-        public ActionResult Upload() {
+        public FilePathResult Show(string id) {
+            Media media = Context.Media.SingleOrDefault(m => m.Filename.Equals(id));
+            if (media == null) {
+                throw new HttpException(404, "Image not found");
+            }
+
+            string path = Path.Combine(ConfigurationManager.AppSettings["MediaPath"], media.Filename);
+            return new FilePathResult(path, media.MimeType);
+        }
+        
+        public ActionResult Upload(int? mediaSetId) {
             var uploadedFiles = new List<ViewDataFileUpload>();
             foreach (string item in Request.Files) {
                 var file = Request.Files[item] as HttpPostedFileBase;
@@ -25,7 +35,7 @@ namespace WebTV.Frontend.Controllers {
                     file.SaveAs(Path.Combine(ConfigurationManager.AppSettings["MediaPath"], fileguid));
 
                     Media image = new Media() {
-                        //AnimationId = 1, // TODO: Fix this
+                        MediaSetId = mediaSetId.Value,
                         Filename = fileguid,
                         MimeType = file.ContentType
                     };

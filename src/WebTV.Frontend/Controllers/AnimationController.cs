@@ -20,6 +20,7 @@ namespace WebTV.Frontend.Controllers {
 
         [AcceptVerbs(HttpVerbs.Get)]
         public JsonResult IndexJson() {
+            string imageUrl = Url.Action("Show", "Media", null, Request.Url.Scheme, Request.Url.Host);
             IEnumerable<object> animations;
             animations = (from animation in Context.Animations
                           select new {
@@ -29,7 +30,7 @@ namespace WebTV.Frontend.Controllers {
                                 StartDate = s.StartDate,
                                 EndDate = s.EndDate,
                                 Media = s.Media.Select(m => new {
-                                  Url = m.Filename, // TODO: Generate url
+                                  Url = imageUrl + "/" + m.Filename,
                                   Properties = m.Properties.Select(p => new {
                                       Name = p.PropertyDescriptor.Name,
                                       Value = p.Value
