@@ -12,6 +12,9 @@
     <div class="page">
         <header>
             <h1>Web TV</h1>
+            <% if (TempData.ContainsKey("message")) { %>
+                <h2><%: ((WebTV.Frontend.InfoMessage)TempData["message"]).Message %></h2>
+            <% } %>
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>

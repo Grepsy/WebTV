@@ -44,14 +44,14 @@ CREATE TABLE AnimationPropertyDescriptor (
   FOREIGN KEY (PropertyDescriptorId) REFERENCES PropertyDescriptor(PropertyDescriptorId)
 )
 
-CREATE TABLE MediaSet {
+CREATE TABLE MediaSet (
   MediaSetId INT PRIMARY KEY IDENTITY(1,1),
   AnimationId INT NOT NULL,
   Name NVARCHAR(255) NOT NULL DEFAULT '',
   StartDate DATE,
   EndDate DATE,
   FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId)
-}
+)
 
 CREATE TABLE Media (
   MediaId INT PRIMARY KEY IDENTITY(1,1),

@@ -12,3 +12,5 @@ INSERT INTO AnimationPropertyDescriptor VALUES (1, 1)
 INSERT INTO AnimationPropertyDescriptor VALUES (1, 2)
 INSERT INTO AnimationPropertyDescriptor VALUES (2, 1)
 INSERT INTO AnimationPropertyDescriptor VALUES (2, 2)
+
+INSERT INTO MediaSet (Name, AnimationId) VALUES ('Week 1', 1)
