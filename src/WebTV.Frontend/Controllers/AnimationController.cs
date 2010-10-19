@@ -9,7 +9,6 @@ namespace WebTV.Frontend.Controllers {
     public class AnimationController : ControllerBase {
         public ActionResult Index() {
             var animations = Context.Animations.ToList();
-            
             return View(animations);
         }
 
@@ -47,19 +46,19 @@ namespace WebTV.Frontend.Controllers {
             try {
                 var set = Context.MediaSets.Single(s => s.MediaSetId == setId);
                 var animation = Context.Animations.Single(a => a.AnimationId == animationId);
-                Context.DeleteObject(set);
+
+                animation.MediaSets.Add(set.Copy());
+
                 Context.SaveChanges();
-                TempData["message"] = new InfoMessage("Set is verwijderd.", InfoMessage.InfoType.Notice);
             }
             catch (Exception) {
-                TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het verwijderen van de set.", InfoMessage.InfoType.Error);
+                TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het kopieëren van de set.", InfoMessage.InfoType.Error);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id) {
-            Animation animation;
-            animation = Context.Animations.Single(a => a.AnimationId == id);
+            var animation = Context.Animations.Single(a => a.AnimationId == id);
             return View("Edit", animation);
         }
 
