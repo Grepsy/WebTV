@@ -19,6 +19,7 @@ namespace WebTV.Model {
                 copy.StartDate = EndDate.Value.AddDays(1);
                 copy.EndDate = EndDate.Value.AddDays((EndDate.Value - StartDate.Value).Days);
             }
+
             foreach (var media in this.Media) {
                 var mediaCopy = new Media() {
                     Active = media.Active,
@@ -34,6 +35,7 @@ namespace WebTV.Model {
                 }
                 copy.Media.Add(mediaCopy);
             }
+
             return copy;
         }
     }
