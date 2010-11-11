@@ -5,6 +5,11 @@ using System.Text;
 
 namespace WebTV.Model {
     public partial class Media {
+        public Media() {
+            this.Properties.Add(new Property() { PropertyDescriptorId = 1 });
+            this.Properties.Add(new Property() { PropertyDescriptorId = 2 });
+        }
+
         public Property PropertyWithName(string name) {
             return Properties.SingleOrDefault(p => p.PropertyDescriptor.Name.Equals(name));
         }

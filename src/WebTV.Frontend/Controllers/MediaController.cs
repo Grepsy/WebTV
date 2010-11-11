@@ -10,10 +10,6 @@ using WebTV.Model;
 
 namespace WebTV.Frontend.Controllers {
     public class MediaController : ControllerBase {
-        public ActionResult Index() {
-            return View();
-        }
-
         public FilePathResult Show(string id) {
             Media media = Context.Media.SingleOrDefault(m => m.Filename.Equals(id));
             if (media == null) {
@@ -25,6 +21,8 @@ namespace WebTV.Frontend.Controllers {
         }
         
         public ActionResult Upload(int? mediaSetId) {
+            ViewData["mediaSetId"] = mediaSetId.Value;
+
             var uploadedFiles = new List<ViewDataFileUpload>();
             foreach (string item in Request.Files) {
                 var file = Request.Files[item] as HttpPostedFileBase;

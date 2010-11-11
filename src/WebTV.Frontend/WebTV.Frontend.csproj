@@ -66,6 +66,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountModels.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\MediaController.cs" />
@@ -80,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Animation\Edit.aspx" />
     <Content Include="Views\Animation\Index.aspx" />
     <Content Include="Views\MediaSet\Edit.aspx" />

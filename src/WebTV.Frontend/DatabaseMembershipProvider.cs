@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using WebTV.Model;
+using System.Security.Cryptography;
 
 namespace WebTV.Frontend {
     public class DatabaseMembershipProvider : MembershipProvider {
         public override bool ValidateUser(string username, string password) {
-            return true;
+            var ctx = new WebTVContext();
+            var user = ctx.Customers.SingleOrDefault(s => s.Name == username);
+            
+            return user != null && user.Password == password;
         }
 
         public override string ApplicationName {

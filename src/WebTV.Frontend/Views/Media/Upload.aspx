@@ -4,6 +4,8 @@
     Upload
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%: Html.ActionLink("Mijn fotosets", "Index", "MediaSet") %>
+     
     <h2>Upload</h2>
     <ul>
         <% foreach (var fileinfo in this.Model) { %>
@@ -19,7 +21,7 @@
 
     <form method="post" action="/Media/Upload" enctype="multipart/form-data">
         <input type="file" name="test" multiple="" />
-        <input type="hidden" name="mediaSetId" value="1" />
+        <input type="hidden" name="mediaSetId" value="<%: ViewData["mediaSetId"] %>" />
         <input type="submit" value="Versturen" />
     </form>
 </asp:Content>

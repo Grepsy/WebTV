@@ -5,6 +5,7 @@ using WebTV.Model;
 
 namespace WebTV.Frontend.Controllers
 {
+    [Authorize]
     public class MediaSetController : ControllerBase {
         public ActionResult Index() {
             return View(Context.MediaSets);
@@ -39,8 +40,7 @@ namespace WebTV.Frontend.Controllers
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Set is verwijderd.", InfoMessage.InfoType.Notice);
             }
-            catch (Exception ex) {
-                throw;
+            catch (Exception) {
                 TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het verwijderen van de set.", InfoMessage.InfoType.Error);
             }
             return RedirectToAction("Index");

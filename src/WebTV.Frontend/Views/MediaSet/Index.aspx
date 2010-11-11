@@ -10,7 +10,7 @@
 
     <p>
         Open een fotoset om deze te bewerken of
-        <%: Html.ActionLink("maak een nieuwe aan", "New") %>.
+        <%: Html.ActionLink("maak een nieuwe aan", "New", null, new { id = "mediaset-new" }) %>.
     </p>
 
     <div class="mediaset-list">
@@ -33,5 +33,11 @@
         </div>
     <% } %>
     </div>
+
+    <% using (Html.BeginForm("New", "MediaSet")) { %>
+        <label for="mediaset-form-name">Titel van de fotoset</label>
+        <input id="mediaset-form-name" name="name" />
+        <input type="submit" value="Maak fotoset" />
+    <% } %>
 </asp:Content>
 
