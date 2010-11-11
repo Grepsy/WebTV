@@ -9,16 +9,16 @@
         <% foreach (var fileinfo in this.Model) { %>
             <li>
                 <%: String.Format("Bestand: {0} ({1} bytes)", fileinfo.Filename, fileinfo.Filesize) %>
-                <%: fileinfo.CheckResult.IsToSmall ? "Bestand te klein" : "" %>
-                <%: fileinfo.CheckResult.IsToLarge ? "Bestand te groot" : "" %>
-                <%: fileinfo.CheckResult.InvalidRatio ? "Onjuiste ratio" : "" %>
-                <%: fileinfo.CheckResult.UnsupportedFormat ? "Onbekend formaat" : "" %>
+                <%: fileinfo.CheckResult.IsToSmall ? "Bestand te klein " : "" %>
+                <%: fileinfo.CheckResult.IsToLarge ? "Bestand te groot " : "" %>
+                <%: fileinfo.CheckResult.InvalidRatio ? "Onjuiste ratio " : "" %>
+                <%: fileinfo.CheckResult.UnsupportedFormat ? "Onbekend formaat " : "" %>
             </li>
         <% } %>
     </ul>
 
     <form method="post" action="/Media/Upload" enctype="multipart/form-data">
-        <input type="file" name="test" />
+        <input type="file" name="test" multiple="" />
         <input type="hidden" name="mediaSetId" value="1" />
         <input type="submit" value="Versturen" />
     </form>

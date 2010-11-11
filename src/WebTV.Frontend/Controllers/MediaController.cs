@@ -28,6 +28,7 @@ namespace WebTV.Frontend.Controllers {
             var uploadedFiles = new List<ViewDataFileUpload>();
             foreach (string item in Request.Files) {
                 var file = Request.Files[item] as HttpPostedFileBase;
+                var originalName = file.FileName;
                 var checkResult = new ImageChecker().Check(file.InputStream);
 
                 if (checkResult.IsOK) {
@@ -44,7 +45,7 @@ namespace WebTV.Frontend.Controllers {
                 }
 
                 uploadedFiles.Add(new ViewDataFileUpload {
-                    Filename = file.FileName,
+                    Filename = originalName,
                     Filesize = file.ContentLength,
                     CheckResult = checkResult
                 });

@@ -68,7 +68,6 @@
   <ItemGroup>
     <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\MediaSetController.cs" />
     <Compile Include="DatabaseMembershipProvider.cs" />
@@ -83,6 +82,8 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Animation\Edit.aspx" />
     <Content Include="Views\Animation\Index.aspx" />
+    <Content Include="Views\MediaSet\Edit.aspx" />
+    <Content Include="Views\MediaSet\Index.aspx" />
     <Content Include="Views\Media\Upload.aspx" />
     <Content Include="Views\Shared\Media.ascx" />
     <Content Include="Web.config" />
@@ -105,8 +106,6 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\Home\About.aspx" />
-    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />

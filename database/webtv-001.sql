@@ -50,7 +50,7 @@ CREATE TABLE MediaSet (
   Name NVARCHAR(255) NOT NULL DEFAULT '',
   StartDate DATE,
   EndDate DATE,
-  FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId)
+  FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId) ON DELETE CASCADE
 )
 
 CREATE TABLE Media (
@@ -59,7 +59,7 @@ CREATE TABLE Media (
   Filename NVARCHAR(255),
   MimeType NVARCHAR(255),
   Active BIT NOT NULL DEFAULT 1,
-  FOREIGN KEY (MediaSetId) REFERENCES MediaSet(MediaSetId)
+  FOREIGN KEY (MediaSetId) REFERENCES MediaSet(MediaSetId) ON DELETE CASCADE
 )
 
 CREATE TABLE Property (
@@ -67,8 +67,8 @@ CREATE TABLE Property (
   PropertyDescriptorId INT NOT NULL,
   MediaId INT NOT NULL,
   Value NVARCHAR(255),
-  FOREIGN KEY (PropertyDescriptorId) REFERENCES PropertyDescriptor(PropertyDescriptorId),
-  FOREIGN KEY (MediaId) REFERENCES Media(MediaId)
+  FOREIGN KEY (PropertyDescriptorId) REFERENCES PropertyDescriptor(PropertyDescriptorId) ON DELETE CASCADE,
+  FOREIGN KEY (MediaId) REFERENCES Media(MediaId) ON DELETE CASCADE
 )
 
 CREATE TABLE Log (
