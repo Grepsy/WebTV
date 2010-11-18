@@ -16,6 +16,7 @@ namespace WebTV.Frontend.Controllers
             return View(set);
         }
 
+        [HttpPost]
         public ActionResult Edit(MediaSet newSet) {
             var includeProps = new string[] { "name", "startData", "endDate", "message" };
             var set = Context.MediaSets.Single(s => s.MediaSetId == newSet.MediaSetId);
