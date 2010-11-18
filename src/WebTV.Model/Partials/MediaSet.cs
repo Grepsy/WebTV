@@ -6,9 +6,9 @@ using System.Text;
 namespace WebTV.Model {
     public partial class MediaSet {
         public MediaSet() {
-            Name = "Default name";
+            Name = "Nieuwe fotoset";
             StartDate = DateTime.Now;
-            EndDate = DateTime.Now.AddDays(7);
+            EndDate = StartDate.Value.AddDays(7);
         }
 
         public MediaSet Copy() {
@@ -21,19 +21,7 @@ namespace WebTV.Model {
             }
 
             foreach (var media in this.Media) {
-                var mediaCopy = new Media() {
-                    Active = media.Active,
-                    Filename = media.Filename,
-                    MediaSet = copy,
-                    MimeType = media.MimeType
-                };
-                foreach (var prop in media.Properties) {
-                    mediaCopy.Properties.Add(new Property() {
-                        PropertyDescriptorId = prop.PropertyDescriptorId,
-                        Value = prop.Value
-                    });
-                }
-                copy.Media.Add(mediaCopy);
+                copy.Media.Add(media.Copy());
             }
 
             return copy;

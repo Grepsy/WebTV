@@ -8,18 +8,30 @@ namespace WebTV.Frontend.Controllers
     [Authorize]
     public class MediaSetController : ControllerBase {
         public ActionResult Index() {
-            return View(Context.MediaSets);
+            return View(Customer.Animations.SelectMany(a => a.MediaSets));
         }
 
-        public ActionResult Edit(int setId) {
-            var set = Context.MediaSets.Single(s => s.MediaSetId == setId);
+        public ActionResult Edit(int id) {
+            var set = Context.MediaSets.Single(s => s.MediaSetId == id);
+            return View(set);
+        }
+
+        public ActionResult Edit(MediaSet newSet) {
+            var includeProps = new string[] { "name", "startData", "endDate", "message" };
+            var set = Context.MediaSets.Single(s => s.MediaSetId == newSet.MediaSetId);
+            if (TryUpdateModel(set, includeProps)) {
+                TempData["message"] = new InfoMessage("Fotoset aangepast.", InfoMessage.InfoType.Notice);
+            }
+            else {
+                TempData["message"] = new InfoMessage("Fout bij het bewerken van fotoset.", InfoMessage.InfoType.Error);
+            }
             return View(set);
         }
 
         public ActionResult New(int? animationId, string name) {
             try {
                 Context.MediaSets.AddObject(new MediaSet() {
-                    AnimationId = animationId.HasValue ? animationId.Value : Context.Animations.First().AnimationId,
+                    AnimationId = animationId.HasValue ? animationId.Value : Customer.Animations.First().AnimationId,
                     Name = String.IsNullOrWhiteSpace(name) ? "Nieuwe fotoset" : name,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now.AddDays(7)
@@ -33,9 +45,9 @@ namespace WebTV.Frontend.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int setId) {
+        public ActionResult Delete(int id) {
             try {
-                var set = Context.MediaSets.Single(s => s.MediaSetId == setId);
+                var set = Context.MediaSets.Single(s => s.MediaSetId == id);
                 Context.DeleteObject(set);
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Set is verwijderd.", InfoMessage.InfoType.Notice);
@@ -46,9 +58,9 @@ namespace WebTV.Frontend.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Copy(int setId, int animationId) {
+        public ActionResult Copy(int id, int animationId) {
             try {
-                var set = Context.MediaSets.Single(s => s.MediaSetId == setId);
+                var set = Context.MediaSets.Single(s => s.MediaSetId == id);
                 var animation = Context.Animations.Single(a => a.AnimationId == animationId);
 
                 animation.MediaSets.Add(set.Copy());

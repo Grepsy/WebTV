@@ -55,13 +55,13 @@
     <div class="mediaset-media">
         <% foreach (var item in Model.Media) { %>
             <div class="mediaset">
-                <img src="/Media/Show?id=<%: item.Filename %>" />
+                <img src="/Media/Show?id=<%: item.Filename %>" style="width: 200px;"/>
                 <h3 class="media-name"><%: item.PropertyWithName("Omschrijving").Value %></h3>
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
-                <ul class="mediaset-actions">
-                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", new { id = item.MediaId }) %></li>
-                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", new { id = item.MediaId })%></li>
-                    <li class="action-show"><%: Html.ActionLink("Tonen", "Preview", new { id = item.MediaSetId }) %></li>
+                <ul class="media-actions">
+                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %></li>
+                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%></li>
+                    <li class="action-show"><%: Html.ActionLink("Tonen", "Preview", "Media", new { id = item.MediaSetId }, null) %></li>
                 </ul>
             </div>
         <% } %>

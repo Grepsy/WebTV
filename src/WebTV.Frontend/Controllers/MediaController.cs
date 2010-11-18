@@ -19,7 +19,34 @@ namespace WebTV.Frontend.Controllers {
             string path = Path.Combine(ConfigurationManager.AppSettings["MediaPath"], media.Filename);
             return new FilePathResult(path, media.MimeType);
         }
-        
+
+        public ActionResult Delete(int? id) {
+            try {
+                var media = Context.Media.Single(m => m.MediaId == id);
+                Context.DeleteObject(media);
+                Context.SaveChanges();
+                TempData["message"] = new InfoMessage("Foto is verwijderd.", InfoMessage.InfoType.Notice);
+            }
+            catch (Exception) {
+                TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het verwijderen van de foto.", InfoMessage.InfoType.Error);
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult Copy(int id, int? mediaSetId) {
+            try {
+                var media = Context.Media.Single(s => s.MediaId == id);
+                var set = mediaSetId.HasValue ? Context.MediaSets.Single(a => a.MediaSetId == mediaSetId) : media.MediaSet;
+                set.Media.Add(media.Copy());
+                Context.SaveChanges();
+                TempData["message"] = new InfoMessage("Foto is gekopiëerd naar " + set.Name + ".", InfoMessage.InfoType.Notice);
+            }
+            catch (Exception) {
+                TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het kopieëren van de set.", InfoMessage.InfoType.Error);
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         public ActionResult Upload(int? mediaSetId) {
             ViewData["mediaSetId"] = mediaSetId.Value;
 

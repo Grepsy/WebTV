@@ -25,10 +25,10 @@
                 Deze fotoset heeft geen datum.
             <% } %>
             <ul class="mediaset-actions">
-                <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", new { setId = item.MediaSetId }) %></li>
-                <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", new { setId = item.MediaSetId, animationId = item.AnimationId }) %></li>
-                <li class="action-edit"><%: Html.ActionLink("Aanpassen", "Edit", new { setId = item.MediaSetId }) %></li>
-                <li class="action-preview"><%: Html.ActionLink("Preview", "Preview", new { setId = item.MediaSetId }) %></li>
+                <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", new { id = item.MediaSetId }) %></li>
+                <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", new { id = item.MediaSetId, animationId = item.AnimationId }) %></li>
+                <li class="action-edit"><%: Html.ActionLink("Aanpassen", "Edit", new { id = item.MediaSetId }) %></li>
+                <li class="action-preview"><%: Html.ActionLink("Preview", "Preview", new { id = item.MediaSetId }) %></li>
             </ul>
         </div>
     <% } %>

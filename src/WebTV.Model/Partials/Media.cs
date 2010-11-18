@@ -14,6 +14,22 @@ namespace WebTV.Model {
             return Properties.SingleOrDefault(p => p.PropertyDescriptor.Name.Equals(name));
         }
 
+        public Media Copy() {
+            var copy = new Media() {
+                Active = this.Active,
+                Filename = this.Filename,
+                MediaSet = this.MediaSet,
+                MimeType = this.MimeType
+            };
+            foreach (var prop in this.Properties) {
+                copy.Properties.Add(new Property() {
+                    PropertyDescriptorId = prop.PropertyDescriptorId,
+                    Value = prop.Value
+                });
+            }
+            return copy;
+        }
+
         //public Media Copy() {
         //    var copy = new MediaSet();
         //    copy.Name = "Kopie van " + this.Name;
