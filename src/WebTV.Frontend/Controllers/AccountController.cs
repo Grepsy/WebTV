@@ -37,8 +37,7 @@ namespace WebTV.Controllers
             if (ModelState.IsValid) {
                 if (MembershipService.ValidateUser(model.UserName, model.Password)) {
                     FormsService.SignIn(model.UserName, model.RememberMe);
-                    SetupDefaultSession(model.UserName);
-
+                    
                     if (!String.IsNullOrEmpty(returnUrl)) {
                         return Redirect(returnUrl);
                     }
@@ -53,24 +52,6 @@ namespace WebTV.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        private void SetupDefaultSession(string username) {
-            //var context = new MightyMusicContext();
-
-            //var customer = context.Customers.Single(c => c.FirstName.Equals(username));
-            //var cart = new Cart() {
-            //    CartId = new Random().Next(32000),
-            //    CustomerId = customer.CustomerId,
-            //    Date = DateTime.Now,
-            //    IpAddress = Request.UserHostAddress,
-            //    IsPaid = "no"
-            //};
-            //context.Carts.AddObject(cart);
-            //context.SaveChanges();
-
-            //Session.Add("customerId", customer.CustomerId);
-            //Session.Add("cartId", cart.CartId);
         }
 
         // **************************************
@@ -101,8 +82,6 @@ namespace WebTV.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success) {
                     RegisterCustomer(model);
-                    SetupDefaultSession(model.UserName);
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else {
