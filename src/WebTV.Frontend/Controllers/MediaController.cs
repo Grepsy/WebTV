@@ -9,6 +9,7 @@ using System.Configuration;
 using WebTV.Model;
 
 namespace WebTV.Frontend.Controllers {
+    
     public class MediaController : ControllerBase {
         public FilePathResult Show(string id) {
             Media media = Context.Media.SingleOrDefault(m => m.Filename.Equals(id));
