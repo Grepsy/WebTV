@@ -18,14 +18,18 @@ namespace WebTV.Frontend.Controllers
 
         [HttpPost]
         public ActionResult Edit(MediaSet newSet) {
-            var includeProps = new string[] { "name", "startData", "endDate", "message" };
-            var set = Context.MediaSets.Single(s => s.MediaSetId == newSet.MediaSetId);
-            if (TryUpdateModel(set, includeProps)) {
+            string[] includeProps = new string[] { "Name", "StartDate", "EndDate", "Message" };
+            MediaSet set = null;
+            try {
+                set = Context.MediaSets.Single(s => s.MediaSetId == newSet.MediaSetId);
+                UpdateModel(set, includeProps);
+                Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Fotoset aangepast.", InfoMessage.InfoType.Notice);
             }
-            else {
+            catch (Exception) {
                 TempData["message"] = new InfoMessage("Fout bij het bewerken van fotoset.", InfoMessage.InfoType.Error);
             }
+
             return View(set);
         }
 

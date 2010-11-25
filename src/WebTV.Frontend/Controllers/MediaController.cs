@@ -11,6 +11,29 @@ using WebTV.Model;
 namespace WebTV.Frontend.Controllers {
     
     public class MediaController : ControllerBase {
+        
+        public JsonResult Index(int id) {
+            Media media = Context.Media.SingleOrDefault(m => m.MediaId.Equals(id));
+            var mediaInfo = new {
+                MediaId = media.MediaId,
+                Name = media.PropertyWithName("Naam").Value, 
+                Price = media.PropertyWithName("Prijs").Value, 
+                Description = media.PropertyWithName("Omschrijving").Value
+            };
+            
+            return Json(mediaInfo, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Edit(int id, string name, string price, string description) {
+            Media media = Context.Media.SingleOrDefault(m => m.MediaId.Equals(id));
+            media.PropertyWithName("Naam").Value = name;
+            media.PropertyWithName("Prijs").Value = price;
+            media.PropertyWithName("Omschrijving").Value = description;
+            Context.SaveChanges();
+
+            return RedirectToAction("Edit", "MediaSet", new { id = media.MediaSetId });
+        }
+
         public FilePathResult Show(string id) {
             Media media = Context.Media.SingleOrDefault(m => m.Filename.Equals(id));
             if (media == null) {
