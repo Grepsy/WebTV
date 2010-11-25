@@ -23,6 +23,23 @@ namespace WebTV.Model.Account
         {
             return this.ctx.Customers.SingleOrDefault(s => s.Name == username); 
         }
+        public MembershipCreateStatus createUser(MembershipUser user)
+        {
+            Customer newUser = new Customer();
+            newUser.Name = user.UserName;
+            newUser.Password = user.ProviderUserKey.ToString();
+            newUser.IsAdmin = false;
+            try
+            {
+                this.ctx.Customers.AddObject(newUser);
+                this.ctx.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return MembershipCreateStatus.UserRejected;
+            }
+            return MembershipCreateStatus.Success;
+        }
     }
 
     [PropertiesMustMatch("NewPassword", "ConfirmPassword", ErrorMessage = "The new password and confirmation password do not match.")]
@@ -59,7 +76,7 @@ namespace WebTV.Model.Account
         [DisplayName("Remember me?")]
         public bool RememberMe { get; set; }
     }
-
+  
     [PropertiesMustMatch("Password", "ConfirmPassword", ErrorMessage = "The password and confirmation password do not match.")]
     public class RegisterModel
     {
@@ -124,7 +141,7 @@ namespace WebTV.Model.Account
     public sealed class ValidatePasswordLengthAttribute : ValidationAttribute
     {
         private const string _defaultErrorMessage = "'{0}' must be at least {1} characters long.";
-        private readonly int _minCharacters = 6;
+        private readonly int _minCharacters = Membership.MinRequiredPasswordLength;
 
         public ValidatePasswordLengthAttribute()
             : base(_defaultErrorMessage)

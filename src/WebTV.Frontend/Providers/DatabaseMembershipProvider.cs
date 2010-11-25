@@ -24,15 +24,20 @@ namespace WebTV.Frontend.Providers {
             set { }
         }
 
+        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
+        {
+            MembershipUser user = new MembershipUser("DatabaseMembershipProvider", username, password, "", "", "", true, false, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now);
+            AccountModel m = new AccountModel();
+            status = m.createUser(user);
+
+            return user;
+        }
+
         public override bool ChangePassword(string username, string oldPassword, string newPassword) {
             throw new NotImplementedException();
         }
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer) {
-            throw new NotImplementedException();
-        }
-
-        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status) {
             throw new NotImplementedException();
         }
 

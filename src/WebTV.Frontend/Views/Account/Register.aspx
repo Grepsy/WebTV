@@ -26,15 +26,7 @@
                     <%: Html.TextBoxFor(m => m.UserName) %>
                     <%: Html.ValidationMessageFor(m => m.UserName) %>
                 </div>
-                
-                <div class="editor-label">
-                    <%: Html.LabelFor(m => m.Email) %>
-                </div>
-                <div class="editor-field">
-                    <%: Html.TextBoxFor(m => m.Email) %>
-                    <%: Html.ValidationMessageFor(m => m.Email) %>
-                </div>
-                
+                              
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.Password) %>
                 </div>

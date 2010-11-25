@@ -80,10 +80,10 @@ namespace WebTV.Controllers
         public ActionResult Register(RegisterModel model) {
             if (ModelState.IsValid) {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, "");
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password," ");
 
                 if (createStatus == MembershipCreateStatus.Success) {
-                    RegisterCustomer(model);
+                    //RegisterCustomer(model);
                     return RedirectToAction("Index", "Home");
                 }
                 else {
