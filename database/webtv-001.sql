@@ -15,7 +15,6 @@ CREATE TABLE Animation (
   AnimationId INT PRIMARY KEY IDENTITY(1,1),
   CustomerId INT NOT NULL,
   Name NVARCHAR(255) NOT NULL,
-  Message NVARCHAR(255),
   HasMedia BIT
   FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId)
 )
@@ -40,6 +39,7 @@ CREATE TABLE MediaSet (
   MediaSetId INT PRIMARY KEY IDENTITY(1,1),
   AnimationId INT NOT NULL,
   Name NVARCHAR(255) NOT NULL DEFAULT '',
+  Message NVARCHAR(255),
   StartDate DATE,
   EndDate DATE,
   FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId) ON DELETE CASCADE

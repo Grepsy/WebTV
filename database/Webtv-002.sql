@@ -1,7 +1,3 @@
-USE master
-
-GO
-
 USE WebTV
 
-ALTER TABLE Customer ADD IsAdmin2 BIT
+ALTER TABLE Customer ADD IsAdmin BIT DEFAULT 0 NOT NULL

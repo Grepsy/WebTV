@@ -59,6 +59,12 @@ namespace WebTV.Model
             get;
             set;
         }
+    
+        public virtual string Message
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties
