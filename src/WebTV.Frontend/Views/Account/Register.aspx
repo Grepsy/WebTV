@@ -1,16 +1,23 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebTV.Model.LogOnModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebTV.Model.Account.RegisterModel>" %>
 
-<asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Registreren
+<asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
+    Register
 </asp:Content>
 
-<asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Registreer een gebruiker</h2>
+<asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
+    <h2>Maak een nieuw account aan</h2>
+    <p>
+        Use the form below to create a new account. 
+    </p>
+    <p>
+        Passwords are required to be a minimum of <%: ViewData["PasswordLength"] %> characters in length.
+    </p>
+
     <% using (Html.BeginForm()) { %>
-        <%: Html.ValidationSummary(true, "Inloggen mislukt, corrigeer de fouten en probeer opnieuw.") %>
+        <%: Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.") %>
         <div>
             <fieldset>
-                <legend>Account informatie</legend>
+                <legend>Account Information</legend>
                 
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.UserName) %>
@@ -21,14 +28,31 @@
                 </div>
                 
                 <div class="editor-label">
+                    <%: Html.LabelFor(m => m.Email) %>
+                </div>
+                <div class="editor-field">
+                    <%: Html.TextBoxFor(m => m.Email) %>
+                    <%: Html.ValidationMessageFor(m => m.Email) %>
+                </div>
+                
+                <div class="editor-label">
                     <%: Html.LabelFor(m => m.Password) %>
                 </div>
                 <div class="editor-field">
                     <%: Html.PasswordFor(m => m.Password) %>
                     <%: Html.ValidationMessageFor(m => m.Password) %>
-                </div>            
+                </div>
+                
+                <div class="editor-label">
+                    <%: Html.LabelFor(m => m.ConfirmPassword) %>
+                </div>
+                <div class="editor-field">
+                    <%: Html.PasswordFor(m => m.ConfirmPassword) %>
+                    <%: Html.ValidationMessageFor(m => m.ConfirmPassword) %>
+                </div>
+                
                 <p>
-                    <input type="submit" value="Inloggen" />
+                    <input type="submit" value="Register" />
                 </p>
             </fieldset>
         </div>

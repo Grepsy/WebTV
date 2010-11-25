@@ -5,12 +5,12 @@ using System.Web;
 using System.Web.Security;
 using WebTV.Frontend.Providers;
 using WebTV.Model;
-
+using WebTV.Model.Account;
 namespace WebTV.Frontend.Providers {
     public class DatabaseRoleProvider : RoleProvider {
         public override string[] GetRolesForUser(string username) {
-            var ctx = new WebTVContext();
-            var user = ctx.Customers.SingleOrDefault(s => s.Name == username);
+            AccountModel model = new AccountModel();
+            Customer user = model.getCustomerByName(username);
             if(user.IsAdmin)
                 return new string[] { "Administrator", "User" };
             else

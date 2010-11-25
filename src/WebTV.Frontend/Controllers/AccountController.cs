@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using WebTV.Model;
+using WebTV.Model.Account;
 
 namespace WebTV.Controllers
 {
@@ -68,24 +69,25 @@ namespace WebTV.Controllers
         // **************************************
         // URL: /Account/Register
         // **************************************
-
+        [Authorize(Roles="Administrator")]
         public ActionResult Register() {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Register(RegisterModel model) {
             if (ModelState.IsValid) {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, "");
 
                 if (createStatus == MembershipCreateStatus.Success) {
                     RegisterCustomer(model);
                     return RedirectToAction("Index", "Home");
                 }
                 else {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                    ModelState.AddModelError("", "Failed to create a user");
                 }
             }
 

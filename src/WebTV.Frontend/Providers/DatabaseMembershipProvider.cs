@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using WebTV.Model;
+using WebTV.Model.Account;
 using System.Security.Cryptography;
 using WebTV.Frontend.Providers;
 
 namespace WebTV.Frontend.Providers {
     public class DatabaseMembershipProvider : MembershipProvider {
         public override bool ValidateUser(string username, string password) {
-            var ctx = new WebTVContext();
-            var user = ctx.Customers.SingleOrDefault(s => s.Name == username); 
+            AccountModel m = new AccountModel();
+            Customer user = m.getCustomerByName(username);
+
             return user != null && user.Password == password;
         }
 
@@ -87,7 +89,7 @@ namespace WebTV.Frontend.Providers {
         }
 
         public override int MinRequiredPasswordLength {
-            get { throw new NotImplementedException(); }
+            get { return 3; }
         }
 
         public override int PasswordAttemptWindow {
