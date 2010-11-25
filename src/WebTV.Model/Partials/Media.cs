@@ -23,10 +23,7 @@ namespace WebTV.Model {
                 MimeType = this.MimeType
             };
             foreach (var prop in this.Properties) {
-                copy.Properties.Add(new Property() {
-                    PropertyDescriptorId = prop.PropertyDescriptorId,
-                    Value = prop.Value
-                });
+                copy.PropertyWithName(prop.PropertyDescriptor.Name).Value = prop.Value;
             }
             return copy;
         }
