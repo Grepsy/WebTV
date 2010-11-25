@@ -8,6 +8,7 @@ namespace WebTV.Model {
         public Media() {
             this.Properties.Add(new Property() { PropertyDescriptorId = 1 });
             this.Properties.Add(new Property() { PropertyDescriptorId = 2 });
+            this.Properties.Add(new Property() { PropertyDescriptorId = 3 });
         }
 
         public Property PropertyWithName(string name) {

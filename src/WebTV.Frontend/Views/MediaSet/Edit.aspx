@@ -32,6 +32,7 @@
                 <% } %>
             </dd>
         </dl>
+        <a href="#">Aanpassen</a>
     </div>
 
     <div class="mediaset-upload">
@@ -54,14 +55,14 @@
 
     <div class="mediaset-media">
         <% foreach (var item in Model.Media) { %>
-            <div class="mediaset">
+            <div class="media" data-mediaid="<%: item.MediaId %>">
                 <img src="/Media/Show?id=<%: item.Filename %>" style="width: 200px;"/>
-                <h3 class="media-name"><%: item.PropertyWithName("Omschrijving").Value %></h3>
+                <h3 class="media-name"><%: item.PropertyWithName("Naam").Value %></h3>
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
                 <ul class="media-actions">
                     <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %></li>
                     <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%></li>
-                    <li class="action-show"><%: Html.ActionLink("Tonen", "Preview", "Media", new { id = item.MediaSetId }, null) %></li>
+                    <li class="action-edit"><a href="#">Bewerken</a></li>
                 </ul>
             </div>
         <% } %>
@@ -70,18 +71,42 @@
     <div class="dialog dialog-editmediaset">
         <h2>Fotoset bewerken</h2>
         <% using (Ajax.BeginForm("edit", new AjaxOptions {UpdateTargetId= "bladiebla" })) { %>
-        <%= Html.DisplayFor(model => model.Name) %>
-        <%= Html.EditorFor(model => model.Name) %>
+        <%: Html.HiddenFor(model => model.MediaSetId) %>
+        
+        <%: Html.LabelFor(model => model.Name) %>
+        <%: Html.EditorFor(model => model.Name) %>
 
-        <%= Html.DisplayFor(model => model.StartDate) %>
-        <%= Html.EditorFor(model => model.StartDate) %>
+        <%: Html.LabelFor(model => model.StartDate) %>
+        <%: Html.EditorFor(model => model.StartDate) %>
 
-        <%= Html.DisplayFor(model => model.EndDate) %>
-        <%= Html.EditorFor(model => model.EndDate) %>
+        <%: Html.LabelFor(model => model.EndDate) %>
+        <%: Html.EditorFor(model => model.EndDate) %>
 
-        <%= Html.DisplayFor(model => model.Message) %>
-        <%= Html.EditorFor(model => model.Message) %>
+        <%: Html.LabelFor(model => model.Message) %>
+        <%: Html.EditorFor(model => model.Message) %>
 
+        <a href="#">Annuleren</a> of
+        <input type="submit" value="Opslaan" />
+        <% } %>
+    </div>
+
+    <script id="editMediaTemplate" type="text/html">
+        <input name="id" type="hidden" value="{{= MediaId }}" />
+        <label>Naam:</label>
+        <input name="name" value="{{= Name }}" />
+        <label>Omschrijving:</label>
+        <input name="description" value="{{= Description }}" />
+        <label>Prijs:</label>
+        <input name="price" value="{{= Price }}" />
+    </script>
+
+    <div class="dialog dialog-editmedia">
+        <h2>Foto bewerken</h2>
+        <% using (Html.BeginForm("Edit", "Media")) { %>
+            <fieldset id="fieldset-media">
+            </fieldset>
+            <a href="#">Annuleren</a> of
+            <input type="submit" value="Opslaan" />
         <% } %>
     </div>
 </asp:Content>

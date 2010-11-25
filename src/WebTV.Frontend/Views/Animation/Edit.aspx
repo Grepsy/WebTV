@@ -22,14 +22,6 @@
                 <%: Html.ValidationMessageFor(model => model.Name) %>
             </div>
             
-            <div class="editor-label">
-                <%: Html.LabelFor(model => model.Message) %>
-            </div>
-            <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Message) %>
-                <%: Html.ValidationMessageFor(model => model.Message) %>
-            </div>
-            
             <p>
                 <input type="submit" value="Opslaan" />
             </p>
