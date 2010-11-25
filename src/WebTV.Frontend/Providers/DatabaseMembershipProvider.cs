@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using WebTV.Model;
+using WebTV.Model.Account;
 using System.Security.Cryptography;
 using WebTV.Frontend.Providers;
 
 namespace WebTV.Frontend.Providers {
     public class DatabaseMembershipProvider : MembershipProvider {
         public override bool ValidateUser(string username, string password) {
-            var ctx = new WebTVContext();
-            var user = ctx.Customers.SingleOrDefault(s => s.Name == username); 
+            AccountModel m = new AccountModel();
+            Customer user = m.getCustomerByName(username);
+
             return user != null && user.Password == password;
         }
 
@@ -22,15 +24,20 @@ namespace WebTV.Frontend.Providers {
             set { }
         }
 
+        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
+        {
+            MembershipUser user = new MembershipUser("DatabaseMembershipProvider", username, password, "", "", "", true, false, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now);
+            AccountModel m = new AccountModel();
+            status = m.createUser(user);
+
+            return user;
+        }
+
         public override bool ChangePassword(string username, string oldPassword, string newPassword) {
             throw new NotImplementedException();
         }
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer) {
-            throw new NotImplementedException();
-        }
-
-        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status) {
             throw new NotImplementedException();
         }
 
@@ -87,7 +94,7 @@ namespace WebTV.Frontend.Providers {
         }
 
         public override int MinRequiredPasswordLength {
-            get { throw new NotImplementedException(); }
+            get { return 3; }
         }
 
         public override int PasswordAttemptWindow {

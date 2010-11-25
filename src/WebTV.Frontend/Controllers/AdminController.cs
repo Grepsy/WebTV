@@ -19,10 +19,5 @@ namespace WebTV.Frontend.Controllers
             return View();
         }
 
-        public ActionResult addUser(String username, String Password)
-        {
-            return View();
-        }
-
     }
 }

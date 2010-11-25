@@ -77,5 +77,9 @@ namespace WebTV.Frontend.Controllers
             }
             return RedirectToAction("Index");
         }
+        public ActionResult Preview()
+        {
+            return View();
+        }
     }
 }

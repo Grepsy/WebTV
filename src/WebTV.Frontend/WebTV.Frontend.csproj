@@ -69,7 +69,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnimationController.cs" />
@@ -104,12 +103,14 @@
     <Content Include="Scripts\dialogs.js" />
     <Content Include="Scripts\jquery-ui-1.8.6.custom.min.js" />
     <Content Include="Scripts\jquery.tmpl.js" />
+    <Content Include="Scripts\swfobject.js" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Animation\Edit.aspx" />
     <Content Include="Views\Animation\Index.aspx" />
     <Content Include="Views\MediaSet\Edit.aspx" />
     <Content Include="Views\MediaSet\Index.aspx" />
+    <Content Include="Views\MediaSet\Preview.aspx" />
     <Content Include="Views\Media\Upload.aspx" />
     <Content Include="Views\Shared\Media.ascx" />
     <Content Include="Web.config">
@@ -155,7 +156,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
