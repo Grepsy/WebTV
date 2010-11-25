@@ -10,7 +10,7 @@
 
     <h2><%: Model.Name %></h2>
 
-    <div class="mediaset-metadata">
+    <div class="mediaset-metadata" data-mediasetid="<%: Model.MediaSetId %>">
         <dl>
             <dt>Fotoset</dt>
             <dd><%: Model.Name %></dd>
@@ -32,7 +32,7 @@
                 <% } %>
             </dd>
         </dl>
-        <a href="#">Aanpassen</a>
+        <a class="action-edit" href="#">Aanpassen</a>
     </div>
 
     <div class="mediaset-upload">
