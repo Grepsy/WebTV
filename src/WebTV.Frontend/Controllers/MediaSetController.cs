@@ -26,7 +26,8 @@ namespace WebTV.Frontend.Controllers
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Fotoset aangepast.", InfoMessage.InfoType.Notice);
             }
-            catch (Exception) {
+            catch (Exception e) {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 TempData["message"] = new InfoMessage("Fout bij het bewerken van fotoset.", InfoMessage.InfoType.Error);
             }
 
@@ -44,7 +45,8 @@ namespace WebTV.Frontend.Controllers
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Nieuwe set is aangemaakt.", InfoMessage.InfoType.Notice);
             }
-            catch (Exception) {
+            catch (Exception e) {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het maken van de set.", InfoMessage.InfoType.Error);
             }
             return RedirectToAction("Index");
@@ -57,7 +59,8 @@ namespace WebTV.Frontend.Controllers
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Set is verwijderd.", InfoMessage.InfoType.Notice);
             }
-            catch (Exception) {
+            catch (Exception e) {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het verwijderen van de set.", InfoMessage.InfoType.Error);
             }
             return RedirectToAction("Index");
@@ -72,7 +75,8 @@ namespace WebTV.Frontend.Controllers
 
                 Context.SaveChanges();
             }
-            catch (Exception) {
+            catch (Exception e) {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het kopieëren van de set.", InfoMessage.InfoType.Error);
             }
             return RedirectToAction("Index");

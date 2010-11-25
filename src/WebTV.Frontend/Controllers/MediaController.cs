@@ -51,7 +51,8 @@ namespace WebTV.Frontend.Controllers {
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Foto is verwijderd.", InfoMessage.InfoType.Notice);
             }
-            catch (Exception) {
+            catch (Exception e) {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het verwijderen van de foto.", InfoMessage.InfoType.Error);
             }
             return Redirect(Request.UrlReferrer.ToString());
@@ -65,7 +66,8 @@ namespace WebTV.Frontend.Controllers {
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Foto is gekopiëerd naar " + set.Name + ".", InfoMessage.InfoType.Notice);
             }
-            catch (Exception) {
+            catch (Exception e) {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
                 TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het kopieëren van de set.", InfoMessage.InfoType.Error);
             }
             return Redirect(Request.UrlReferrer.ToString());

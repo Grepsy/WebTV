@@ -25,13 +25,13 @@ namespace WebTV.Model {
         public Media Copy() {
             var copy = new Media() {
                 Active = this.Active,
-                MediaSet = this.MediaSet,
+                MediaSetId = this.MediaSetId,
                 MimeType = this.MimeType
             };
             
             File.Copy(Path.Combine(baseDir, this.Filename), Path.Combine(baseDir, copy.Filename));
             foreach (var prop in this.Properties) {
-                copy.Properties.Single(p=>p.PropertyDescriptorId.Equals(prop.PropertyDescriptorId)).Value = prop.Value;
+                copy.Properties.Single(p => p.PropertyDescriptorId.Equals(prop.PropertyDescriptorId)).Value = prop.Value;
             }
             return copy;
         }
