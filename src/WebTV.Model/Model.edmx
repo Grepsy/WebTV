@@ -54,7 +54,6 @@
           <Property Name="AnimationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="Message" Type="nvarchar" MaxLength="255" />
           <Property Name="HasMedia" Type="bit" />
         </EntityType>
         <EntityType Name="AnimationPropertyDescriptor">
@@ -99,6 +98,7 @@
           <Property Name="MediaSetId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AnimationId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Message" Type="nvarchar" MaxLength="255" />
           <Property Name="StartDate" Type="date" />
           <Property Name="EndDate" Type="date" />
         </EntityType>
@@ -273,7 +273,6 @@
           <Property Type="Int32" Name="AnimationId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="CustomerId" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Message" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="HasMedia" />
           <NavigationProperty Name="Customer" Relationship="WebTV.Model.FK__Animation__HasMe__0519C6AF" FromRole="Animation" ToRole="Customer" />
           <NavigationProperty Name="Logs" Relationship="WebTV.Model.FK__Log__AnimationId__1DE57479" FromRole="Animation" ToRole="Log" />
@@ -396,6 +395,7 @@
           <Property Type="DateTime" Name="EndDate" />
           <NavigationProperty Name="Animation" Relationship="WebTV.Model.FK__MediaSet__Animat__145C0A3F" FromRole="MediaSet" ToRole="Animation" />
           <NavigationProperty Name="Media" Relationship="WebTV.Model.FK__Media__MediaSetI__1A14E395" FromRole="MediaSet" ToRole="Media" />
+          <Property Type="String" Name="Message" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__MediaSet__Animat__145C0A3F">
           <End Type="WebTV.Model.Animation" Role="Animation" Multiplicity="1" />
@@ -431,7 +431,6 @@
             <EntityTypeMapping TypeName="WebTV.Model.Animation">
               <MappingFragment StoreEntitySet="Animation">
                 <ScalarProperty Name="HasMedia" ColumnName="HasMedia" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="AnimationId" ColumnName="AnimationId" />
@@ -500,6 +499,7 @@
           <EntitySetMapping Name="MediaSets">
             <EntityTypeMapping TypeName="WebTV.Model.MediaSet">
               <MappingFragment StoreEntitySet="MediaSet">
+                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -530,15 +530,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model">
-        <EntityTypeShape EntityType="WebTV.Model.Animation" Width="1.625" PointX="2.625" PointY="3.75" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="WebTV.Model.Animation" Width="1.625" PointX="2.625" PointY="3.75" Height="2.5571907552083335" />
         <EntityTypeShape EntityType="WebTV.Model.Customer" Width="1.5" PointX="0.75" PointY="4.25" Height="1.7566536458333335" />
         <EntityTypeShape EntityType="WebTV.Model.Log" Width="1.5" PointX="2.625" PointY="1.375" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="WebTV.Model.Media" Width="1.5" PointX="4.5" PointY="7" Height="2.3648893229166656" />
         <EntityTypeShape EntityType="WebTV.Model.Property" Width="1.75" PointX="6.375" PointY="7" Height="1.9802864583333317" />
         <EntityTypeShape EntityType="WebTV.Model.PropertyDescriptor" Width="1.75" PointX="6.375" PointY="4.125" Height="2.3648893229166683" />
         <AssociationConnector Association="WebTV.Model.FK__Animation__HasMe__0519C6AF" >
-          <ConnectorPoint PointX="2.25" PointY="5.1283268229166667" />
-          <ConnectorPoint PointX="2.625" PointY="5.1283268229166667" />
+          <ConnectorPoint PointX="2.25" PointY="5.2401432291666667" />
+          <ConnectorPoint PointX="2.625" PointY="5.2401432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.FK__Log__AnimationId__1DE57479" >
           <ConnectorPoint PointX="3.375" PointY="3.75" />
@@ -553,12 +553,12 @@
           <ConnectorPoint PointX="7.25" PointY="7" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.AnimationPropertyDescriptor" >
-          <ConnectorPoint PointX="4.25" PointY="5.3074446614583337" />
-          <ConnectorPoint PointX="6.375" PointY="5.3074446614583337" />
+          <ConnectorPoint PointX="4.25" PointY="5.2160953776041667" />
+          <ConnectorPoint PointX="6.375" PointY="5.2160953776041667" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="WebTV.Model.MediaSet" Width="1.5" PointX="2.625" PointY="7" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="WebTV.Model.MediaSet" Width="1.5" PointX="2.625" PointY="7" Height="2.5571907552083335" />
         <AssociationConnector Association="WebTV.Model.FK__MediaSet__Animat__145C0A3F" >
-          <ConnectorPoint PointX="3.375" PointY="6.4994921875" />
+          <ConnectorPoint PointX="3.375" PointY="6.3071907552083335" />
           <ConnectorPoint PointX="3.375" PointY="7" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.FK__Media__MediaSetI__1A14E395" >

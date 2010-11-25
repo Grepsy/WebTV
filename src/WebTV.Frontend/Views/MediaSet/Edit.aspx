@@ -25,8 +25,8 @@
             </dd>
             <dt>Bericht</dt>
             <dd>
-                <% if (!String.IsNullOrWhiteSpace(Model.Animation.Message)) { %>
-                    <%: Model.Animation.Message%>
+                <% if (!String.IsNullOrWhiteSpace(Model.Message)) { %>
+                    <%: Model.Message%>
                 <% } else { %>
                     Niet ingesteld.
                 <% } %>
@@ -64,6 +64,24 @@
                     <li class="action-show"><%: Html.ActionLink("Tonen", "Preview", "Media", new { id = item.MediaSetId }, null) %></li>
                 </ul>
             </div>
+        <% } %>
+    </div>
+
+    <div class="dialog dialog-editmediaset">
+        <h2>Fotoset bewerken</h2>
+        <% using (Ajax.BeginForm("edit", new AjaxOptions {UpdateTargetId= "bladiebla" })) { %>
+        <%= Html.DisplayFor(model => model.Name) %>
+        <%= Html.EditorFor(model => model.Name) %>
+
+        <%= Html.DisplayFor(model => model.StartDate) %>
+        <%= Html.EditorFor(model => model.StartDate) %>
+
+        <%= Html.DisplayFor(model => model.EndDate) %>
+        <%= Html.EditorFor(model => model.EndDate) %>
+
+        <%= Html.DisplayFor(model => model.Message) %>
+        <%= Html.EditorFor(model => model.Message) %>
+
         <% } %>
     </div>
 </asp:Content>

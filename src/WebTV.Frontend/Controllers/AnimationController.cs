@@ -46,7 +46,6 @@ namespace WebTV.Frontend.Controllers {
                         }),
                     }),
                 }),
-                Message = animation.Message
             };
             return json;
         }

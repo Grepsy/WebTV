@@ -48,12 +48,6 @@ namespace WebTV.Model
             set;
         }
     
-        public virtual string Message
-        {
-            get;
-            set;
-        }
-    
         public virtual Nullable<bool> HasMedia
         {
             get;
