@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Flash\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebTV.ImageChecker\WebTV.Imaging.csproj">

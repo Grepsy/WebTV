@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using WebTV.Model;
+using System.Web.Routing;
 
 namespace WebTV.Frontend.Controllers
 {
@@ -77,9 +78,10 @@ namespace WebTV.Frontend.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult Preview()
+        public ActionResult Preview(int id)
         {
-            TempData["MediaSetLocation"] = "Test";
+            String MediaSetLocation = Url.Action("Index", "Animation", new RouteValueDictionary(new { id = id }), Request.Url.Scheme, Request.Url.Host);
+            TempData["MediaSetLocation"] = MediaSetLocation.ToString();
             return View();
         }
     }
