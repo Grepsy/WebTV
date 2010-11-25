@@ -79,6 +79,7 @@ namespace WebTV.Frontend.Controllers
         }
         public ActionResult Preview()
         {
+            TempData["MediaSetLocation"] = "Test";
             return View();
         }
     }
