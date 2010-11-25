@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using WebTV.Frontend.Providers;
+using WebTV.Model;
 
-namespace WebTV.Frontend {
-    public class SimpleRoleProvider : RoleProvider {
+namespace WebTV.Frontend.Providers {
+    public class DatabaseRoleProvider : RoleProvider {
         public override string[] GetRolesForUser(string username) {
-            if (username.Equals("Administrator"))
+            var ctx = new WebTVContext();
+            var user = ctx.Customers.SingleOrDefault(s => s.Name == username);
+            if(user.IsAdmin)
                 return new string[] { "Administrator", "User" };
             else
                 return new string[] { "User" };

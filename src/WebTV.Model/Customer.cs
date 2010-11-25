@@ -36,6 +36,12 @@ namespace WebTV.Model
             get;
             set;
         }
+    
+        public virtual bool IsAdmin
+        {
+            get;
+            set;
+        }
 
         #endregion
         #region Navigation Properties

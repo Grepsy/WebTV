@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.Security;
 using WebTV.Model;
 using System.Security.Cryptography;
+using WebTV.Frontend.Providers;
 
-namespace WebTV.Frontend {
+namespace WebTV.Frontend.Providers {
     public class DatabaseMembershipProvider : MembershipProvider {
         public override bool ValidateUser(string username, string password) {
             var ctx = new WebTVContext();
-            var user = ctx.Customers.SingleOrDefault(s => s.Name == username);
-            
+            var user = ctx.Customers.SingleOrDefault(s => s.Name == username); 
             return user != null && user.Password == password;
         }
 
