@@ -81,15 +81,12 @@ namespace WebTV.Frontend.Controllers {
                 var checkResult = new ImageChecker().Check(file.InputStream);
 
                 if (checkResult.IsOK) {
-                    string fileguid = Guid.NewGuid().ToString();
-                    file.SaveAs(Path.Combine(ConfigurationManager.AppSettings["MediaPath"], fileguid));
-
-                    Media image = new Media() {
+                    var media = new Media() {
                         MediaSetId = mediaSetId.Value,
-                        Filename = fileguid,
                         MimeType = file.ContentType
                     };
-                    Context.Media.AddObject(image);
+                    file.SaveAs(media.Filename);
+                    Context.Media.AddObject(media);
                     Context.SaveChanges();
                 }
 
