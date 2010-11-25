@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Animation\Edit.aspx" />
     <Content Include="Views\Animation\Index.aspx" />

@@ -72,6 +72,7 @@
           <Property Name="CustomerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -169,7 +170,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Media__MediaSetI__1A14E395">
-          <End Role="MediaSet" Type="WebTVModel.Store.MediaSet" Multiplicity="1" />
+          <End Role="MediaSet" Type="WebTVModel.Store.MediaSet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Media" Type="WebTVModel.Store.Media" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MediaSet">
@@ -181,7 +184,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__MediaSet__Animat__145C0A3F">
-          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1" />
+          <End Role="Animation" Type="WebTVModel.Store.Animation" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="MediaSet" Type="WebTVModel.Store.MediaSet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Animation">
@@ -193,7 +198,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Property__MediaI__1FCDBCEB">
-          <End Role="Media" Type="WebTVModel.Store.Media" Multiplicity="1" />
+          <End Role="Media" Type="WebTVModel.Store.Media" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Property" Type="WebTVModel.Store.Property" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Media">
@@ -205,7 +212,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Property__Proper__1ED998B2">
-          <End Role="PropertyDescriptor" Type="WebTVModel.Store.PropertyDescriptor" Multiplicity="1" />
+          <End Role="PropertyDescriptor" Type="WebTVModel.Store.PropertyDescriptor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Property" Type="WebTVModel.Store.Property" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PropertyDescriptor">
@@ -279,6 +288,7 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Animations" Relationship="WebTV.Model.FK__Animation__HasMe__0519C6AF" FromRole="Customer" ToRole="Animation" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="false" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -431,6 +441,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="WebTV.Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -520,14 +531,14 @@
     <Diagrams>
       <Diagram Name="Model">
         <EntityTypeShape EntityType="WebTV.Model.Animation" Width="1.625" PointX="2.625" PointY="3.75" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="WebTV.Model.Customer" Width="1.5" PointX="0.75" PointY="4.25" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="WebTV.Model.Customer" Width="1.5" PointX="0.75" PointY="4.25" Height="1.7566536458333335" />
         <EntityTypeShape EntityType="WebTV.Model.Log" Width="1.5" PointX="2.625" PointY="1.375" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="WebTV.Model.Media" Width="1.5" PointX="4.5" PointY="7" Height="2.3648893229166656" />
         <EntityTypeShape EntityType="WebTV.Model.Property" Width="1.75" PointX="6.375" PointY="7" Height="1.9802864583333317" />
         <EntityTypeShape EntityType="WebTV.Model.PropertyDescriptor" Width="1.75" PointX="6.375" PointY="4.125" Height="2.3648893229166683" />
         <AssociationConnector Association="WebTV.Model.FK__Animation__HasMe__0519C6AF" >
-          <ConnectorPoint PointX="2.25" PointY="5.1439925130208337" />
-          <ConnectorPoint PointX="2.625" PointY="5.1439925130208337" />
+          <ConnectorPoint PointX="2.25" PointY="5.1283268229166667" />
+          <ConnectorPoint PointX="2.625" PointY="5.1283268229166667" />
         </AssociationConnector>
         <AssociationConnector Association="WebTV.Model.FK__Log__AnimationId__1DE57479" >
           <ConnectorPoint PointX="3.375" PointY="3.75" />
