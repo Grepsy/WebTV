@@ -30,19 +30,27 @@ namespace WebTV.Model
             get { return _propertyDescriptorId; }
             set
             {
-                if (_propertyDescriptorId != value)
+                try
                 {
-                    if (PropertyDescriptor != null && PropertyDescriptor.PropertyDescriptorId != value)
+                    _settingFK = true;
+                    if (_propertyDescriptorId != value)
                     {
-                        PropertyDescriptor = null;
+                        if (PropertyDescriptor != null && PropertyDescriptor.PropertyDescriptorId != value)
+                        {
+                            PropertyDescriptor = null;
+                        }
+                        _propertyDescriptorId = value;
                     }
-                    _propertyDescriptorId = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
         private int _propertyDescriptorId;
     
-        public virtual int MediaId
+        public virtual Nullable<int> MediaId
         {
             get;
             set;
@@ -53,6 +61,31 @@ namespace WebTV.Model
             get;
             set;
         }
+    
+        public virtual Nullable<int> MediaGroupId
+        {
+            get { return _mediaGroupId; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_mediaGroupId != value)
+                    {
+                        if (MediaGroup != null && MediaGroup.MediaGroupId != value)
+                        {
+                            MediaGroup = null;
+                        }
+                        _mediaGroupId = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<int> _mediaGroupId;
 
         #endregion
         #region Navigation Properties
@@ -71,9 +104,26 @@ namespace WebTV.Model
             }
         }
         private PropertyDescriptor _propertyDescriptor;
+    
+        public virtual MediaGroup MediaGroup
+        {
+            get { return _mediaGroup; }
+            set
+            {
+                if (!ReferenceEquals(_mediaGroup, value))
+                {
+                    var previousValue = _mediaGroup;
+                    _mediaGroup = value;
+                    FixupMediaGroup(previousValue);
+                }
+            }
+        }
+        private MediaGroup _mediaGroup;
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
     
         private void FixupPropertyDescriptor(PropertyDescriptor previousValue)
         {
@@ -92,6 +142,30 @@ namespace WebTV.Model
                 {
                     PropertyDescriptorId = PropertyDescriptor.PropertyDescriptorId;
                 }
+            }
+        }
+    
+        private void FixupMediaGroup(MediaGroup previousValue)
+        {
+            if (previousValue != null && previousValue.Properties.Contains(this))
+            {
+                previousValue.Properties.Remove(this);
+            }
+    
+            if (MediaGroup != null)
+            {
+                if (!MediaGroup.Properties.Contains(this))
+                {
+                    MediaGroup.Properties.Add(this);
+                }
+                if (MediaGroupId != MediaGroup.MediaGroupId)
+                {
+                    MediaGroupId = MediaGroup.MediaGroupId;
+                }
+            }
+            else if (!_settingFK)
+            {
+                MediaGroupId = null;
             }
         }
 

@@ -221,6 +221,7 @@ namespace WebTV.Model
             {
                 foreach (Property item in e.OldItems)
                 {
+                    item.MediaId = null;
                 }
             }
         }

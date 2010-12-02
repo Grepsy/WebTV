@@ -91,6 +91,38 @@ namespace WebTV.Model
             }
         }
         private MediaSet _mediaSet;
+    
+        public virtual ICollection<Property> Properties
+        {
+            get
+            {
+                if (_properties == null)
+                {
+                    var newCollection = new FixupCollection<Property>();
+                    newCollection.CollectionChanged += FixupProperties;
+                    _properties = newCollection;
+                }
+                return _properties;
+            }
+            set
+            {
+                if (!ReferenceEquals(_properties, value))
+                {
+                    var previousValue = _properties as FixupCollection<Property>;
+                    if (previousValue != null)
+                    {
+                        previousValue.CollectionChanged -= FixupProperties;
+                    }
+                    _properties = value;
+                    var newValue = value as FixupCollection<Property>;
+                    if (newValue != null)
+                    {
+                        newValue.CollectionChanged += FixupProperties;
+                    }
+                }
+            }
+        }
+        private ICollection<Property> _properties;
 
         #endregion
         #region Association Fixup
@@ -128,6 +160,28 @@ namespace WebTV.Model
             if (e.OldItems != null)
             {
                 foreach (Media item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.MediaGroup, this))
+                    {
+                        item.MediaGroup = null;
+                    }
+                }
+            }
+        }
+    
+        private void FixupProperties(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Property item in e.NewItems)
+                {
+                    item.MediaGroup = this;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Property item in e.OldItems)
                 {
                     if (ReferenceEquals(item.MediaGroup, this))
                     {

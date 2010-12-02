@@ -66,10 +66,12 @@ CREATE TABLE Media (
 CREATE TABLE Property (
   PropertyId INT PRIMARY KEY IDENTITY(1,1),
   PropertyDescriptorId INT NOT NULL,
-  MediaId INT NOT NULL,
+  MediaId INT,
+  MediaGroupId INT,
   Value NVARCHAR(255),
   FOREIGN KEY (PropertyDescriptorId) REFERENCES PropertyDescriptor(PropertyDescriptorId) ON DELETE CASCADE,
-  FOREIGN KEY (MediaId) REFERENCES Media(MediaId) ON DELETE CASCADE
+  FOREIGN KEY (MediaId) REFERENCES Media(MediaId) ON DELETE CASCADE,
+  FOREIGN KEY (MediaGroupId) REFERENCES MediaGroup(MediaGroupId)
 )
 
 CREATE TABLE Log (
