@@ -83,6 +83,12 @@ namespace WebTV.Model
             get { return _mediaSets  ?? (_mediaSets = CreateObjectSet<MediaSet>("MediaSets")); }
         }
         private ObjectSet<MediaSet> _mediaSets;
+    
+        public ObjectSet<MediaGroup> MediaGroups
+        {
+            get { return _mediaGroups  ?? (_mediaGroups = CreateObjectSet<MediaGroup>("MediaGroups")); }
+        }
+        private ObjectSet<MediaGroup> _mediaGroups;
 
         #endregion
     }

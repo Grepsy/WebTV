@@ -16,7 +16,7 @@ CREATE TABLE Animation (
   AnimationId INT PRIMARY KEY IDENTITY(1,1),
   CustomerId INT NOT NULL,
   Name NVARCHAR(255) NOT NULL,
-  HasMedia BIT
+  MediaGroupedBy INT NOT NULL DEFAULT 1,
   FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId)
 )
 
@@ -46,13 +46,21 @@ CREATE TABLE MediaSet (
   FOREIGN KEY (AnimationId) REFERENCES Animation(AnimationId) ON DELETE CASCADE
 )
 
+CREATE TABLE MediaGroup (
+  MediaGroupId INT PRIMARY KEY IDENTITY(1,1),
+  MediaSetId INT NOT NULL,
+  FOREIGN KEY (MediaSetId) REFERENCES MediaSet(MediaSetId) ON DELETE CASCADE
+)
+
 CREATE TABLE Media (
   MediaId INT PRIMARY KEY IDENTITY(1,1),
   MediaSetId INT NOT NULL,
+  MediaGroupId INT,
   Filename NVARCHAR(255),
   MimeType NVARCHAR(255),
   Active BIT NOT NULL DEFAULT 1,
-  FOREIGN KEY (MediaSetId) REFERENCES MediaSet(MediaSetId) ON DELETE CASCADE
+  FOREIGN KEY (MediaSetId) REFERENCES MediaSet(MediaSetId) ON DELETE CASCADE,
+  FOREIGN KEY (MediaGroupId) REFERENCES MediaGroup(MediaGroupId)
 )
 
 CREATE TABLE Property (

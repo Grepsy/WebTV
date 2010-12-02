@@ -48,17 +48,50 @@ namespace WebTV.Model
             get { return _mediaSetId; }
             set
             {
-                if (_mediaSetId != value)
+                try
                 {
-                    if (MediaSet != null && MediaSet.MediaSetId != value)
+                    _settingFK = true;
+                    if (_mediaSetId != value)
                     {
-                        MediaSet = null;
+                        if (MediaSet != null && MediaSet.MediaSetId != value)
+                        {
+                            MediaSet = null;
+                        }
+                        _mediaSetId = value;
                     }
-                    _mediaSetId = value;
+                }
+                finally
+                {
+                    _settingFK = false;
                 }
             }
         }
         private int _mediaSetId;
+    
+        public virtual Nullable<int> MediaGroupId
+        {
+            get { return _mediaGroupId; }
+            set
+            {
+                try
+                {
+                    _settingFK = true;
+                    if (_mediaGroupId != value)
+                    {
+                        if (MediaGroup != null && MediaGroup.MediaGroupId != value)
+                        {
+                            MediaGroup = null;
+                        }
+                        _mediaGroupId = value;
+                    }
+                }
+                finally
+                {
+                    _settingFK = false;
+                }
+            }
+        }
+        private Nullable<int> _mediaGroupId;
 
         #endregion
         #region Navigation Properties
@@ -109,9 +142,26 @@ namespace WebTV.Model
             }
         }
         private MediaSet _mediaSet;
+    
+        public virtual MediaGroup MediaGroup
+        {
+            get { return _mediaGroup; }
+            set
+            {
+                if (!ReferenceEquals(_mediaGroup, value))
+                {
+                    var previousValue = _mediaGroup;
+                    _mediaGroup = value;
+                    FixupMediaGroup(previousValue);
+                }
+            }
+        }
+        private MediaGroup _mediaGroup;
 
         #endregion
         #region Association Fixup
+    
+        private bool _settingFK = false;
     
         private void FixupMediaSet(MediaSet previousValue)
         {
@@ -130,6 +180,30 @@ namespace WebTV.Model
                 {
                     MediaSetId = MediaSet.MediaSetId;
                 }
+            }
+        }
+    
+        private void FixupMediaGroup(MediaGroup previousValue)
+        {
+            if (previousValue != null && previousValue.Media.Contains(this))
+            {
+                previousValue.Media.Remove(this);
+            }
+    
+            if (MediaGroup != null)
+            {
+                if (!MediaGroup.Media.Contains(this))
+                {
+                    MediaGroup.Media.Add(this);
+                }
+                if (MediaGroupId != MediaGroup.MediaGroupId)
+                {
+                    MediaGroupId = MediaGroup.MediaGroupId;
+                }
+            }
+            else if (!_settingFK)
+            {
+                MediaGroupId = null;
             }
         }
     

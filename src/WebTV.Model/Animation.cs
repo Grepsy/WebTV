@@ -48,7 +48,7 @@ namespace WebTV.Model
             set;
         }
     
-        public virtual Nullable<bool> HasMedia
+        public virtual int MediaGroupedBy
         {
             get;
             set;
