@@ -50,7 +50,7 @@
             <% var animation = Model.Animation; %>
             <option value="<%: animation.AnimationId %>"><%: animation.Name %></option>
         </select>
-        <a href="#">Preview</a>
+        <%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }) %>
     </div>
 
     <div class="mediaset-media">
