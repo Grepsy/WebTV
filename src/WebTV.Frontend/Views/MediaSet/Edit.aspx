@@ -58,8 +58,9 @@
             Kies een commercial waarin de fotoset wordt vertoond en bekijk de preview.
         </p>
         <select name="animationId">
-            <% var animation = Model.Animation; %>
-            <option value="<%: animation.AnimationId %>"><%: animation.Name %></option>
+            <% foreach (var animation in (IEnumerable<WebTV.Model.Animation>)ViewData["Animations"]) { %>
+                <option value="<%: animation.AnimationId %>"><%: animation.Name %></option>
+            <% } %>
         </select>
         <%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }) %>
     </div>
@@ -94,20 +95,21 @@
     <div class="dialog dialog-editmediaset">
         <h2>Fotoset bewerken</h2>
         <% using (Ajax.BeginForm("edit", new AjaxOptions {UpdateTargetId= "bladiebla" })) { %>
-        <%: Html.HiddenFor(model => model.MediaSetId) %>
+        <fieldset>
+            <%: Html.HiddenFor(model => model.MediaSetId) %>
         
-        <%: Html.LabelFor(model => model.Name) %>
-        <%: Html.EditorFor(model => model.Name) %>
+            <%: Html.LabelFor(model => model.Name) %>
+            <%: Html.EditorFor(model => model.Name) %>
 
-        <%: Html.LabelFor(model => model.StartDate) %>
-        <%: Html.EditorFor(model => model.StartDate) %>
+            <%: Html.LabelFor(model => model.StartDate) %>
+            <%: Html.EditorFor(model => model.StartDate) %>
 
-        <%: Html.LabelFor(model => model.EndDate) %>
-        <%: Html.EditorFor(model => model.EndDate) %>
+            <%: Html.LabelFor(model => model.EndDate) %>
+            <%: Html.EditorFor(model => model.EndDate) %>
 
-        <%: Html.LabelFor(model => model.Message) %>
-        <%: Html.EditorFor(model => model.Message) %>
-
+            <%: Html.LabelFor(model => model.Message) %>
+            <%: Html.EditorFor(model => model.Message) %>
+        </fieldset>
         <a href="" class="action-cancel">Annuleren</a> of
         <input type="submit" value="Opslaan" />
         <% } %>

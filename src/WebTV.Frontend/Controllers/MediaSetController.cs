@@ -9,11 +9,15 @@ namespace WebTV.Frontend.Controllers
     [Authorize]
     public class MediaSetController : ControllerBase {
         public ActionResult Index() {
+            ViewData["Animations"] = Customer.Animations;
             return View(Customer.Animations.SelectMany(a => a.MediaSets));
         }
 
         public ActionResult Edit(int id) {
             var set = Context.MediaSets.Single(s => s.MediaSetId == id);
+            ViewData["Animations"] = Customer.Animations.Where(a => a.MediaGroupedBy == set.Animation.MediaGroupedBy);
+            ViewData["MissingGroups"] = set.MediaGroups.H;
+
             return View(set);
         }
 

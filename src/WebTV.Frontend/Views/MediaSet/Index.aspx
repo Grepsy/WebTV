@@ -34,12 +34,6 @@
     <% } %>
     </div>
 
-    <div class="dialog dialog-newmediaset">
-        <% using (Html.BeginForm("New", "MediaSet")) { %>
-            <label for="mediaset-form-name">Titel van de fotoset</label>
-            <input id="mediaset-form-name" name="name" />
-            <input type="submit" value="Maak fotoset" />
-        <% } %>
-    </div>
+    <% Html.RenderPartial("NewMediaSetDialog", ViewData["Animations"]); %>
 </asp:Content>
 

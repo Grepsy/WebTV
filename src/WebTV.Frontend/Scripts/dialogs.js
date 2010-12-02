@@ -5,15 +5,7 @@
   $('.mediagroup-metadata .action-edit').click(function() { editMetadata(this, '/MediaGroup/Edit', 'mediagroupid'); return false; });
 
   var editMetadata = function (button, url, id) {
-    var dialog = $('.dialog-editmetadata');
-    dialog.dialog({
-      title: $('h2', dialog).hide().text(),
-      modal: true
-    });
-    $('.action-cancel', dialog).click(function() {
-      dialog.dialog("close");
-      return false;
-    });
+    $('.dialog-editmetadata').webtvdialog();
     $('#fieldset-metadata').parent('form').attr('action', url);
     var mediaId = $(button).closest("[data-" + id + "]").attr('data-' + id);
 
@@ -23,8 +15,24 @@
   };
 
   $('.mediaset-metadata .action-edit').click(function () {
-    var dialog = $('.dialog-editmediaset').dialog({modal: true});
+    $('.dialog-editmediaset').webtvdialog();
+    return false;
+  });
 
+  $('#mediaset-new').click(function() {
+    $('.dialog-newmediaset').webtvdialog();
     return false;
   });
 });
+
+jQuery.fn.webtvdialog = function() {
+  var element = this.dialog({
+    title: $('h2', this).hide().text(),
+    modal: true
+  });
+  $('.action-cancel', this).click(function() {
+    element.dialog("close");
+    return false;
+  });
+  return this;
+}
