@@ -17,8 +17,8 @@
             <dt>Vertoning</dt>
             <dd>
                 <% if (Model.StartDate.HasValue) { %>
-                    <%: String.Format("{0:g}", Model.StartDate) %> tot
-                    <%: String.Format("{0:g}", Model.EndDate) %>
+                    <%: String.Format("{0:D}", Model.StartDate) %> tot
+                    <%: String.Format("{0:D}", Model.EndDate) %>
                 <% } else { %>
                     Niet ingesteld.
                 <% } %>
@@ -35,12 +35,25 @@
         <a class="action-edit" href="#">Aanpassen</a>
     </div>
 
-    <div class="mediaset-upload">
-        <p>
-            Upload foto's van je eigen computer. Selecteer een foto en wijzig de informatie: titel omschrijving en prijs.
-        </p>
-        <%: Html.ActionLink("Upload", "Upload", "Media" , new { mediaSetId = Model.MediaSetId }, null) %>
-    </div>
+    
+
+    <% if (Model.Animation.MediaGroupedBy == 1) { %>
+        <div class="mediaset-upload">
+            <p>
+                Upload foto's van je eigen computer. Selecteer een foto en wijzig de informatie:
+                titel omschrijving en prijs.
+            </p>
+            <%: Html.ActionLink("Upload", "Upload", "Media", new { mediaSetId = Model.MediaSetId }, null)%>
+        </div>
+    <% }
+       else { %>
+        <div class="mediaset-creategroup">
+            <p>
+                Maak een group.
+            </p>
+            <%: Html.ActionLink("Maak groep", "New", "Group", new { mediaSetId = Model.MediaSetId }, null)%>
+        </div>
+    <% } %>
 
     <div class="mediaset-animation">
         <p>
@@ -62,6 +75,18 @@
                 <ul class="media-actions">
                     <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %></li>
                     <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%></li>
+                    <li class="action-edit"><a href="#">Bewerken</a></li>
+                </ul>
+            </div>
+        <% } %>
+        <% foreach (var item in Model.MediaGroups) { %>
+            <div class="mediagroup" data-mediagroupid="<%: item.MediaGroupId %>">
+                <img src="/Media/Show?id=<%: item.Media.First().Filename %>" style="width: 200px;"/>
+                <h3 class="group-name"><%: item.PropertyWithName("Naam").Value %></h3>
+                <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
+                <ul class="media-actions">
+                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
+                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%></li>
                     <li class="action-edit"><a href="#">Bewerken</a></li>
                 </ul>
             </div>

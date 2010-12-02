@@ -75,6 +75,7 @@
     <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\MediaGroupController.cs" />
     <Compile Include="Controllers\MediaSetController.cs" />
     <Compile Include="Providers\DatabaseMembershipProvider.cs" />
     <Compile Include="Global.asax.cs">
@@ -101,6 +102,7 @@
     <Content Include="Content\overcast\images\ui-icons_999999_256x240.png" />
     <Content Include="Content\overcast\images\ui-icons_fbc856_256x240.png" />
     <Content Include="Content\overcast\jquery-ui-1.8.6.custom.css" />
+    <Content Include="Content\wijchentv.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\dialogs.js" />
     <Content Include="Scripts\jquery-ui-1.8.6.custom.min.js" />

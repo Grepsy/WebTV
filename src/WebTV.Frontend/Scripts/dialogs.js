@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-  $('.datetime').datepicker({dateFormat: 'dd-mm-yyyy'});
+  $('.datetime').datepicker({dateFormat: 'dd-mm-yy'});
 
   $('.media-actions .action-edit a').click(function () {
     $('.dialog-editmedia').dialog({

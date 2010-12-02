@@ -19,8 +19,8 @@
             <h2><%: item.Name %></h2>
             <% if (item.StartDate.HasValue) { %>
                 Vertoning van 
-                <%: String.Format("{0:g}", item.StartDate) %> tot
-                <%: String.Format("{0:g}", item.EndDate) %>
+                <%: String.Format("{0:D}", item.StartDate) %> tot
+                <%: String.Format("{0:D}", item.EndDate) %>
             <% } else { %>
                 Deze fotoset heeft geen datum.
             <% } %>
