@@ -15,7 +15,11 @@ footer {
   display: block;
 }
 
+.mediaset,
 .media {
   float: left;
   margin: 10px;
 }
+
+.mediaset { width: 300px; }
+.media { width: 220px; }
