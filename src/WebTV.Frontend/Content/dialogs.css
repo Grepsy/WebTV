@@ -1,4 +1,12 @@
-﻿.dialog 
-{
+﻿.dialog {
     display: none;
+}
+
+fieldset label {
+  display: inline-block;
+  width: 120px;
+}
+fieldset input {
+  display: block;
+  width: 200px;
 }

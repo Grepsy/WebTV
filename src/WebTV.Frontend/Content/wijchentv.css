@@ -1,0 +1,21 @@
+﻿.mediaset-metadata,
+.mediaset-upload,
+.mediaset-animation {
+  float: left;
+  width: 300px;
+  margin: 10px;
+}
+
+.mediaset-media {
+  clear: both;
+}
+
+footer {
+  clear: both;
+  display: block;
+}
+
+.media {
+  float: left;
+  margin: 10px;
+}

@@ -2,7 +2,14 @@
   $('.datetime').datepicker({dateFormat: 'dd-mm-yyyy'});
 
   $('.media-actions .action-edit a').click(function () {
-    var dialog = $('.dialog-editmedia').dialog({modal: true});
+    $('.dialog-editmedia').dialog({
+      title: $('.dialog-editmedia h2').hide().text(),
+      modal: true
+    });
+    $('.dialog-editmedia .action-cancel').click(function() {
+      $('.dialog-editmedia').dialog("close");
+      return false;
+    });
     var mediaId = $(this).closest("[data-mediaid]").attr('data-mediaid');
 
     $.getJSON('/Media/Index/' + mediaId, null, function(data) {

@@ -85,7 +85,7 @@
         <%: Html.LabelFor(model => model.Message) %>
         <%: Html.EditorFor(model => model.Message) %>
 
-        <a href="#">Annuleren</a> of
+        <a href="" class="action-cancel">Annuleren</a> of
         <input type="submit" value="Opslaan" />
         <% } %>
     </div>
@@ -105,7 +105,7 @@
         <% using (Html.BeginForm("Edit", "Media")) { %>
             <fieldset id="fieldset-media">
             </fieldset>
-            <a href="#">Annuleren</a> of
+            <a href="" class="action-cancel">Annuleren</a> of
             <input type="submit" value="Opslaan" />
         <% } %>
     </div>
