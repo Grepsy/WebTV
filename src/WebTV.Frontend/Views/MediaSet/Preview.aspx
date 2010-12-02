@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">
-    var flashvars = {"location":"<%=TempData["MediaSetLocation"] %>"};
+    var flashvars = {"location":"<%=TempData["MediaSetLocation"];%>"};
     var params = {};
     var attributes = {};
     //swfobject.embedSWF("/Content/Flash/multimate_v2_27102010-FL10-CS3_B.swf", "previewContent", "500", "400", "10.0.0", "", flashvars, params, attributes);

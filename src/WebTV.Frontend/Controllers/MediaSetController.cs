@@ -16,7 +16,7 @@ namespace WebTV.Frontend.Controllers
         public ActionResult Edit(int id) {
             var set = Context.MediaSets.Single(s => s.MediaSetId == id);
             ViewData["Animations"] = Customer.Animations.Where(a => a.MediaGroupedBy == set.Animation.MediaGroupedBy);
-            ViewData["MissingGroups"] = set.MediaGroups.H;
+            //ViewData["MissingGroups"] = set.MediaGroups.H;
 
             return View(set);
         }
