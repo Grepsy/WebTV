@@ -26,6 +26,7 @@ namespace WebTV.Model {
             var copy = new Media() {
                 Active = this.Active,
                 MediaSetId = this.MediaSetId,
+                MediaGroupId = this.MediaGroupId,
                 MimeType = this.MimeType
             };
             

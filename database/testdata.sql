@@ -25,6 +25,3 @@ INSERT INTO MediaSet (Name, Message, AnimationId) VALUES ('Week 2', 'Winterse ko
 
 INSERT INTO MediaSet (Name, Message, AnimationId) VALUES ('Maand december', 'Extra korting deze week!', 2)
 INSERT INTO MediaSet (Name, Message, AnimationId) VALUES ('Maand januari', 'Winterse kortingen', 2)
-
-INSERT INTO MediaGroup (MediaSetId) VALUES(3)
-INSERT INTO MediaGroup (MediaSetId) VALUES(4)

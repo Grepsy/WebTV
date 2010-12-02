@@ -32,10 +32,8 @@
                 <% } %>
             </dd>
         </dl>
-        <a class="action-edit" href="#">Aanpassen</a>
+        <a class="action-edit" href="#">Bewerk fotoset</a>
     </div>
-
-    
 
     <% if (Model.Animation.MediaGroupedBy == 1) { %>
         <div class="mediaset-upload">
@@ -49,9 +47,9 @@
        else { %>
         <div class="mediaset-creategroup">
             <p>
-                Maak een group.
+                Maak een nieuwe groep aan en open deze om foto's to uploaden.
             </p>
-            <%: Html.ActionLink("Maak groep", "New", "Group", new { mediaSetId = Model.MediaSetId }, null)%>
+            <%: Html.ActionLink("Maak groep", "New", "MediaGroup", new { mediaSetId = Model.MediaSetId }, null)%>
         </div>
     <% } %>
 
@@ -67,7 +65,7 @@
     </div>
 
     <div class="mediaset-media">
-        <% foreach (var item in Model.Media) { %>
+        <% foreach (var item in Model.Media.Where(m => m.MediaGroupId == null)) { %>
             <div class="media" data-mediaid="<%: item.MediaId %>">
                 <img src="/Media/Show?id=<%: item.Filename %>" style="width: 200px;"/>
                 <h3 class="media-name"><%: item.PropertyWithName("Naam").Value %></h3>
@@ -81,13 +79,13 @@
         <% } %>
         <% foreach (var item in Model.MediaGroups) { %>
             <div class="mediagroup" data-mediagroupid="<%: item.MediaGroupId %>">
-                <img src="/Media/Show?id=<%: item.Media.First().Filename %>" style="width: 200px;"/>
+                <%--<img src="/Media/Show?id=<%: item.Media.First().Filename %>" style="width: 200px;"/>--%>
                 <h3 class="group-name"><%: item.PropertyWithName("Naam").Value %></h3>
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
-                <ul class="media-actions">
+                <ul class="mediagroup-actions">
                     <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
                     <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%></li>
-                    <li class="action-edit"><a href="#">Bewerken</a></li>
+                    <li class="action-edit"><%: Html.ActionLink("Openen", "Edit", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
                 </ul>
             </div>
         <% } %>
@@ -115,23 +113,5 @@
         <% } %>
     </div>
 
-    <script id="editMediaTemplate" type="text/html">
-        <input name="id" type="hidden" value="{{= MediaId }}" />
-        <label>Naam:</label>
-        <input name="name" value="{{= Name }}" />
-        <label>Omschrijving:</label>
-        <input name="description" value="{{= Description }}" />
-        <label>Prijs:</label>
-        <input name="price" value="{{= Price }}" />
-    </script>
-
-    <div class="dialog dialog-editmedia">
-        <h2>Foto bewerken</h2>
-        <% using (Html.BeginForm("Edit", "Media")) { %>
-            <fieldset id="fieldset-media">
-            </fieldset>
-            <a href="" class="action-cancel">Annuleren</a> of
-            <input type="submit" value="Opslaan" />
-        <% } %>
-    </div>
+    <% Html.RenderPartial("EditMediaDialog"); %>
 </asp:Content>

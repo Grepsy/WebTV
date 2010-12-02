@@ -12,18 +12,19 @@ namespace WebTV.Frontend.Controllers {
     
     public class MediaController : ControllerBase {
         
-        public JsonResult Index(int id) {
+        public JsonResult Edit(int id) {
             Media media = Context.Media.SingleOrDefault(m => m.MediaId.Equals(id));
-            var mediaInfo = new {
-                MediaId = media.MediaId,
+            var metadata = new {
+                Id = media.MediaId,
                 Name = media.PropertyWithName("Naam").Value, 
                 Price = media.PropertyWithName("Prijs").Value, 
                 Description = media.PropertyWithName("Omschrijving").Value
             };
             
-            return Json(mediaInfo, JsonRequestBehavior.AllowGet);
+            return Json(metadata, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public ActionResult Edit(int id, string name, string price, string description) {
             Media media = Context.Media.SingleOrDefault(m => m.MediaId.Equals(id));
             media.PropertyWithName("Naam").Value = name;
@@ -73,8 +74,12 @@ namespace WebTV.Frontend.Controllers {
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult Upload(int? mediaSetId) {
-            ViewData["mediaSetId"] = mediaSetId.Value;
+        public ActionResult Upload(int mediaSetId, int? mediaGroupId) {
+            ViewData["mediaSetId"] = mediaSetId;
+            if (mediaGroupId.HasValue) {
+                ViewData["mediaGroupId"] = mediaGroupId.Value;
+            }
+
             var uploadedFiles = new List<ViewDataFileUpload>();
             if (Request.Files.Count > 0) {
                 foreach (string item in Request.Files) {
@@ -84,9 +89,12 @@ namespace WebTV.Frontend.Controllers {
 
                     if (checkResult.IsOK) {
                         var media = new Media() {
-                            MediaSetId = mediaSetId.Value,
+                            MediaSetId = mediaSetId,
                             MimeType = file.ContentType
                         };
+                        if (mediaGroupId.HasValue) {
+                            media.MediaGroupId = mediaGroupId.Value;
+                        }
                         file.SaveAs(media.Filename);
                         Context.Media.AddObject(media);
                         Context.SaveChanges();

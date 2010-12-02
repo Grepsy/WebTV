@@ -1,13 +1,16 @@
 ﻿.mediaset-metadata,
 .mediaset-upload,
 .mediaset-creategroup,
-.mediaset-animation {
+.mediaset-animation,
+.mediagroup-metadata,
+.mediagroup-upload {
   float: left;
   width: 300px;
   margin: 10px;
 }
 
-.mediaset-media {
+.mediaset-media,
+.mediagroup-media {
   clear: both;
 }
 
@@ -17,6 +20,7 @@ footer {
 }
 
 .mediaset,
+.mediagroup,
 .media {
   float: left;
   margin: 10px;
