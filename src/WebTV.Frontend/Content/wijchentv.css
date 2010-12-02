@@ -1,4 +1,12 @@
-﻿.mediaset-metadata,
+﻿dl dt {
+  display: inline-block;
+  font-weight: bold;
+}
+dl dd {
+  display: block;
+}
+
+.mediaset-metadata,
 .mediaset-upload,
 .mediaset-creategroup,
 .mediaset-animation,
@@ -24,7 +32,7 @@ footer {
 .media {
   float: left;
   margin: 10px;
+  width: 300px;
 }
 
-.mediaset { width: 300px; }
 .media { width: 220px; }

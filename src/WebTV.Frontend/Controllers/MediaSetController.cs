@@ -16,7 +16,7 @@ namespace WebTV.Frontend.Controllers
         public ActionResult Edit(int id) {
             var set = Context.MediaSets.Single(s => s.MediaSetId == id);
             ViewData["Animations"] = Customer.Animations.Where(a => a.MediaGroupedBy == set.Animation.MediaGroupedBy);
-            ViewData["MissingGroups"] = set.MediaGroups.H;
+            ViewData["HasMissingGroups"] = set.MediaGroups.Any(g => g.Media.Count < set.Animation.MediaGroupedBy);
 
             return View(set);
         }
@@ -36,7 +36,7 @@ namespace WebTV.Frontend.Controllers
                 TempData["message"] = new InfoMessage("Fout bij het bewerken van fotoset.", InfoMessage.InfoType.Error);
             }
 
-            return View(set);
+            return RedirectToAction("Edit", new { id = set.MediaSetId });
         }
 
         public ActionResult New(int? animationId, string name) {
@@ -71,12 +71,15 @@ namespace WebTV.Frontend.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Copy(int id, int animationId) {
+        public ActionResult Copy(int id, int animationId, string name) {
             try {
                 var set = Context.MediaSets.Single(s => s.MediaSetId == id);
                 var animation = Context.Animations.Single(a => a.AnimationId == animationId);
-
-                animation.MediaSets.Add(set.Copy());
+                var copy = set.Copy();
+                if (!String.IsNullOrWhiteSpace(name)) {
+                    copy.Name = name;
+                }
+                animation.MediaSets.Add(copy);
 
                 Context.SaveChanges();
             }
