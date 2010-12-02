@@ -75,30 +75,31 @@ namespace WebTV.Frontend.Controllers {
 
         public ActionResult Upload(int? mediaSetId) {
             ViewData["mediaSetId"] = mediaSetId.Value;
-
             var uploadedFiles = new List<ViewDataFileUpload>();
-            foreach (string item in Request.Files) {
-                var file = Request.Files[item] as HttpPostedFileBase;
-                var originalName = file.FileName;
-                var checkResult = new ImageChecker().Check(file.InputStream);
+            if (Request.Files.Count > 0) {
+                foreach (string item in Request.Files) {
+                    var file = Request.Files[item] as HttpPostedFileBase;
+                    var originalName = file.FileName;
+                    var checkResult = new ImageChecker().Check(file.InputStream);
 
-                if (checkResult.IsOK) {
-                    var media = new Media() {
-                        MediaSetId = mediaSetId.Value,
-                        MimeType = file.ContentType
-                    };
-                    file.SaveAs(media.Filename);
-                    Context.Media.AddObject(media);
-                    Context.SaveChanges();
+                    if (checkResult.IsOK) {
+                        var media = new Media() {
+                            MediaSetId = mediaSetId.Value,
+                            MimeType = file.ContentType
+                        };
+                        file.SaveAs(media.Filename);
+                        Context.Media.AddObject(media);
+                        Context.SaveChanges();
+                    }
+
+                    uploadedFiles.Add(new ViewDataFileUpload {
+                        Filename = originalName,
+                        Filesize = file.ContentLength,
+                        CheckResult = checkResult
+                    });
                 }
-
-                uploadedFiles.Add(new ViewDataFileUpload {
-                    Filename = originalName,
-                    Filesize = file.ContentLength,
-                    CheckResult = checkResult
-                });
             }
-
+        
             return View(uploadedFiles);
         }
     }

@@ -4,7 +4,7 @@
     Upload
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%: Html.ActionLink("Mijn fotosets", "Index", "MediaSet") %>
+    <%: Html.ActionLink("Terug naar fotoset", "Index", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%>
      
     <h2>Upload</h2>
     <ul>
