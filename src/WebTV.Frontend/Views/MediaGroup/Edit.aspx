@@ -11,7 +11,7 @@
             <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
         </li>
         <li>
-            Fotoset: <%: Html.ActionLink(Model.MediaSet.Name, "Index", new { controller = "MediaSet", id = Model.MediaSetId })%>
+            Fotoset: <%: Html.ActionLink(Model.MediaSet.Name, "Edit", new { controller = "MediaSet", id = Model.MediaSetId })%>
         </li>
         <li>
             Groep: <%: Model.PropertyWithName("Naam").Value %>
