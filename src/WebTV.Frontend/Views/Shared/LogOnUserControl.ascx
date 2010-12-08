@@ -3,6 +3,9 @@
     if (Request.IsAuthenticated) {
 %>
         Ingelogd als <b><%: Page.User.Identity.Name %></b>
+        <% if(HttpContext.Current.User.IsInRole("Administrator")){ %>
+            (Administrator)
+        <%} %>
         [ <%: Html.ActionLink("Uitloggen", "LogOff", "Account") %> ]
 <%
     }

@@ -34,8 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Elmah">
       <HintPath>..\packages\elmah.1.1\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -120,12 +119,9 @@
     <Content Include="Views\MediaSet\Index.aspx" />
     <Content Include="Views\MediaSet\Preview.aspx" />
     <Content Include="Views\Media\Upload.aspx" />
-    <Content Include="Views\Shared\CopyMediaSetDialog.ascx" />
-    <Content Include="Views\Shared\CopyMediaDialog.ascx" />
-    <Content Include="Views\Shared\EditMediaSetDialog.ascx" />
     <Content Include="Views\Shared\NewMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
-    <Content Include="Views\Shared\EditMetadataDialog.ascx" />
+    <Content Include="Views\Shared\EditMediaDialog.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -167,9 +163,6 @@
       <Project>{968C4374-82A0-4472-AD34-4D78589A747B}</Project>
       <Name>WebTV.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
