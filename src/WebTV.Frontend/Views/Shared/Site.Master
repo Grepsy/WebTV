@@ -24,10 +24,13 @@
                 <h2><%: ((WebTV.Frontend.InfoMessage)TempData["message"]).Message %></h2>
             <% } %>
             <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
+                <% Html.RenderPartial("LogOnUserControl"); %>                
             </div>
             <nav>
                 <ul id="menu">
+                <% if(HttpContext.Current.User.IsInRole("Administrator")){ %>
+                    <% Html.RenderPartial("AdminMenu"); %>
+                 <%} %>
                     <li><%: Html.ActionLink("Help", "Help", "Home")%></li>
                     <li><%: Html.ActionLink("Contact", "About", "Home")%></li>
                 </ul>

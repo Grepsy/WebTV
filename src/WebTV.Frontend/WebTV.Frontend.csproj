@@ -123,6 +123,7 @@
     <Content Include="Views\Shared\CopyMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditMetadataDialog.ascx" />
+    <Content Include="Views\Shared\AdminMenu.ascx" />
     <Content Include="Views\Shared\NewMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Web.config">
