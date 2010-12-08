@@ -119,9 +119,12 @@
     <Content Include="Views\MediaSet\Index.aspx" />
     <Content Include="Views\MediaSet\Preview.aspx" />
     <Content Include="Views\Media\Upload.aspx" />
+    <Content Include="Views\Shared\CopyMediaDialog.ascx" />
+    <Content Include="Views\Shared\CopyMediaSetDialog.ascx" />
+    <Content Include="Views\Shared\EditMediaSetDialog.ascx" />
+    <Content Include="Views\Shared\EditMetadataDialog.ascx" />
     <Content Include="Views\Shared\NewMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
-    <Content Include="Views\Shared\EditMediaDialog.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -149,6 +152,7 @@
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
+    <Content Include="WebTV.Frontend.Publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
