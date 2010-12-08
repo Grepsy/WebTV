@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebTV.Model;
+using System.Security.Permissions;
 
 namespace WebTV.Frontend.Controllers {
     public class AnimationController : ControllerBase {
+        
         public ActionResult Index(int? id) {
             if (id.HasValue) {
                 var animation = Context.Animations.Single(a => a.AnimationId == id);
@@ -24,7 +26,8 @@ namespace WebTV.Frontend.Controllers {
             
             return View(animations);
         }
-        
+
+        [Authorize(Roles = "Administrator,User")]
         public ActionResult Edit(int id) {
             var animation = Context.Animations.Single(a => a.AnimationId == id);
             return View("Edit", animation);

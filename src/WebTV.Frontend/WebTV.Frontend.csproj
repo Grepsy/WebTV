@@ -119,6 +119,7 @@
     <Content Include="Views\MediaSet\Index.aspx" />
     <Content Include="Views\MediaSet\Preview.aspx" />
     <Content Include="Views\Media\Upload.aspx" />
+    <Content Include="Views\Shared\AdminMenu.ascx" />
     <Content Include="Views\Shared\NewMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
     <Content Include="Views\Shared\EditMediaDialog.ascx" />
