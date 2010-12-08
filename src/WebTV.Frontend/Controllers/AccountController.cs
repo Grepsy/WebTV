@@ -148,5 +148,14 @@ namespace WebTV.Controllers
         public ActionResult ChangePasswordSuccess() {
             return View();
         }
+        // **************************************
+        // URL: /Account/ListUsers
+        // **************************************
+        [Authorize(Roles = "Administrator")]
+        public ActionResult ListUsers()
+        {
+            Membership.GetAllUsers();
+            return View();
+        }
     }
 }

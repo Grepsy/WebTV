@@ -62,7 +62,16 @@ namespace WebTV.Frontend.Providers {
         }
 
         public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords) {
-            throw new NotImplementedException();
+            MembershipUserCollection collection = new MembershipUserCollection();
+            
+            AccountModel m = new AccountModel();
+            IEnumerable<Customer> customers =  m.getAllCustomers();
+            foreach (Customer customer in customers)
+            {
+                collection.Add(new MembershipUser("DatabaseMembershipProvider", customer.Name, customer.Password, "", "", "", true, false, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now));
+            }
+            totalRecords = collection.Count;
+            return collection;
         }
 
         public override int GetNumberOfUsersOnline() {

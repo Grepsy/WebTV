@@ -40,6 +40,11 @@ namespace WebTV.Model.Account
             }
             return MembershipCreateStatus.Success;
         }
+        public IEnumerable<Customer> getAllCustomers()
+        {
+            return ctx.Customers.AsEnumerable();
+               
+        }
     }
 
     [PropertiesMustMatch("NewPassword", "ConfirmPassword", ErrorMessage = "The new password and confirmation password do not match.")]
