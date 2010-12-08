@@ -101,7 +101,7 @@ namespace WebTV.Frontend.Controllers {
                         if (mediaGroupId.HasValue) {
                             media.MediaGroupId = mediaGroupId.Value;
                         }
-                        file.SaveAs(media.Filename);
+                        file.SaveAs(Path.Combine(Media.BaseDir, media.Filename));
                         Context.Media.AddObject(media);
                         Context.SaveChanges();
                     }
