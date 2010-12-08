@@ -5,10 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <%: Html.ActionLink("Mijn fotosets", "Index") %>
-
-    <h2><%: Model.Name %></h2>
+    <ul class="breadcrumps">
+        <li>
+            <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
+        </li>
+        <li>
+            Fotoset: <%: Model.Name %>
+        </li>
+    </ul>
 
     <div class="mediaset-metadata" data-mediasetid="<%: Model.MediaSetId %>">
         <dl>
@@ -41,6 +45,7 @@
                 Upload foto's van je eigen computer. Selecteer een foto en wijzig de informatie:
                 titel omschrijving en prijs.
             </p>
+            
             <%: Html.ActionLink("Upload", "Upload", "Media", new { mediaSetId = Model.MediaSetId }, null)%>
         </div>
     <% }
@@ -48,6 +53,10 @@
         <div class="mediaset-creategroup">
             <p>
                 Maak een nieuwe groep aan en open deze om foto's to uploaden.
+            
+                <% if ((bool)ViewData["HasMissingGroups"]) { %>
+                    <span class="error-missinggroups">Vul alle groepen</span>
+                <% } %>
             </p>
             <%: Html.ActionLink("Maak groep", "New", "MediaGroup", new { mediaSetId = Model.MediaSetId }, null)%>
         </div>
@@ -92,28 +101,7 @@
         <% } %>
     </div>
 
-    <div class="dialog dialog-editmediaset">
-        <h2>Fotoset bewerken</h2>
-        <% using (Ajax.BeginForm("edit", new AjaxOptions {UpdateTargetId= "bladiebla" })) { %>
-        <fieldset>
-            <%: Html.HiddenFor(model => model.MediaSetId) %>
-        
-            <%: Html.LabelFor(model => model.Name) %>
-            <%: Html.EditorFor(model => model.Name) %>
-
-            <%: Html.LabelFor(model => model.StartDate) %>
-            <%: Html.EditorFor(model => model.StartDate) %>
-
-            <%: Html.LabelFor(model => model.EndDate) %>
-            <%: Html.EditorFor(model => model.EndDate) %>
-
-            <%: Html.LabelFor(model => model.Message) %>
-            <%: Html.EditorFor(model => model.Message) %>
-        </fieldset>
-        <a href="" class="action-cancel">Annuleren</a> of
-        <input type="submit" value="Opslaan" />
-        <% } %>
-    </div>
-
-    <% Html.RenderPartial("EditMediaDialog"); %>
+    <% Html.RenderPartial("EditMediaSetDialog", Model); %>
+    <% Html.RenderPartial("EditMetadataDialog"); %>
+    <% Html.RenderPartial("CopyMediaDialog", Model.Animation.MediaSets); %>
 </asp:Content>

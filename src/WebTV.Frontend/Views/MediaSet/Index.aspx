@@ -5,8 +5,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Mijn fotosets</h2>
+    <ul class="breadcrumps">
+        <li>
+            <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
+        </li>
+    </ul>
 
     <p>
         Open een fotoset om deze te bewerken of
@@ -15,7 +18,7 @@
 
     <div class="mediaset-list">
     <% foreach (var item in Model) { %>
-        <div class="mediaset">
+        <div class="mediaset" data-mediasetid="<%: item.MediaSetId %>" data-animationid="<%: item.AnimationId %>">
             <h2><%: item.Name %></h2>
             <% if (item.StartDate.HasValue) { %>
                 Vertoning van 
@@ -35,5 +38,6 @@
     </div>
 
     <% Html.RenderPartial("NewMediaSetDialog", ViewData["Animations"]); %>
+    <% Html.RenderPartial("CopyMediaSetDialog"); %>
 </asp:Content>
 

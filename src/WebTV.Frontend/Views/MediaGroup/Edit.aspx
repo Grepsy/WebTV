@@ -46,6 +46,6 @@
         <% } %>
     </div>
 
-    <% Html.RenderPartial("EditMediaDialog"); %>
+    <% Html.RenderPartial("EditMetadataDialog"); %>
         
 </asp:Content>

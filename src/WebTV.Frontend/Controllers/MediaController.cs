@@ -9,9 +9,7 @@ using System.Configuration;
 using WebTV.Model;
 
 namespace WebTV.Frontend.Controllers {
-    
     public class MediaController : ControllerBase {
-        
         public JsonResult Edit(int id) {
             Media media = Context.Media.SingleOrDefault(m => m.MediaId.Equals(id));
             var metadata = new {
@@ -59,11 +57,19 @@ namespace WebTV.Frontend.Controllers {
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult Copy(int id, int? mediaSetId) {
+        public ActionResult Copy(int id, int? mediaSetId, string name, string description, string price) {
             try {
                 var media = Context.Media.Single(s => s.MediaId == id);
                 var set = mediaSetId.HasValue ? Context.MediaSets.Single(a => a.MediaSetId == mediaSetId) : media.MediaSet;
-                set.Media.Add(media.Copy());
+                var copy = media.Copy();
+
+                if (name != null && description != null && price != null) {
+                    media.PropertyWithName("Naam").Value = name;
+                    media.PropertyWithName("Prijs").Value = price;
+                    media.PropertyWithName("Omschrijving").Value = description;
+                }
+
+                set.Media.Add(copy);
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Foto is gekopiëerd naar " + set.Name + ".", InfoMessage.InfoType.Notice);
             }

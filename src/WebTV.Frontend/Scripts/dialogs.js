@@ -23,6 +23,22 @@
     $('.dialog-newmediaset').webtvdialog();
     return false;
   });
+
+  $('.media-actions .action-copy a').click(function() {
+    var mediaId = $(this).closest("[data-mediaid]").attr('data-mediaid');
+    $('#field-copymedia-id').val(mediaId);
+    $('.dialog-copymedia').webtvdialog();
+    return false;
+  });
+
+  $('.mediaset-actions .action-copy a').click(function() {
+    var setId = $(this).closest("[data-mediasetid]").attr('data-mediasetid');
+    var animationId = $(this).closest("[data-animationid]").attr('data-animationid');
+    $('#field-copymediaset-id').val(setId);
+    $('#field-copymediaset-animationid').val(animationId);
+    $('.dialog-copymediaset').webtvdialog();
+    return false;
+  });
 });
 
 jQuery.fn.webtvdialog = function() {
