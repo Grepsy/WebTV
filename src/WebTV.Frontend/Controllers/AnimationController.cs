@@ -41,14 +41,11 @@ namespace WebTV.Frontend.Controllers {
                     Name = s.Name,
                     StartDate = s.StartDate,
                     EndDate = s.EndDate,
-                    Media = s.Media.Select(m => new {
-                        Url = imageUrl + "/" + m.Filename,
-                        Properties = m.Properties.Select(p => new {
-                            Name = p.PropertyDescriptor.Name,
-                            Value = p.Value
-                        }),
-                    }),
-                }),
+                    Media = s.Media.Select(m => m.ToJsonObject(imageUrl)),
+                    Groups = s.MediaGroups.Select(g => new {
+                        Media = g.Media.Select(m => m.ToJsonObject(imageUrl))
+                    })
+                })
             };
             return json;
         }
