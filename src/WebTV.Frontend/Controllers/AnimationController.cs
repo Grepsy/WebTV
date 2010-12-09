@@ -37,11 +37,12 @@ namespace WebTV.Frontend.Controllers {
             string imageUrl = Url.Action("Show", "Media", null, Request.Url.Scheme, Request.Url.Host);
             var json = new {
                 Name = animation.Name,
+                MediaGroupedBy = animation.MediaGroupedBy,
                 MediaSets = animation.MediaSets.Select(s => new { 
                     Name = s.Name,
                     StartDate = s.StartDate,
                     EndDate = s.EndDate,
-                    Media = s.Media.Select(m => m.ToJsonObject(imageUrl)),
+                    Media = animation.MediaGroupedBy == 1 ? s.Media.Select(m => m.ToJsonObject(imageUrl)) : null,
                     Groups = s.MediaGroups.Select(g => new {
                         Media = g.Media.Select(m => m.ToJsonObject(imageUrl))
                     })

@@ -18,56 +18,88 @@
     <file relUrl="bin/WebTV.Imaging.dll" publishTime="09/30/2010 13:56:49" />
     <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="09/23/2010 15:17:14" />
     <file relUrl="Views/Account/LogOn.aspx" publishTime="11/11/2010 15:57:38" />
+    <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="09/23/2010 15:17:14" />
     <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="09/23/2010 15:17:14" />
     <file relUrl="Scripts/MicrosoftMvcAjax.js" publishTime="09/23/2010 15:17:14" />
     <file relUrl="Views/Shared/Site.Master" publishTime="11/11/2010 16:23:06" />
     <file relUrl="Views/Media/Upload.aspx" publishTime="11/11/2010 15:04:11" />
     <file relUrl="Views/Shared/Error.aspx" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="bin/WebTV.Model.pdb" publishTime="11/18/2010 13:54:37" />
     <file relUrl="Web.config" publishTime="10/28/2010 15:49:27" />
     <file relUrl="Content/Site.css" publishTime="09/29/2010 20:20:58" />
     <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="09/23/2010 15:17:14" />
     <file relUrl="bin/WebTV.Frontend.dll" publishTime="11/18/2010 14:11:14" />
     <file relUrl="Views/Animation/Edit.aspx" publishTime="09/25/2010 11:06:26" />
-    <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="bin/WebTV.Model.pdb" publishTime="11/18/2010 13:54:37" />
     <file relUrl="Views/MediaSet/Index.aspx" publishTime="11/17/2010 20:16:43" />
     <file relUrl="Views/Web.config" publishTime="09/23/2010 15:17:14" />
     <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="09/23/2010 15:17:14" />
   </publishProfile>
   <publishProfile publishUrl="ftp://megatron.eimc.nl/wwwroot/webtv" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Remote" publishMethod="FTP" replaceMatchingFiles="True" userName="hans" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkn758XSSh0Wnoa5MfYn9RgAAAAACAAAAAAADZgAAwAAAABAAAACRWVffUv3C/I8w9MJYs/L+AAAAAASAAACgAAAAEAAAAOYaI9BctTq1QxA5/O5RozsYAAAA7vwFJ//EpbCyvCo26Ol/fMJmd3vfWiI5FAAAANwdmDXa8QnJjl0RiEIxXvUQ5a/X" SelectedForPublish="True">
-    <file relUrl="bin/WebTV.Frontend.pdb" publishTime="11/19/2010 11:45:34" />
+    <file relUrl="Content/overcast/images/ui-bg_inset-soft_50_c9c9c9_1x100.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Views/MediaSet/Index.aspx" publishTime="12/02/2010 17:16:46" />
     <file relUrl="Scripts/MicrosoftAjax.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Global.asax" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Scripts/jquery.validate-vsdoc.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Views/Shared/Media.ascx" publishTime="09/24/2010 21:20:36" />
-    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Views/Shared/LogOnUserControl.ascx" publishTime="11/11/2010 15:54:23" />
-    <file relUrl="bin/WebTV.Model.dll" publishTime="11/19/2010 11:45:34" />
+    <file relUrl="Scripts/swfobject.js" publishTime="11/25/2010 18:39:30" />
+    <file relUrl="Views/Account/LogOn.aspx" publishTime="11/26/2010 16:53:05" />
+    <file relUrl="Views/Shared/CopyMediaSetDialog.ascx" publishTime="12/02/2010 17:19:14" />
     <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Views/Animation/Index.aspx" publishTime="09/30/2010 18:53:56" />
-    <file relUrl="Scripts/jquery.validate.min.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Views/MediaSet/Edit.aspx" publishTime="11/17/2010 20:08:30" />
-    <file relUrl="bin/WebTV.Imaging.pdb" publishTime="11/19/2010 11:45:33" />
-    <file relUrl="Scripts/jquery.validate.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="bin/WebTV.Imaging.dll" publishTime="11/19/2010 11:45:33" />
-    <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Views/Account/LogOn.aspx" publishTime="11/11/2010 15:57:38" />
-    <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-bg_inset-hard_75_999999_1x100.png" publishTime="11/25/2010 17:40:54" />
     <file relUrl="bin/System.Web.Mvc.dll" publishTime="02/17/2010 07:24:14" />
-    <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-icons_454545_256x240.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Views/Shared/NewMediaSetDialog.ascx" publishTime="12/02/2010 15:56:38" />
+    <file relUrl="Views/MediaSet/Preview.aspx" publishTime="12/08/2010 20:17:02" />
     <file relUrl="Scripts/MicrosoftMvcAjax.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Views/Shared/Site.Master" publishTime="11/11/2010 16:23:06" />
-    <file relUrl="Views/Media/Upload.aspx" publishTime="11/11/2010 15:04:11" />
-    <file relUrl="Views/Shared/Error.aspx" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="Web.config" publishTime="11/19/2010 11:45:35" />
+    <file relUrl="Content/overcast/images/ui-icons_3383bb_256x240.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Views/Shared/EditorTemplates/DateTime.ascx" publishTime="11/25/2010 19:45:27" />
+    <file relUrl="Global.asax" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="bin/WebTV.Imaging.pdb" publishTime="11/25/2010 14:59:52" />
+    <file relUrl="bin/WebTV.Frontend.pdb" publishTime="12/09/2010 15:41:11" />
+    <file relUrl="WebTV.Frontend.Publish.xml" publishTime="12/09/2010 15:38:44" />
+    <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-bg_glass_100_f8f8f8_1x400.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Content/overcast/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="11/25/2010 17:40:54" />
     <file relUrl="bin/System.Web.Mvc.xml" publishTime="02/17/2010 07:22:24" />
-    <file relUrl="Content/Site.css" publishTime="09/29/2010 20:20:58" />
-    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="09/23/2010 15:17:14" />
-    <file relUrl="bin/WebTV.Frontend.dll" publishTime="11/19/2010 11:45:34" />
-    <file relUrl="Views/Animation/Edit.aspx" publishTime="09/25/2010 11:06:26" />
-    <file relUrl="bin/WebTV.Model.pdb" publishTime="11/19/2010 11:45:34" />
-    <file relUrl="Views/MediaSet/Index.aspx" publishTime="11/17/2010 20:16:43" />
-    <file relUrl="Views/Web.config" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-bg_flat_0_eeeeee_40x100.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="bin/WebTV.Model.pdb" publishTime="12/09/2010 15:19:26" />
+    <file relUrl="Views/Shared/LogOnUserControl.ascx" publishTime="12/08/2010 20:17:02" />
+    <file relUrl="Views/Shared/EditMetadataDialog.ascx" publishTime="12/02/2010 15:19:31" />
+    <file relUrl="Scripts/dialogs.js" publishTime="12/02/2010 17:18:10" />
+    <file relUrl="Scripts/jquery.tmpl.js" publishTime="11/25/2010 16:22:10" />
+    <file relUrl="Views/MediaGroup/Edit.aspx" publishTime="12/08/2010 20:57:31" />
+    <file relUrl="Views/Animation/Edit.aspx" publishTime="11/25/2010 16:01:48" />
+    <file relUrl="Views/Animation/Index.aspx" publishTime="09/30/2010 18:53:56" />
+    <file relUrl="Views/Account/Register.aspx" publishTime="11/25/2010 18:04:46" />
+    <file relUrl="Views/Media/Upload.aspx" publishTime="12/02/2010 13:49:05" />
     <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/dialogs.css" publishTime="12/02/2010 16:38:17" />
+    <file relUrl="bin/WebTV.Frontend.dll" publishTime="12/09/2010 15:41:11" />
+    <file relUrl="Content/overcast/jquery-ui-1.8.6.custom.css" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Content/overcast/images/ui-icons_70b2e1_256x240.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Content/wijchentv.css" publishTime="12/02/2010 17:36:58" />
+    <file relUrl="Views/Shared/Site.Master" publishTime="12/08/2010 20:35:37" />
+    <file relUrl="bin/Elmah.dll" publishTime="12/02/2010 16:18:30" />
+    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Scripts/jquery-ui-1.8.6.custom.min.js" publishTime="11/25/2010 17:40:13" />
+    <file relUrl="Scripts/jquery.validate-vsdoc.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Views/Web.config" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/Site.css" publishTime="09/29/2010 20:20:58" />
+    <file relUrl="Views/Shared/CopyMediaDialog.ascx" publishTime="12/02/2010 16:59:18" />
+    <file relUrl="Content/overcast/images/ui-icons_fbc856_256x240.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Views/Shared/AdminMenu.ascx" publishTime="12/08/2010 20:35:37" />
+    <file relUrl="bin/WebTV.Model.dll" publishTime="12/09/2010 15:19:26" />
+    <file relUrl="Content/overcast/images/ui-bg_glass_35_dddddd_1x400.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Views/Shared/Error.aspx" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-bg_flat_55_c0402a_40x100.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Views/Shared/EditMediaSetDialog.ascx" publishTime="12/02/2010 17:34:56" />
+    <file relUrl="Views/MediaSet/Edit.aspx" publishTime="12/02/2010 17:31:07" />
+    <file relUrl="bin/WebTV.Imaging.dll" publishTime="11/25/2010 14:59:53" />
+    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-bg_glass_60_eeeeee_1x400.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Scripts/jquery.validate.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-bg_flat_55_eeeeee_40x100.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Scripts/jquery.validate.min.js" publishTime="09/23/2010 15:17:14" />
+    <file relUrl="Content/overcast/images/ui-icons_999999_256x240.png" publishTime="11/25/2010 17:40:54" />
+    <file relUrl="Web.config" publishTime="12/09/2010 15:38:40" />
   </publishProfile>
 </publishData>
