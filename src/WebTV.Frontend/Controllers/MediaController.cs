@@ -39,7 +39,7 @@ namespace WebTV.Frontend.Controllers {
                 throw new HttpException(404, "Image not found");
             }
 
-            string path = Path.Combine(ConfigurationManager.AppSettings["MediaPath"], media.Filename);
+            string path = Path.Combine(Server.MapPath("/"), Media.BaseDir, media.Filename);
             return new FilePathResult(path, media.MimeType);
         }
 
@@ -101,7 +101,9 @@ namespace WebTV.Frontend.Controllers {
                         if (mediaGroupId.HasValue) {
                             media.MediaGroupId = mediaGroupId.Value;
                         }
-                        file.SaveAs(Path.Combine(Media.BaseDir, media.Filename));
+
+                        string fullPath = Path.Combine(Server.MapPath("/"), Media.BaseDir, media.Filename);
+                        file.SaveAs(fullPath);
                         Context.Media.AddObject(media);
                         Context.SaveChanges();
                     }

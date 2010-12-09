@@ -8,7 +8,7 @@
     <% if (ViewData.ContainsKey("mediaGroupId")) { %>
         <%: Html.ActionLink("Terug naar groep", "Edit", new { controller = "MediaGroup", id = ViewData["mediaGroupId"] })%>
     <% } else { %>
-        <%: Html.ActionLink("Terug naar fotoset", "Index", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%>
+        <%: Html.ActionLink("Terug naar fotoset", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%>
     <% } %>
      
     <h2>Upload</h2>

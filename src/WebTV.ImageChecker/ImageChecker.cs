@@ -17,7 +17,7 @@ namespace WebTV.Imaging {
             public bool UnsupportedFormat { get; internal set; }
             public bool IsOK {
                 get {
-                    return !(IsToSmall && IsToSmall && InvalidRatio && UnsupportedFormat);
+                    return !(IsToSmall || IsToLarge || InvalidRatio || UnsupportedFormat);
                 }
             }
             
