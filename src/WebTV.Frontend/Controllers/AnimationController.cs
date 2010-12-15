@@ -9,22 +9,32 @@ using System.Security.Permissions;
 namespace WebTV.Frontend.Controllers {
     public class AnimationController : ControllerBase {
         
-        public ActionResult Index(int? id) {
-            if (id.HasValue) {
-                var animation = Context.Animations.Single(a => a.AnimationId == id);
-                if (Request.Params["type"] == "json") {
-                    return Json(AnimationToJson(animation), JsonRequestBehavior.AllowGet);
-                }
-
-                return View(animation);
-            }
-
+        public ActionResult Index() {
             var animations = Context.Animations.ToList();
             if (Request.Params["type"] == "json") {
                 return Json(animations.ConvertAll(AnimationToJson), JsonRequestBehavior.AllowGet);
             }
             
             return View(animations);
+        }
+
+        public ActionResult Details(int id, int? mediaSetId) {
+            Animation animation;
+            if (mediaSetId.HasValue) {
+                animation = Context.Animations.Single(a => 
+                    a.AnimationId == id &&
+                    a.MediaSets.Any(s => s.MediaSetId == mediaSetId));
+            }
+            else {
+                animation = Context.Animations.Single(a => a.AnimationId == id);
+            }
+
+            if (Request.Params["type"] == "json") {
+                return Json(AnimationToJson(animation), JsonRequestBehavior.AllowGet);
+            }
+            else {
+                return View(animation);
+            }
         }
 
         [Authorize(Roles = "Administrator,User")]
@@ -42,6 +52,7 @@ namespace WebTV.Frontend.Controllers {
                     Name = s.Name,
                     StartDate = s.StartDate,
                     EndDate = s.EndDate,
+                    Message  = s.Message,
                     Media = animation.MediaGroupedBy == 1 ? s.Media.Select(m => m.ToJsonObject(imageUrl)) : null,
                     Groups = s.MediaGroups.Select(g => new {
                         Media = g.Media.Select(m => m.ToJsonObject(imageUrl))
