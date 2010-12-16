@@ -9,7 +9,7 @@
 
     <% using (Html.BeginForm()) { %>
         <%: Html.ValidationSummary(true, "Inloggen mislukt, corrigeer de fouten en probeer opnieuw.") %>
-        <div>
+        <div class="login">
             <fieldset>
                 <legend>Account informatie</legend>
                 

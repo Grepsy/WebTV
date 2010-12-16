@@ -70,34 +70,34 @@ namespace WebTV.Model.Account
     public class LogOnModel
     {
         [Required]
-        [DisplayName("User name")]
+        [DisplayName("Gebruikersnaam")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Password")]
+        [DisplayName("Wachtwoord")]
         public string Password { get; set; }
 
-        [DisplayName("Remember me?")]
+        [DisplayName("Gegevens onthouden?")]
         public bool RememberMe { get; set; }
     }
   
-    [PropertiesMustMatch("Password", "ConfirmPassword", ErrorMessage = "The password and confirmation password do not match.")]
+    [PropertiesMustMatch("Password", "ConfirmPassword", ErrorMessage = "De twee ingevoegde wachtwoorden dienen overeen te komen.")]
     public class RegisterModel
     {
         [Required]
-        [DisplayName("User name")]
+        [DisplayName("Gebruikersnaam")]
         public string UserName { get; set; }
 
         [Required]
         [ValidatePasswordLength]
         [DataType(DataType.Password)]
-        [DisplayName("Password")]
+        [DisplayName("Wachtwoord")]
         public string Password { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [DisplayName("Confirm password")]
+        [DisplayName("Wachtwoord nogmaals")]
         public string ConfirmPassword { get; set; }
     }
     #endregion

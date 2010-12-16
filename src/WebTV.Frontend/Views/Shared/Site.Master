@@ -20,9 +20,7 @@
     <div class="page">
         <header>
             <h1>Wijchen.TV - Commercialbeheer</h1>
-            <% if (TempData.ContainsKey("message")) { %>
-                <h2><%: ((WebTV.Frontend.InfoMessage)TempData["message"]).Message %></h2>
-            <% } %>
+            
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>                
             </div>
@@ -36,15 +34,21 @@
                 </ul>
             </nav>
         </header>
+
+        <% if (TempData.ContainsKey("message")) { %>
+            <% var msg = (WebTV.Frontend.InfoMessage)TempData["message"]; %>
+            <h2 class="<%: msg.Type.ToString().ToLower() %>"><%: msg.Message %></h2>
+        <% } %>
+        
         <div id="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-            <footer>
-                <a href="#">Algemene voorwaarden</a> |
-                <a href="#">Disclaimer</a> |
-                <a href="#">Contact</a> |
-                &copy; Wijchen.TV 2010
-            </footer>
         </div>
+        <footer>
+            <a href="#">Algemene voorwaarden</a> |
+            <a href="#">Disclaimer</a> |
+            <a href="#">Contact</a> |
+            &copy; Wijchen.TV 2010
+        </footer>
     </div>
 </body>
 </html>
