@@ -19,18 +19,15 @@
 <body>
     <div class="page">
         <header>
-            <h1>Wijchen.TV - Commercialbeheer</h1>
-            
-            <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>                
-            </div>
+            <h1>Commercialbeheer</h1>
             <nav>
                 <ul id="menu">
-                <% if(HttpContext.Current.User.IsInRole("Administrator")){ %>
-                    <% Html.RenderPartial("AdminMenu"); %>
-                 <%} %>
                     <li><%: Html.ActionLink("Help", "Help", "Home")%></li>
                     <li><%: Html.ActionLink("Contact", "About", "Home")%></li>
+                    <li><% Html.RenderPartial("LogOnUserControl"); %>  </li>
+                     <% if(HttpContext.Current.User.IsInRole("Administrator")){ %>
+                        <li><% Html.RenderPartial("AdminMenu"); %></li>
+                    <%} %>
                 </ul>
             </nav>
         </header>

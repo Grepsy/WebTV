@@ -6,7 +6,7 @@
         <% if(HttpContext.Current.User.IsInRole("Administrator")){ %>
             (Administrator)
         <%} %>
-        [ <%: Html.ActionLink("Uitloggen", "LogOff", "Account") %> ]
+        <%: Html.ActionLink("Uitloggen", "LogOff", "Account") %>
 <%
     }
     else {
