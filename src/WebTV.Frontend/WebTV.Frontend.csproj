@@ -88,6 +88,19 @@
     <Compile Include="Providers\DatabaseRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\custom-theme\images\ui-bg_flat_0_41ba25_40x100.png" />
+    <Content Include="Content\custom-theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\custom-theme\images\ui-bg_flat_0_bfbfbf_40x100.png" />
+    <Content Include="Content\custom-theme\images\ui-bg_flat_0_fbf9ee_40x100.png" />
+    <Content Include="Content\custom-theme\images\ui-bg_flat_0_fef1ec_40x100.png" />
+    <Content Include="Content\custom-theme\images\ui-bg_flat_100_bfbfbf_40x100.png" />
+    <Content Include="Content\custom-theme\images\ui-bg_glass_0_ffffff_1x400.png" />
+    <Content Include="Content\custom-theme\images\ui-icons_1f1f1f_256x240.png" />
+    <Content Include="Content\custom-theme\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\custom-theme\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\custom-theme\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\custom-theme\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\custom-theme\jquery-ui-1.8.7.custom.css" />
     <Content Include="Content\dialogs.css" />
     <Content Include="Content\Images\background.png" />
     <Content Include="Content\Images\backgroundSmall.png" />
@@ -170,6 +183,9 @@
       <Project>{968C4374-82A0-4472-AD34-4D78589A747B}</Project>
       <Name>WebTV.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\custom-theme\.DS_Store" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
