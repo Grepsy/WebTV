@@ -36,10 +36,11 @@
             <% var msg = (WebTV.Frontend.InfoMessage)TempData["message"]; %>
             <h2 class="<%: msg.Type.ToString().ToLower() %>"><%: msg.Message %></h2>
         <% } %>
-        
+
         <div id="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
+        
         <footer>
             <a href="#">Algemene voorwaarden</a> |
             <a href="#">Disclaimer</a> |

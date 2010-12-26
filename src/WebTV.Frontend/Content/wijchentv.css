@@ -22,6 +22,16 @@ dl dd {
   clear: both;
 }
 
+.mediaset-list
+{
+    background-color: #CFCFCF;
+    border: thin solid #000000;
+    height: 390px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    width: 963px;
+}
 
 .mediaset,
 .mediagroup,

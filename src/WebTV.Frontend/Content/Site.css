@@ -14,6 +14,7 @@ body
     background-image: url('Images/backgroundSmall.png');
     background-repeat: repeat-x;
     background-position: top;
+    
 }
 
 
@@ -121,6 +122,29 @@ header h1
     font-size: 32px !important;
 }
 
+.breadcrumps 
+{
+    background-color: Red;
+    left: -10px;
+    position: relative;
+    top: -55px;
+    width: 945px;
+}
+
+.breadcrumps li
+{
+    list-style: none;
+    background-color: #FFFFFF;
+    padding: 5px;
+    width: 150px;
+    list-style-position: inside;
+}
+
+.breadcrumps a
+{
+    font-weight: bold;
+    color: #FFCC00;
+}
 
 #main
 {
@@ -129,7 +153,7 @@ header h1
 	top: 150px;
 	width: 964px;
 	height: 500px;
-	background-color:#FFF;
+	background-color:#f0f0f0;
 	padding: 10px;
 }
 

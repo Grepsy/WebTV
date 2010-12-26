@@ -10,11 +10,10 @@
             <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
         </li>
     </ul>
-
-    <p>
+    <h2>
         Open een fotoset om deze te bewerken of
         <%: Html.ActionLink("maak een nieuwe aan", "New", null, new { id = "mediaset-new" }) %>.
-    </p>
+    </h2>
 
     <div class="mediaset-list">
     <% foreach (var item in Model) { %>
