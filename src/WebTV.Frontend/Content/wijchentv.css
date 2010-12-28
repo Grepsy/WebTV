@@ -30,15 +30,15 @@ dl dd {
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
-    width: 963px;
 }
 
-.mediaset,
-.mediagroup,
-.media {
-  float: left;
-  margin: 10px;
-  width: 300px;
+.mediaset, .mediagroup, .media
+{
+    padding: 10px;
+    border: thin solid #000000;
+    float: left;
+    margin: 10px 0px 0px 10px;
+    width: 438px;
 }
 
 .media { width: 220px; }
