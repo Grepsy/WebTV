@@ -128,22 +128,30 @@ header h1
     left: -10px;
     position: relative;
     top: -55px;
-    width: 944px;
+    width: auto;
+    height:auto;
+    
 }
 
 .breadcrumps li
 {
     list-style: none;
+    float: left;
+}
+
+.breadcrumps li a
+{
     background-color: #FFFFFF;
+    float: left;
+    list-style: none outside none;
     padding: 5px;
-    width: 150px;
-    list-style-position: inside;
+    margin-right: 10px;
 }
 
 .breadcrumps a
 {
-    font-weight: bold;
-    color: #FFCC00;
+    color: #E36E19;
+    
 }
 
 #main

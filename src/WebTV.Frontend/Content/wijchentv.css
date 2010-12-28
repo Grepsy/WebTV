@@ -22,6 +22,22 @@ dl dd {
   clear: both;
 }
 
+.mediagroup-actions
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mediagroup-actions li
+{
+    float: left;
+    margin-top: 0;
+    margin-right: 10px;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+
 .mediaset-actions 
 {
     list-style: none;
