@@ -17,6 +17,16 @@ namespace WebTV.Model {
             return Properties.SingleOrDefault(p => p.PropertyDescriptor.Name.Equals(name));
         }
 
+        public object ToJsonObject(string imageUrl) {
+            return new {
+                Media = this.Media.Select(m => m.ToJsonObject(imageUrl)),
+                Properties = this.Properties.Select(p => new {
+                    Name = p.PropertyDescriptor.Name,
+                    Value = p.Value
+                })
+            };
+        }
+
         public MediaGroup Copy() {
             var copy = new MediaGroup() {
                 MediaSetId = this.MediaSetId,

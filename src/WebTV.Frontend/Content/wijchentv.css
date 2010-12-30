@@ -40,9 +40,9 @@ dd {
   border-right: 0;
 }
 
-.action-edit,
-.action-upload,
-.action-preview {
+.mediagroup-metadata .action-edit,
+.mediagroup-upload .action-upload,
+.mediagroup-animation .action-preview {
     position: absolute;
     right: 8px;
     bottom: 0;
@@ -55,8 +55,8 @@ dd {
     text-decoration: none;
     color: white;
 }
-.action-upload,
-.action-edit {
+.mediagroup-metadata .action-edit,
+.mediagroup-upload .action-upload {
   background-color: #1052b3;
 }
 
