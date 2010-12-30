@@ -1,20 +1,37 @@
-﻿dl dt {
-  display: inline-block;
-  font-weight: bold;
-}
-dl dd {
-  display: block;
+﻿dl
+{
+	float: left;
+	padding: 0;
+	width:auto;
 }
 
-.mediaset-metadata,
-.mediaset-upload,
-.mediaset-creategroup,
-.mediaset-animation,
-.mediagroup-metadata,
-.mediagroup-upload {
-  float: left;
-  width: 300px;
-  margin: 10px;
+dt
+{
+	clear: left;
+	float: left;
+	margin: 0;
+	padding: 5px;
+	font-weight: bold;
+	width:60px;
+}
+
+dd
+{
+	float: left;
+	margin: 0;
+	padding: 5px;
+}
+
+.mediaset-metadata, .mediaset-upload, .mediaset-creategroup, .mediaset-animation, .mediagroup-metadata, .mediagroup-upload
+{
+    border-width: thin;
+    border-color: #454545;
+    float: left;
+    width: 300px;
+    margin: 5px;
+    height:auto;
+    position: relative;
+    border-right-style: solid;
 }
 
 .mediaset-media,
