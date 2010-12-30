@@ -5,10 +5,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript">
-    var flashvars = {"location":"<%=TempData["MediaSetLocation"]%>"};
+    var flashvars = {"entrypoint":"<%=TempData["MediaSetLocation"]%>"};
     var params = {};
     var attributes = {};
-    swfobject.embedSWF("/Content/Flash/<%=TempData["AnimationFile"]%>", "previewContent", "500", "400", "10.0.0", "", flashvars, params, attributes);
+    swfobject.embedSWF("/Content/Flash/<%=TempData["AnimationFile"]%>", "previewContent", "900", "500", "10.0.0", "", flashvars, params, attributes);
 </script>
     <%: Html.ActionLink("Mijn fotosets", "Index", "MediaSet") %>
     <h2>Preview</h2>

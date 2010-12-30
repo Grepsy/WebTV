@@ -92,7 +92,7 @@ namespace WebTV.Frontend.Controllers
         public ActionResult Preview(int id)
         {
             var animation = Context.Animations.Single(a => a.AnimationId == id); 
-            String MediaSetLocation = Url.Action("Index", "Animation", new RouteValueDictionary(new { id = animation.AnimationId }), Request.Url.Scheme, Request.Url.Host);
+            String MediaSetLocation = Url.Action("Index", "Animation", new RouteValueDictionary(new { id = animation.AnimationId, type="json" }), Request.Url.Scheme, Request.Url.Host);
             TempData["MediaSetLocation"] = MediaSetLocation.ToString();
             TempData["AnimationFile"] = animation.Name.ToString().ToLower() + ".swf";
             return View();
