@@ -8,7 +8,7 @@
     <h2>Gebruikers die aangemaakt zijn:</h2>
     <table>
     <thead>
-        <tr><th>Naam</th><th>Is Admin</th><th>Geblokeerd</th></tr>
+        <tr><th>Naam</th><th>Is Admin</th><th>Actief</th></tr>
     </thead>
         <tbody>
         <% foreach(WebTV.Model.Customer customer in Model.getAllCustomers())
@@ -24,7 +24,7 @@
                 <%} %>
                 </td>
                 <td>
-                 <%if (customer.enabled){%>
+                 <%if (customer.Enabled){%>
                     <%=Html.ActionLink("Ja", "DeleteUser", "Account", new {username = customer.Name },null)%>
                  <%}else{ %>
                     <%=Html.ActionLink("Nee", "DeleteUser", "Account", new { username = customer.Name}, null)%>

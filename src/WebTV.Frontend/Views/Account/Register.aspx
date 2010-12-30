@@ -1,23 +1,23 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebTV.Model.Account.RegisterModel>" %>
 
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Register
+    Gebruiker aanmaken
 </asp:Content>
 
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Maak een nieuw account aan</h2>
     <p>
-        Use the form below to create a new account. 
+       Gebruik onderstaand formulier om een gebruiker aan te maken
     </p>
     <p>
-        Passwords are required to be a minimum of <%: ViewData["PasswordLength"] %> characters in length.
+        Wachtwoorden moeten minimaal <%: ViewData["PasswordLength"] %> karakters lang zijn
     </p>
 
     <% using (Html.BeginForm()) { %>
-        <%: Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.") %>
+        <%: Html.ValidationSummary(true, "Het aanmaken van de gebruiker is mislukt probeer het opnieuw") %>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
+                <legend>Account Informatie</legend>
                 
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.UserName) %>

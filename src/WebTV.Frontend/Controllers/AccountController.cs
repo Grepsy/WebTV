@@ -96,24 +96,6 @@ namespace WebTV.Controllers
             return View(model);
         }
 
-        private void RegisterCustomer(RegisterModel model)
-        {
-            //var context = new MightyMusicContext();
-            //var customer = new Customer() {
-            //    CustomerId = context.Customers.Count() + 256,
-            //    FirstName = model.UserName,
-            //    LastName = "",
-            //    Title = "",
-            //    EmailAddress = model.Email,
-            //    Password = model.Password,
-            //    Date = DateTime.Now,
-            //    Confirmed = "yes",
-            //    Sale = "",
-            //};
-            //context.Customers.AddObject(customer);
-            //context.SaveChanges();
-        }
-
         // **************************************
         // URL: /Account/ChangePassword
         // **************************************
@@ -154,8 +136,20 @@ namespace WebTV.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult ListUsers()
         {
-            Membership.GetAllUsers();
-            return View();
+           // MembershipUserCollection x = Membership.GetAllUsers();
+            return View(new AccountModel());
         }
+        // **************************************
+        // URL: /Account/ListUsers
+        // **************************************
+        [Authorize(Roles = "Administrator")]
+        public ActionResult DeleteUser(String username)
+        {
+            // We don't delete a user we disable them
+            Membership.DeleteUser(username);
+            return RedirectToAction("ListUsers", "Account");
+        }
+
+
     }
 }

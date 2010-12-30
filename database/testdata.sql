@@ -1,10 +1,10 @@
 USE WebTV
 
-INSERT INTO Customer (Name, Password, IsAdmin) VALUES ('Hans Pots', 'bananas' ,1)
-INSERT INTO Customer (Name, Password, IsAdmin) VALUES ('Eelco', 'eelcotest', 0)
-INSERT INTO Customer (Name, Password, IsAdmin) VALUES ('Robert', 'robertest', 1)
-INSERT INTO Customer (Name, Password, IsAdmin) VALUES ('Bas', 'bastest', 0)
-INSERT INTO Customer (Name, Password, IsAdmin) VALUES ('Ambert', 'ambertest', 1)
+INSERT INTO Customer (Name, Password, IsAdmin,Enabled) VALUES ('Hans Pots', 'bananas' ,1,1)
+INSERT INTO Customer (Name, Password, IsAdmin,Enabled) VALUES ('Eelco', 'eelcotest', 0, 1)
+INSERT INTO Customer (Name, Password, IsAdmin,Enabled) VALUES ('Robert', 'roberttest', 1, 1)
+INSERT INTO Customer (Name, Password, IsAdmin,Enabled) VALUES ('Bas', 'bastest', 0, 1)
+INSERT INTO Customer (Name, Password, IsAdmin,Enabled) VALUES ('Ambert', 'ambertest', 1, 1)
 
 INSERT INTO Animation (Name, CustomerId) VALUES ('Autohandelaar', 1)
 INSERT INTO Animation (Name, CustomerId, MediaGroupedBy) VALUES ('Koekenbakker', 1, 4)

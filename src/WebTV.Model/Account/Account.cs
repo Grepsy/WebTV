@@ -45,6 +45,15 @@ namespace WebTV.Model.Account
             return ctx.Customers.AsEnumerable();
                
         }
+        public void toggleUserEnabled(String userName)
+        {
+            Customer c = getCustomerByName(userName);
+            if (c.Enabled)
+                c.Enabled = false;
+            else
+                c.Enabled = true;
+            this.ctx.SaveChanges();
+        }
     }
 
     [PropertiesMustMatch("NewPassword", "ConfirmPassword", ErrorMessage = "The new password and confirmation password do not match.")]

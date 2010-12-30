@@ -14,7 +14,7 @@ namespace WebTV.Frontend.Providers {
             AccountModel m = new AccountModel();
             Customer user = m.getCustomerByName(username);
 
-            return user != null && user.Password == password;
+            return user != null && user.Password == password && user.Enabled;
         }
 
         public override string ApplicationName {
@@ -42,7 +42,9 @@ namespace WebTV.Frontend.Providers {
         }
 
         public override bool DeleteUser(string username, bool deleteAllRelatedData) {
-            throw new NotImplementedException();
+            AccountModel m = new AccountModel();
+            m.toggleUserEnabled(username);
+            return true;
         }
 
         public override bool EnablePasswordReset {
@@ -137,5 +139,10 @@ namespace WebTV.Frontend.Providers {
         public override void UpdateUser(MembershipUser user) {
             throw new NotImplementedException();
         }
+        public bool disableUser(int userId)
+        {
+            return true;
+        }
+
     }
 }
