@@ -6,7 +6,7 @@ fieldset label {
   display: block;
   width: 240px;
 }
-fieldset input {
+fieldset input[type=text] {
   display: block;
   width: 240px;
 }

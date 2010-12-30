@@ -46,7 +46,7 @@
                 titel omschrijving en prijs.
             </p>
             
-            <%: Html.ActionLink("Upload", "Upload", "Media", new { mediaSetId = Model.MediaSetId }, null)%>
+            <%: Html.ActionLink("Upload", "Upload", "Media", new { mediaSetId = Model.MediaSetId }, new { @class = "action-upload" })%>
         </div>
     <% }
        else { %>
@@ -71,7 +71,7 @@
                 <option value="<%: animation.AnimationId %>"><%: animation.Name %></option>
             <% } %>
         </select>
-        <%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }) %>
+        <%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }, new { @class = "action-preview" })%>
     </div>
 
     <div class="mediaset-media">

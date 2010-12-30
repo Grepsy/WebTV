@@ -10,10 +10,10 @@
             <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
         </li>
     </ul>
-    <h2>
-        Open een fotoset om deze te bewerken of
+    <div class="actiontext">
+        Open een fotoset om deze te bewerken of 
         <%: Html.ActionLink("maak een nieuwe aan", "New", null, new { id = "mediaset-new" }) %>.
-    </h2>
+    </div>
 
     <div class="mediaset-list">
     <% foreach (var item in Model) { %>
@@ -27,10 +27,10 @@
                 Deze fotoset heeft geen datum.
             <% } %>
             <ul class="mediaset-actions">
-                <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", new { id = item.MediaSetId }) %></li>
-                <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", new { id = item.MediaSetId, animationId = item.AnimationId }) %></li>
-                <li class="action-edit"><%: Html.ActionLink("Aanpassen", "Edit", new { id = item.MediaSetId }) %></li>
-                <li class="action-preview"><%: Html.ActionLink("Preview", "Preview", new { id = item.MediaSetId }) %></li>
+                <li class="action-delete"><%: Html.ActionLink("verwijderen", "Delete", new { id = item.MediaSetId }) %></li>
+                <li class="action-copy"><%: Html.ActionLink("kopieëren", "Copy", new { id = item.MediaSetId, animationId = item.AnimationId }) %></li>
+                <li class="action-edit"><%: Html.ActionLink("aanpassen", "Edit", new { id = item.MediaSetId }) %></li>
+                <li class="action-preview"><%: Html.ActionLink("preview", "Preview", new { id = item.MediaSetId }) %></li>
             </ul>
         </div>
     <% } %>
