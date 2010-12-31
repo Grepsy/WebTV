@@ -1,12 +1,15 @@
 ﻿.dialog {
-    display: none;
+  display: none;
+}
+.ui-dialog {
+  border: 4px solid #eee;
 }
 
-fieldset label {
+.dialog fieldset label {
   display: block;
   width: 240px;
 }
-fieldset input[type=text] {
+.dialog fieldset input {
   display: block;
-  width: 240px;
+  width: 250px;
 }
