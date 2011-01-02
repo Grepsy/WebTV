@@ -4,14 +4,16 @@
     Upload
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
-    <% if (ViewData.ContainsKey("mediaGroupId")) { %>
-        <%: Html.ActionLink("Terug naar groep", "Edit", new { controller = "MediaGroup", id = ViewData["mediaGroupId"] })%>
-    <% } else { %>
-        <%: Html.ActionLink("Terug naar fotoset", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%>
-    <% } %>
-     
-    <h2>Upload</h2>
+    <ul class="breadcrumps">
+        <% if (ViewData.ContainsKey("mediaGroupId")) { %>
+          <li> <%: Html.ActionLink("Naar de groepen", "Edit", new { controller = "MediaGroup", id = ViewData["mediaGroupId"] })%></li> 
+        <% } else { %>
+            <li><%: Html.ActionLink("Mijn fotosets", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
+        <% } %>
+    </ul>
+    <div class="actiontext">
+        Upload een nieuwe afbeelding
+    </div>
     <ul>
         <% foreach (var fileinfo in this.Model) { %>
             <li>
@@ -25,7 +27,7 @@
     </ul>
 
     <form method="post" action="/Media/Upload" enctype="multipart/form-data">
-        <input type="file" name="test" multiple="" />
+        <input type="file" name="test" multiple="" /><br />
         <%: Html.Hidden("mediaSetId", ViewData["mediaSetId"]) %>
         <%: Html.Hidden("mediaGroupId", ViewData["mediaGroupId"]) %>
         <input type="submit" value="Versturen" />
