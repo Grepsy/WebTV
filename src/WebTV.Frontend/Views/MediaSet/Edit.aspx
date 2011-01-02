@@ -21,8 +21,8 @@
             <dt>Vertoning</dt>
             <dd>
                 <% if (Model.StartDate.HasValue) { %>
-                    <%: String.Format("{0:D}", Model.StartDate) %> tot
-                    <%: String.Format("{0:D}", Model.EndDate) %>
+                    <%: String.Format("{0:d}", Model.StartDate) %> tot
+                    <%: String.Format("{0:d}", Model.EndDate) %>
                 <% } else { %>
                     Niet ingesteld.
                 <% } %>
@@ -46,7 +46,7 @@
                 titel omschrijving en prijs.
             </p>
             
-            <%: Html.ActionLink("Upload", "Upload", "Media", new { mediaSetId = Model.MediaSetId }, null)%>
+            <%: Html.ActionLink("Upload", "Upload", "Media", new { mediaSetId = Model.MediaSetId }, new { @class = "action-upload" })%>
         </div>
     <% }
        else { %>
@@ -58,7 +58,7 @@
                     <span class="error-missinggroups">Vul alle groepen</span>
                 <% } %>
             </p>
-            <%: Html.ActionLink("Maak groep", "New", "MediaGroup", new { mediaSetId = Model.MediaSetId }, null)%>
+            <%: Html.ActionLink("Maak groep", "New", "MediaGroup", new { mediaSetId = Model.MediaSetId }, new { @class = "action-creategroup" })%>
         </div>
     <% } %>
 
@@ -71,7 +71,7 @@
                 <option value="<%: animation.AnimationId %>"><%: animation.Name %></option>
             <% } %>
         </select>
-        <%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }) %>
+        <%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }, new { @class = "action-preview" })%>
     </div>
 
     <div class="mediaset-media">
@@ -81,8 +81,8 @@
                 <h3 class="media-name"><%: item.PropertyWithName("Naam").Value %></h3>
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
                 <ul class="media-actions">
-                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %></li>
-                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%></li>
+                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %> | </li>
+                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%> | </li>
                     <li class="action-edit"><a href="#">Bewerken</a></li>
                 </ul>
             </div>
@@ -93,8 +93,8 @@
                 <h3 class="group-name"><%: item.PropertyWithName("Naam").Value %></h3>
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
                 <ul class="mediagroup-actions">
-                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
-                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%></li>
+                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "MediaGroup", new { id = item.MediaGroupId }, null) %> | </li>
+                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%> | </li>
                     <li class="action-edit"><%: Html.ActionLink("Openen", "Edit", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
                 </ul>
             </div>

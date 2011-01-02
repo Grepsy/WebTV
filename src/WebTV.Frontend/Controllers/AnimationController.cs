@@ -9,8 +9,13 @@ using System.Security.Permissions;
 namespace WebTV.Frontend.Controllers {
     public class AnimationController : ControllerBase {
         
-        public ActionResult Index() {
-            var animations = Context.Animations.ToList();
+        public ActionResult Index(int? id) {
+            List<Animation> animations;
+            if (id.HasValue)
+                animations = Context.Animations.Where(a => a.AnimationId == id.Value).ToList();
+            else
+                animations = Context.Animations.ToList();
+            
             if (Request.Params["type"] == "json") {
                 return Json(animations.ConvertAll(AnimationToJson), JsonRequestBehavior.AllowGet);
             }
@@ -18,23 +23,12 @@ namespace WebTV.Frontend.Controllers {
             return View(animations);
         }
 
-        public ActionResult Details(int id, int? mediaSetId) {
-            Animation animation;
-            if (mediaSetId.HasValue) {
-                animation = Context.Animations.Single(a => 
+        public ActionResult Details(int id, int mediaSetId) {
+            var animation = Context.Animations.Single(a => 
                     a.AnimationId == id &&
                     a.MediaSets.Any(s => s.MediaSetId == mediaSetId));
-            }
-            else {
-                animation = Context.Animations.Single(a => a.AnimationId == id);
-            }
-
-            if (Request.Params["type"] == "json") {
-                return Json(AnimationToJson(animation), JsonRequestBehavior.AllowGet);
-            }
-            else {
-                return View(animation);
-            }
+            
+            return Json(AnimationToJson(animation, mediaSetId), JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles = "Administrator,User")]
@@ -48,15 +42,33 @@ namespace WebTV.Frontend.Controllers {
             var json = new {
                 Name = animation.Name,
                 MediaGroupedBy = animation.MediaGroupedBy,
-                MediaSets = animation.MediaSets.Select(s => new { 
+                MediaSets = animation.MediaSets
+                    .Where(m => m.StartDate.HasValue && m.EndDate.HasValue)
+                    .Where(m => m.StartDate.Value < DateTime.Now && m.EndDate.Value > DateTime.Now)
+                    .Select(s => new { 
+                        Name = s.Name,
+                        StartDate = s.StartDate,
+                        EndDate = s.EndDate,
+                        Message  = s.Message,
+                        Media = animation.MediaGroupedBy == 1 ? s.Media.Select(m => m.ToJsonObject(imageUrl)) : null,
+                        Groups = s.MediaGroups.Select(g => g.ToJsonObject(imageUrl))
+                })
+            };
+            return json;
+        }
+        
+        private object AnimationToJson(Animation animation, int mediaSetId) {
+            string imageUrl = Url.Action("Show", "Media", null, Request.Url.Scheme, Request.Url.Host);
+            var json = new {
+                Name = animation.Name,
+                MediaGroupedBy = animation.MediaGroupedBy,
+                MediaSets = animation.MediaSets.Where(m => m.MediaSetId == mediaSetId).Select(s => new { 
                     Name = s.Name,
                     StartDate = s.StartDate,
                     EndDate = s.EndDate,
                     Message  = s.Message,
                     Media = animation.MediaGroupedBy == 1 ? s.Media.Select(m => m.ToJsonObject(imageUrl)) : null,
-                    Groups = s.MediaGroups.Select(g => new {
-                        Media = g.Media.Select(m => m.ToJsonObject(imageUrl))
-                    })
+                    Groups = s.MediaGroups.Select(g => g.ToJsonObject(imageUrl))
                 })
             };
             return json;
