@@ -20,7 +20,6 @@
 <body>
     <div class="page">
         <header>
-            <%--<h1>Commercialbeheer</h1>--%>
             <nav>
                 <ul id="menu">
                     <li><%: Html.ActionLink("Help", "Help", "Home")%></li>

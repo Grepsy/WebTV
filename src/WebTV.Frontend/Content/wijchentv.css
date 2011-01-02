@@ -96,8 +96,10 @@ ul.mediaset-actions  {
     padding-left: 20px;
 }
 .action-preview a { color: white; }
+input.action-preview:hover { cursor: pointer }
 
 .mediaset-media,
+.mediaset-preview,
 .mediagroup-media {
   clear: both;
 }
@@ -124,6 +126,7 @@ ul.mediaset-actions  {
 
 .mediaset-list,
 .mediaset-media,
+.mediaset-preview,
 .mediagroup-media {
     top: 8px;
     background-color: #CFCFCF;
@@ -158,3 +161,4 @@ ul.mediaset-actions  {
   width: 100px !important;
   margin-right: 4px;
 }
+.preview-container{ margin: 5px 142px 0;}

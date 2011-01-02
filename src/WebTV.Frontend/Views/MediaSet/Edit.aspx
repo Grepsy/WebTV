@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebTV.Model.MediaSet>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Edit
+	Bewerken van: <%: Model.Name %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -66,12 +66,16 @@
         <p>
             Kies een commercial waarin de fotoset wordt vertoond en bekijk de preview.
         </p>
-        <select name="animationId">
-            <% foreach (var animation in (IEnumerable<WebTV.Model.Animation>)ViewData["Animations"]) { %>
-                <option value="<%: animation.AnimationId %>"><%: animation.Name %></option>
-            <% } %>
-        </select>
-        <%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }, new { @class = "action-preview" })%>
+        <form action="<%:Url.Action("Preview","MediaSet")%>" method="post">
+            <select name="AnimationId">
+                <% foreach (var animation in (IEnumerable<WebTV.Model.Animation>)ViewData["Animations"]) { %>
+                    <option value="<%: animation.AnimationId %>"><%: animation.Name %></option>
+                <% } %>
+            </select>
+            <input type="hidden"  name="MediaSetId" value="<%: Model.MediaSetId %>" />
+            <input type="submit" value="Preview" class="action-preview" />
+            <!--<%: Html.ActionLink("Preview", "Preview", new { id = Model.MediaSetId }, new { @class = "action-preview" })%> -->
+        </form>
     </div>
 
     <div class="mediaset-media">

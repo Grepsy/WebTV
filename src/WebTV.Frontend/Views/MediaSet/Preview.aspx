@@ -8,9 +8,14 @@
     var flashvars = {"entrypoint":"<%=TempData["MediaSetLocation"]%>"};
     var params = {};
     var attributes = {};
-    swfobject.embedSWF("/Content/Flash/<%=TempData["AnimationFile"]%>", "previewContent", "900", "500", "10.0.0", "", flashvars, params, attributes);
+    swfobject.embedSWF("/Content/Flash/<%=TempData["AnimationFile"]%>", "previewContent", "675", "380", "10.0.0", "", flashvars, params, attributes);
 </script>
     <%: Html.ActionLink("Mijn fotosets", "Index", "MediaSet") %>
     <h2>Preview</h2>
-    <div id="previewContent"></div>
+    "entrypoint":"<%=TempData["MediaSetLocation"]%>"
+    <div class="mediaset-preview">
+        <div class="preview-container">
+            <div id="previewContent"></div>
+        </div> 
+    </div>
 </asp:Content>

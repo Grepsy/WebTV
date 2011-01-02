@@ -89,10 +89,38 @@ namespace WebTV.Frontend.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult Preview(int id)
+        
+        public ActionResult Preview(int id) // id == MediaSetId
         {
-            var animation = Context.Animations.Single(a => a.AnimationId == id); 
-            String MediaSetLocation = Url.Action("Index", "Animation", new RouteValueDictionary(new { id = animation.AnimationId, type="json" }), Request.Url.Scheme, Request.Url.Host);
+            var mediaSet = Context.MediaSets.Single(ms => ms.MediaSetId == id);
+            var animation = Context.Animations.Single(a => a.AnimationId == mediaSet.AnimationId);
+            String MediaSetLocation = Url.Action("Details", "Animation",
+                new RouteValueDictionary(
+                    new
+                    {
+                        id = animation.AnimationId,
+                        mediaSetId = id,
+                        type = "json"
+                    }),
+                    Request.Url.Scheme, Request.Url.Host);
+
+            TempData["MediaSetLocation"] = MediaSetLocation.ToString();
+            TempData["AnimationFile"] = animation.Name.ToString().ToLower() + ".swf";
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Preview(int AnimationId, int MediaSetId)
+        {
+            var animation = Context.Animations.Single(a => a.AnimationId == AnimationId); 
+            String MediaSetLocation = Url.Action("Details", "Animation", 
+                new RouteValueDictionary(
+                    new { 
+                        id = animation.AnimationId,
+                        mediaSetId = MediaSetId, 
+                        type="json" }),
+                    Request.Url.Scheme, Request.Url.Host);
+
             TempData["MediaSetLocation"] = MediaSetLocation.ToString();
             TempData["AnimationFile"] = animation.Name.ToString().ToLower() + ".swf";
             return View();
