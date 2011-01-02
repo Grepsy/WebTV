@@ -135,6 +135,7 @@
     <Content Include="Views\MediaSet\Index.aspx" />
     <Content Include="Views\MediaSet\Preview.aspx" />
     <Content Include="Views\Media\Upload.aspx" />
+    <Content Include="Views\Shared\UsersMenu.ascx" />
     <Content Include="Views\Shared\CopyMediaDialog.ascx" />
     <Content Include="Views\Shared\CopyMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditMediaSetDialog.ascx" />
