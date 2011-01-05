@@ -106,7 +106,7 @@ namespace WebTV.Frontend.Controllers
 
             TempData["MediaSetLocation"] = MediaSetLocation.ToString();
             TempData["AnimationFile"] = animation.Name.ToString().ToLower() + ".swf";
-            return View();
+            return View(new MediaSet());
         }
 
         [HttpPost]
@@ -123,7 +123,9 @@ namespace WebTV.Frontend.Controllers
 
             TempData["MediaSetLocation"] = MediaSetLocation.ToString();
             TempData["AnimationFile"] = animation.Name.ToString().ToLower() + ".swf";
-            return View();
+            
+            var mediaSet = Context.MediaSets.Single(ms => ms.MediaSetId == MediaSetId);
+            return View(mediaSet);
         }
     }
 }

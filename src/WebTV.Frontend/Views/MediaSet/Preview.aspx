@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<ViewDataFileUpload>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<WebTV.Model.MediaSet>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Preview
@@ -10,9 +10,23 @@
     var attributes = {};
     swfobject.embedSWF("/Content/Flash/<%=TempData["AnimationFile"]%>", "previewContent", "675", "380", "10.0.0", "", flashvars, params, attributes);
 </script>
-    <%: Html.ActionLink("Mijn fotosets", "Index", "MediaSet") %>
-    <h2>Preview</h2>
-    "entrypoint":"<%=TempData["MediaSetLocation"]%>"
+    <ul class="breadcrumps">
+        <li>
+            <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
+        </li>
+        <% if (Model.MediaSetId > 0)
+           { %>
+        <li>
+            Fotoset: <%: Html.ActionLink(Model.Name, "Edit", new { controller = "MediaSet", id = Model.MediaSetId })%>
+        </li>
+        <%} %>
+        <li>
+            Preview
+        </li>
+    </ul>
+    <div class="actiontext">
+        Een preview van de door u samegestelde commercial.
+    </div>
     <div class="mediaset-preview">
         <div class="preview-container">
             <div id="previewContent"></div>
