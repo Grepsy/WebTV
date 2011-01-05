@@ -8,10 +8,13 @@
     background-position: top;
 }
 
-a {
-  color: #255D9B;
+a,
+a:active,
+a:visited {
+  color: #1052b3;
   text-decoration: underline;
 }
+
 
 /* HEADINGS
 ----------------------------------------------------------*/

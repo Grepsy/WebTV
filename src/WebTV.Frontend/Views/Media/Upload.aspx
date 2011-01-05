@@ -5,11 +5,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <ul class="breadcrumps">
+        <li>
+            <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
+        </li>
         <% if (ViewData.ContainsKey("mediaGroupId")) { %>
-          <li> <%: Html.ActionLink("Naar de groepen", "Edit", new { controller = "MediaGroup", id = ViewData["mediaGroupId"] })%></li> 
+          <li><%: Html.ActionLink("Fotoset", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
+          <li><%: Html.ActionLink("Groep", "Edit", new { controller = "MediaGroup", id = ViewData["mediaGroupId"] })%></li> 
         <% } else { %>
-            <li><%: Html.ActionLink("Mijn fotosets", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
+            <li><%: Html.ActionLink("Fotoset", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
         <% } %>
+        <li>Uploaden</li>
     </ul>
     <div class="actiontext">
         Upload een nieuwe afbeelding

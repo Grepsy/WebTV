@@ -30,7 +30,10 @@ namespace WebTV.Frontend.Controllers {
             media.PropertyWithName("Omschrijving").Value = description;
             Context.SaveChanges();
 
-            return RedirectToAction("Edit", "MediaSet", new { id = media.MediaSetId });
+            if (media.MediaGroupId.HasValue)
+                return RedirectToAction("Edit", "MediaGroup", new { id = media.MediaGroupId });
+            else
+                return RedirectToAction("Edit", "MediaSet", new { id = media.MediaSetId });
         }
 
         public FilePathResult Show(string id) {

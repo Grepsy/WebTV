@@ -93,13 +93,15 @@
         <% } %>
         <% foreach (var item in Model.MediaGroups) { %>
             <div class="mediagroup" data-mediagroupid="<%: item.MediaGroupId %>">
-                <%--<img src="/Media/Show?id=<%: item.Media.First().Filename %>" style="width: 200px;"/>--%>
+                <% if (item.Media.Count > 0) { %>
+                    <div class="imagewrap"><img src="/Media/Show?id=<%: item.Media.First().Filename %>"/></div>
+                <% } %>
                 <h3 class="group-name"><%: item.PropertyWithName("Naam").Value %></h3>
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
                 <ul class="mediagroup-actions">
-                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "MediaGroup", new { id = item.MediaGroupId }, null) %> | </li>
-                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%> | </li>
-                    <li class="action-edit"><%: Html.ActionLink("Openen", "Edit", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
+                    <li class="action-delete"><%: Html.ActionLink("verwijderen", "Delete", "MediaGroup", new { id = item.MediaGroupId }, null) %> | </li>
+                    <li class="action-copy"><%: Html.ActionLink("kopieëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%> | </li>
+                    <li class="action-edit"><%: Html.ActionLink("openen", "Edit", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
                 </ul>
             </div>
         <% } %>

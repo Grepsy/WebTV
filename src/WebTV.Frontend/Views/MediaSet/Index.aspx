@@ -27,8 +27,8 @@
                 Deze fotoset heeft geen datum.
             <% } %>
             <ul class="mediaset-actions">
-                <li class="action-delete"><%: Html.ActionLink("verwijderen", "Delete", new { id = item.MediaSetId }) %></li>
-                <li class="action-copy"><%: Html.ActionLink("kopieëren", "Copy", new { id = item.MediaSetId, animationId = item.AnimationId }) %></li>
+                <li class="action-delete"><%: Html.ActionLink("verwijderen", "Delete", new { id = item.MediaSetId }) %> | </li>
+                <li class="action-copy"><%: Html.ActionLink("kopieëren", "Copy", new { id = item.MediaSetId, animationId = item.AnimationId }) %> | </li>
                 <li class="action-edit"><%: Html.ActionLink("aanpassen", "Edit", new { id = item.MediaSetId }) %></li>
                 <li class="action-preview"><%: Html.ActionLink("preview", "Preview", new { id = item.MediaSetId }) %></li>
             </ul>
