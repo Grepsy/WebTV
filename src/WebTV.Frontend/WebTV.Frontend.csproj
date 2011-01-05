@@ -119,6 +119,7 @@
     <Content Include="Content\overcast\images\ui-icons_999999_256x240.png" />
     <Content Include="Content\overcast\images\ui-icons_fbc856_256x240.png" />
     <Content Include="Content\overcast\jquery-ui-1.8.6.custom.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Content\wijchentv.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\dialogs.js" />

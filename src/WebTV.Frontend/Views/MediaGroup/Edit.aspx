@@ -28,7 +28,7 @@
             Upload foto's van je eigen computer. Bewerk een foto om de informatie te wijzigen.
         </p>
         <%: Html.ActionLink("Upload", "Upload", "Media", 
-            new { mediaSetId = Model.MediaSetId, mediaGroupId = Model.MediaGroupId }, null) %>
+            new { mediaSetId = Model.MediaSetId, mediaGroupId = Model.MediaGroupId },  new { @class = "action-upload" }) %>
     </div>
 
     <div class="mediagroup-media">
