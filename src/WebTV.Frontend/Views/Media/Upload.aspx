@@ -9,10 +9,10 @@
             <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
         </li>
         <% if (ViewData.ContainsKey("mediaGroupId")) { %>
-          <li><%: Html.ActionLink("Fotoset", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
-          <li><%: Html.ActionLink("Groep", "Edit", new { controller = "MediaGroup", id = ViewData["mediaGroupId"] })%></li> 
+          <li><%: Html.ActionLink("Fotoset: " + ViewData["mediaSetName"], "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
+          <li><%: Html.ActionLink("Groep: " + ViewData["mediaGroupName"], "Edit", new { controller = "MediaGroup", id = ViewData["mediaGroupId"] })%></li> 
         <% } else { %>
-            <li><%: Html.ActionLink("Fotoset", "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
+            <li><%: Html.ActionLink("Fotoset: "+ViewData["mediaSetName"], "Edit", new { controller = "MediaSet", id = ViewData["mediaSetId"] })%></li>
         <% } %>
         <li>Uploaden</li>
     </ul>

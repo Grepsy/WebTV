@@ -85,8 +85,16 @@ namespace WebTV.Frontend.Controllers {
 
         public ActionResult Upload(int mediaSetId, int? mediaGroupId) {
             ViewData["mediaSetId"] = mediaSetId;
+            ViewData["mediaSetName"] = Context.MediaSets.Single(
+                                       ms => ms.MediaSetId == mediaSetId)
+                                       .Name;
+            
             if (mediaGroupId.HasValue) {
                 ViewData["mediaGroupId"] = mediaGroupId.Value;
+
+                var mediagroup = Context.MediaGroups.Single(mg => mg.MediaGroupId == mediaGroupId);
+                ViewData["mediaGroupName"] = mediagroup.PropertyWithName("Naam").Value;
+                if (ViewData["mediaGroupName"] == "") ViewData["mediaGroupName"] = "Naamloze groep";
             }
 
             var uploadedFiles = new List<ViewDataFileUpload>();
