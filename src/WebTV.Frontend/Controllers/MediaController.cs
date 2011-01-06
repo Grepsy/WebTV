@@ -60,10 +60,11 @@ namespace WebTV.Frontend.Controllers {
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult Copy(int id, int? mediaSetId, string name, string description, string price) {
+        public ActionResult Copy(int id, int? mediaSetId, int? mediaGroupId, string name, string description, string price) {
             try {
                 var media = Context.Media.Single(s => s.MediaId == id);
                 var set = mediaSetId.HasValue ? Context.MediaSets.Single(a => a.MediaSetId == mediaSetId) : media.MediaSet;
+                var group = mediaGroupId.HasValue ? Context.MediaGroups.Single(a => a.MediaGroupId == mediaGroupId) : media.MediaGroup;
                 var copy = media.Copy();
 
                 if (name != null && description != null && price != null) {
@@ -71,8 +72,11 @@ namespace WebTV.Frontend.Controllers {
                     media.PropertyWithName("Prijs").Value = price;
                     media.PropertyWithName("Omschrijving").Value = description;
                 }
+                if (mediaSetId.HasValue)
+                    set.Media.Add(copy);
+                if (mediaGroupId.HasValue)
+                    group.Media.Add(copy);
 
-                set.Media.Add(copy);
                 Context.SaveChanges();
                 TempData["message"] = new InfoMessage("Foto is gekopiëerd naar " + set.Name + ".", InfoMessage.InfoType.Notice);
             }

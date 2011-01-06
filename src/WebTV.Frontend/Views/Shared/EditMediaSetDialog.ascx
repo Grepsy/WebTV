@@ -6,16 +6,16 @@
     <fieldset>
         <%: Html.HiddenFor(model => model.MediaSetId) %>
         
-        <%: Html.LabelFor(model => model.Name) %>
+        <label for="Name">Naam:</label>
         <%: Html.EditorFor(model => model.Name) %>
 
-        <%: Html.LabelFor(model => model.StartDate) %>
+        <label for="StartDate">Start datum:
         <%: Html.EditorFor(model => model.StartDate) %>
 
-        <%: Html.LabelFor(model => model.EndDate) %>
+        <label for="EndDate">Eind datum:
         <%: Html.EditorFor(model => model.EndDate) %>
 
-        <%: Html.LabelFor(model => model.Message) %>
+        <label for="Message">Bericht:
         <%: Html.EditorFor(model => model.Message) %>
     </fieldset>
     <a href="" class="action-cancel">Annuleren</a> of

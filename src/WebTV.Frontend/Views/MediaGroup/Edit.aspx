@@ -39,7 +39,7 @@
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
                 <ul class="media-actions">
                     <li class="action-delete"><%: Html.ActionLink("verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %> | </li>
-                    <li class="action-copy"><%: Html.ActionLink("kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%> | </li>
+                    <li class="action-copytogroup"><%: Html.ActionLink("kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%> | </li>
                     <li class="action-edit"><a href="#">bewerken</a></li>
                 </ul>
             </div>
@@ -50,5 +50,5 @@
     </div>
 
     <% Html.RenderPartial("EditMetadataDialog"); %>
-        
+    <% Html.RenderPartial("CopyGroupMediaDialog", Model.MediaSet.MediaGroups); %>
 </asp:Content>
