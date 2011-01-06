@@ -9,18 +9,14 @@ using System.Security.Permissions;
 namespace WebTV.Frontend.Controllers {
     public class AnimationController : ControllerBase {
         
-        public ActionResult Index(int? id) {
-            List<Animation> animations;
-            if (id.HasValue)
-                animations = Context.Animations.Where(a => a.AnimationId == id.Value).ToList();
-            else
-                animations = Context.Animations.ToList();
-            
+        public ActionResult Index(int id) {
+            var animation = Context.Animations.Single(a => a.AnimationId == id);
+           
             if (Request.Params["type"] == "json") {
-                return Json(animations.ConvertAll(AnimationToJson), JsonRequestBehavior.AllowGet);
+                return Json(AnimationToJson(animation), JsonRequestBehavior.AllowGet);
             }
             
-            return View(animations);
+            return View(animation);
         }
 
         public ActionResult Details(int id, int mediaSetId) {
