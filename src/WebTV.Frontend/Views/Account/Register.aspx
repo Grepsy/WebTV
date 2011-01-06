@@ -9,6 +9,9 @@
             <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
         </li>
         <li>
+            <%: Html.ActionLink("Gebruikers", "ListUsers", "Account")%>
+        </li>
+        <li>
             <%: Html.ActionLink("Gebruiker aanmaken", "Register", "Account")%>
         </li>
     </ul>

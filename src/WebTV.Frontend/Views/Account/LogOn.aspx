@@ -11,8 +11,6 @@
         <%: Html.ValidationSummary(true, "Inloggen mislukt, corrigeer de fouten en probeer opnieuw.") %>
         <div class="login">
             <fieldset>
-                <legend>Account informatie</legend>
-                
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.UserName) %>
                 </div>

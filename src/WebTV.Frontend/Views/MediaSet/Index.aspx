@@ -18,7 +18,7 @@
     <div class="mediaset-list">
     <% foreach (var item in Model) { %>
         <div class="mediaset" data-mediasetid="<%: item.MediaSetId %>" data-animationid="<%: item.AnimationId %>">
-            <h2><%: item.Name %></h2>
+            <h2><%: item.Name %></h2>a
             <% if (item.StartDate.HasValue) { %>
                 Vertoning van 
                 <%: String.Format("{0:D}", item.StartDate) %> tot

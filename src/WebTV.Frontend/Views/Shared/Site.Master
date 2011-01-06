@@ -22,8 +22,8 @@
         <header>
             <nav>
                 <ul id="menu">
-                    <li><%: Html.ActionLink("Help", "Help", "Home")%></li>
-                    <li><%: Html.ActionLink("Contact", "About", "Home")%></li>
+                    <li><a href="/Static/Faq/" target="_blank">Help</a></li>
+                    <li><a href="/Static/Contact/" target="_blank">Contact</a></li>
                     <li><% Html.RenderPartial("LogOnUserControl"); %>  </li>
                      <% if(HttpContext.Current.User.IsInRole("Administrator")){ %>
                         <li><% Html.RenderPartial("AdminMenu"); %></li>
@@ -42,9 +42,9 @@
         </div>
         
         <footer>
-            <a href="#">Algemene voorwaarden</a> |
-            <a href="#">Disclaimer</a> |
-            <a href="#">Contact</a> |
+            <a href="/Static/Voorwaarden/" target="_blank">Algemene voorwaarden</a> |
+            <a href="/Static/Disclaimer/" target="_blank">Disclaimer</a> |
+            <a href="/Static/Contact/" target="_blank">Contact</a> |
             &copy; Wijchen.TV 2010
         </footer>
     </div>

@@ -76,6 +76,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AnimationController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\StaticController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\MediaGroupController.cs" />
     <Compile Include="Controllers\MediaSetController.cs" />
@@ -104,6 +105,8 @@
     <Content Include="Content\dialogs.css" />
     <Content Include="Content\Images\background.png" />
     <Content Include="Content\Images\backgroundSmall.png" />
+    <Content Include="Content\Images\cms_wijchen_FAQ.png" />
+    <Content Include="Content\Images\contact_placeholder.png" />
     <Content Include="Content\overcast\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\overcast\images\ui-bg_flat_0_eeeeee_40x100.png" />
     <Content Include="Content\overcast\images\ui-bg_flat_55_c0402a_40x100.png" />
@@ -144,6 +147,10 @@
     <Content Include="Views\Shared\AdminMenu.ascx" />
     <Content Include="Views\Shared\NewMediaSetDialog.ascx" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.ascx" />
+    <Content Include="Views\Static\Contact.aspx" />
+    <Content Include="Views\Static\Disclaimer.aspx" />
+    <Content Include="Views\Static\Faq.aspx" />
+    <Content Include="Views\Static\Voorwaarden.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
