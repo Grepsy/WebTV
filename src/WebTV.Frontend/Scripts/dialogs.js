@@ -31,6 +31,13 @@
     return false;
   });
 
+  $('.media-actions .action-copytogroup a').click(function() {
+    var mediaId = $(this).closest("[data-mediaid]").attr('data-mediaid');
+    $('#field-copymedia-id').val(mediaId);
+    $('.dialog-copygroupmedia').webtvdialog();
+    return false;
+  });
+
   $('.mediaset-actions .action-copy a').click(function() {
     var setId = $(this).closest("[data-mediasetid]").attr('data-mediasetid');
     var animationId = $(this).closest("[data-animationid]").attr('data-animationid');

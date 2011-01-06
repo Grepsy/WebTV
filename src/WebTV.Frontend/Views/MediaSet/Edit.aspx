@@ -81,13 +81,13 @@
     <div class="mediaset-media">
         <% foreach (var item in Model.Media.Where(m => m.MediaGroupId == null)) { %>
             <div class="media" data-mediaid="<%: item.MediaId %>">
-                <img src="/Media/Show?id=<%: item.Filename %>" style="width: 200px;"/>
+                <div class="imagewrap"><img src="/Media/Show?id=<%: item.Filename %>"/></div>
                 <h3 class="media-name"><%: item.PropertyWithName("Naam").Value %></h3>
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
                 <ul class="media-actions">
-                    <li class="action-delete"><%: Html.ActionLink("Verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %> | </li>
-                    <li class="action-copy"><%: Html.ActionLink("Kopieëren", "Copy", "Media", new { id = item.MediaId }, null)%> | </li>
-                    <li class="action-edit"><a href="#">Bewerken</a></li>
+                    <li class="action-delete"><%: Html.ActionLink("verwijderen", "Delete", "Media", new { id = item.MediaId }, null) %> | </li>
+                    <li class="action-copy"><%: Html.ActionLink("kopiëren", "Copy", "Media", new { id = item.MediaId }, null)%> | </li>
+                    <li class="action-edit"><a href="#">bewerken</a></li>
                 </ul>
             </div>
         <% } %>
@@ -100,7 +100,7 @@
                 <span class="media-price"><%: item.PropertyWithName("Prijs").Value %></span>
                 <ul class="mediagroup-actions">
                     <li class="action-delete"><%: Html.ActionLink("verwijderen", "Delete", "MediaGroup", new { id = item.MediaGroupId }, null) %> | </li>
-                    <li class="action-copy"><%: Html.ActionLink("kopieëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%> | </li>
+                    <li class="action-copy"><%: Html.ActionLink("kopiëren", "Copy", "MediaGroup", new { id = item.MediaGroupId }, null)%> | </li>
                     <li class="action-edit"><%: Html.ActionLink("openen", "Edit", "MediaGroup", new { id = item.MediaGroupId }, null) %></li>
                 </ul>
             </div>

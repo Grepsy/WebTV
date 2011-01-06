@@ -11,11 +11,11 @@
 </script>
 
 <div class="dialog dialog-editmetadata">
-    <h2>Foto bewerken</h2>
+    <h2>Bewerken</h2>
     <form action="" method="post">
         <fieldset id="fieldset-metadata">
         </fieldset>
-        <a href="" class="action-cancel">Annuleren</a> of
+        <a href="#" class="action-cancel">Annuleren</a> of
         <input type="submit" value="Opslaan" />
     </form>
 </div>

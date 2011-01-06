@@ -62,5 +62,24 @@ namespace WebTV.Frontend.Controllers {
 
             return View(group);
         }
+
+        public ActionResult Delete(int id) {
+            try {
+                var group = Context.MediaGroups.Single(s => s.MediaGroupId == id);
+                // Work around ref. constraint problem
+                for (int i = 0; i < group.Properties.Count; i++)
+                    Context.DeleteObject(group.Properties.ElementAt(i));
+                for (int i = 0; i < group.Media.Count; i++)
+                    Context.DeleteObject(group.Media.ElementAt(i));
+                Context.DeleteObject(group);
+                Context.SaveChanges();
+                TempData["message"] = new InfoMessage("Groep is verwijderd.", InfoMessage.InfoType.Notice);
+            }
+            catch (Exception e) {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(e);
+                TempData["message"] = new InfoMessage("Er is een fout opgetreden bij het verwijderen van de groep.", InfoMessage.InfoType.Error);
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
