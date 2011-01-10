@@ -16,12 +16,17 @@ namespace WebTV.Frontend {
                 "Animation/{id}",
                 new { controller = "Animation", action = "Index", id = UrlParameter.Optional }
             );
-
+            routes.MapRoute(
+            "Static",
+            "Static/{pagename}",
+            new { controller = "Static", action = "Static", pagename = UrlParameter.Optional }
+            );
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "MediaSet", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+           
         }
 
         protected void Application_Start() {
