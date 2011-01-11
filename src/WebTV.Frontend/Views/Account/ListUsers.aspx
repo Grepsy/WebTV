@@ -9,12 +9,13 @@
             <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
         </li>
         <li>
-            <%: Html.ActionLink("Gebruikers", "ListUsers", "Account")%>
+            Gebruikers
         </li>
     </ul>
     <div class="actiontext">
-        Hieronder staan alle gebruikers van het systeem. Een gebruiker kan hier onder uitgeschakeld worden (alle gebruikers informatie blijft behouden).
-        <br />Er kan <%: Html.ActionLink("hier", "Register", "Account")%> ook een <%: Html.ActionLink("nieuwe gebruiker", "Register", "Account")%> aangemaakt worden.
+        Hieronder staan alle gebruikers van het systeem. Een gebruiker kan hier onder uitgeschakeld worden 
+        (alle gebruikers informatie blijft behouden).<br />
+        Er kan ook een <%: Html.ActionLink("nieuwe gebruiker", "Register", "Account")%> aangemaakt worden.
     </div>
     <div>
         <table>

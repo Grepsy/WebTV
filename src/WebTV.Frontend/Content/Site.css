@@ -1,4 +1,6 @@
-﻿body {
+﻿header, footer { display: block; }
+
+body {
     background-color: #255d9b;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -110,7 +112,7 @@ footer {
     color: #F9BE00;
     text-align: right;
     position: relative;
-    top: 155px;
+    top: 60px;
 }
 footer a { color: #F9BE00; }
 

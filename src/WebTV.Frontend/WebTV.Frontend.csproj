@@ -126,12 +126,14 @@
     <Content Include="Content\wijchentv.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\dialogs.js" />
+    <Content Include="Scripts\html5.js" />
     <Content Include="Scripts\jquery-ui-1.8.6.custom.min.js" />
     <Content Include="Scripts\jquery.tmpl.js" />
     <Content Include="Scripts\swfobject.js" />
     <Content Include="Views\Account\ListUsers.aspx" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Animation\Create.aspx" />
     <Content Include="Views\Animation\Edit.aspx" />
     <Content Include="Views\Animation\Index.aspx" />
     <Content Include="Views\MediaGroup\Edit.aspx" />

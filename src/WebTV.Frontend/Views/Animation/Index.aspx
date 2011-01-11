@@ -5,7 +5,14 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Animaties</h2>
+     <ul class="breadcrumps">
+        <li>
+            <%: Html.ActionLink("Mijn fotosets", "Index", new { controller = "MediaSet" })%>
+        </li>
+        <li>
+            Animaties
+        </li>
+    </ul>
 
     <ul>
     <% foreach (var animation in this.Model) { %>

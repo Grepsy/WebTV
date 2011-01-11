@@ -5,17 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using WebTV.Model;
 using System.Security.Permissions;
+using System.Data.Objects.SqlClient;
 
 namespace WebTV.Frontend.Controllers {
     public class AnimationController : ControllerBase {
-        
-        public ActionResult Index(int id) {
+        public ActionResult Index(int? id) {
+            if (!id.HasValue)
+                return View(Context.Animations);
+
             var animation = Context.Animations.Single(a => a.AnimationId == id);
            
             if (Request.Params["type"] == "json") {
                 return Json(AnimationToJson(animation), JsonRequestBehavior.AllowGet);
             }
-            
             return View(animation);
         }
 
@@ -27,10 +29,53 @@ namespace WebTV.Frontend.Controllers {
             return Json(AnimationToJson(animation, mediaSetId), JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "Administrator,User")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id) {
             var animation = Context.Animations.Single(a => a.AnimationId == id);
+
+            ViewData["Customers"] = Context.Customers.Select(c => new SelectListItem() {
+                Text = c.Name,
+                Value = SqlFunctions.StringConvert((double)c.CustomerId).Trim(),
+                Selected = animation.CustomerId == c.CustomerId
+            }).ToList();
+
             return View("Edit", animation);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Edit(int id, string name, int mediaGroupedBy, int customerId) {
+            var animation = Context.Animations.Single(a => a.AnimationId == id);
+            animation.Name = name;
+            animation.MediaGroupedBy = mediaGroupedBy;
+            animation.CustomerId = customerId;
+            Context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Create() {
+            ViewData["Customers"] = Context.Customers.Select(c => new SelectListItem() {
+                Text = c.Name,
+                Value = SqlFunctions.StringConvert((double)c.CustomerId).Trim()
+            }).ToList();
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Create(string name, int mediaGroupedBy, int customerId) {
+            var animation = new Animation() {
+                Name = name,
+                MediaGroupedBy = mediaGroupedBy,
+                CustomerId = customerId
+            };
+            Context.Animations.AddObject(animation);
+            Context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         private object AnimationToJson(Animation animation) {

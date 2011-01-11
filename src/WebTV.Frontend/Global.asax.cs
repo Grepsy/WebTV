@@ -14,7 +14,8 @@ namespace WebTV.Frontend {
             routes.MapRoute(
                 "Animation",
                 "Animation/{id}",
-                new { controller = "Animation", action = "Index", id = UrlParameter.Optional }
+                new { controller = "Animation", action = "Index", id = UrlParameter.Optional },
+                new { id = @"\d." }
             );
             routes.MapRoute(
             "Static",
