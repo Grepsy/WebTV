@@ -14,12 +14,14 @@
         </li>
     </ul>
 
-    <ul>
-    <% foreach (var animation in this.Model) { %>
-        <li>
-            <%: Html.ActionLink(animation.Name, "Edit", new { id = animation.AnimationId }) %>
-            (<%: animation.MediaSets.Count() %> actieve sets)
-        </li>
-    <% } %>
-    </ul>
+    <div class="actiontext">
+        Maak <%: Html.ActionLink("een nieuwe animatie", "Create", "Animation")%>.
+    </div>
+
+    <%: Html.Grid(Model).Columns(col => {
+            col.For(a => a.Name).Named("Naam");
+            col.For(a => a.MediaSets.Count).Named("Actieve fotosets");
+            col.For(a => Html.ActionLink("bewerken", "Edit", new { id = a.AnimationId }));
+        }) 
+    %>
 </asp:Content>

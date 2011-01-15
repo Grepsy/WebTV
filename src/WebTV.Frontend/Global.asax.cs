@@ -14,14 +14,16 @@ namespace WebTV.Frontend {
             routes.MapRoute(
                 "Animation",
                 "Animation/{id}",
-                new { controller = "Animation", action = "Index", id = UrlParameter.Optional },
-                new { id = @"\d." }
+                new { controller = "Animation", action = "Index" },
+                new { id = @"\d+" }
             );
+
             routes.MapRoute(
-            "Static",
-            "Static/{pagename}",
-            new { controller = "Static", action = "Static", pagename = UrlParameter.Optional }
+                "Static",
+                "Static/{pagename}",
+                new { controller = "Static", action = "Static", pagename = UrlParameter.Optional }
             );
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters

@@ -25,7 +25,7 @@
         </li>
     </ul>
     <div class="actiontext">
-        Een preview van de door u samegestelde commercial.
+        Een preview van de door u samengestelde commercial.
     </div>
     <div class="mediaset-preview">
         <div class="preview-container">

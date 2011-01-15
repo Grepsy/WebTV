@@ -17,7 +17,7 @@
         </li>
     </ul>
     <div class="actiontext">
-        Maak <%: Html.ActionLink("een nieuwe animatie", "Create", "Animation")%>. De naam van de animatie dient overeen te komen met
+        De naam van de animatie dient overeen te komen met
         de bestandsnaam van de Flash animatie.
     </div>
     <% using (Html.BeginForm()) {%>
